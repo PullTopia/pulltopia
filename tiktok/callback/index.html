@@ -1,0 +1,13 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikTok-Bestätigung · PullTopia</title><link rel="stylesheet" href="../../style.css"><meta name="robots" content="noindex"></head><body>
+<header><img src="../../logo.png" alt="PullTopia"><h1>Pull<span>Topia</span></h1></header>
+<main><div class="card" id="box"><h2>🎵 TikTok-Verbindung</h2><p id="msg">Einen Moment …</p><div id="out"></div></div>
+<p><small>Diese Seite speichert und überträgt nichts – der Code wird nur hier in deinem Browser angezeigt und ist nur wenige Minuten gültig. · This page stores nothing; the one-time code is only shown in your browser.</small></p></main>
+<script>
+(function(){var q=new URLSearchParams(location.search),code=q.get("code"),err=q.get("error"),msg=document.getElementById("msg"),out=document.getElementById("out");
+if(err){msg.textContent="TikTok hat den Zugriff nicht erteilt ("+err+"). Du kannst es im Discord-Cockpit jederzeit erneut versuchen.";return;}
+if(!code){msg.textContent="Kein Code gefunden. Bitte starte die Verbindung im Discord über „🎵 TikTok verbinden“.";return;}
+var val=location.href;msg.innerHTML="<b>Fast geschafft!</b> Kopiere den Code unten und füge ihn im Discord in deinem Creator-Cockpit bei <b>„🔑 Code eingeben“</b> ein.";
+var c=document.createElement("div");c.className="code";c.textContent=val;out.appendChild(c);
+var b=document.createElement("button");b.textContent="📋 Code kopieren";b.style.marginTop="14px";b.onclick=function(){navigator.clipboard.writeText(val).then(function(){b.textContent="✅ Kopiert – jetzt in Discord einfügen";});};out.appendChild(b);})();
+</script>
+</body></html>
