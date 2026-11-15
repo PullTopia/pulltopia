@@ -1,0 +1,27 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Verträge hier kündigen · PullTopia</title><link rel="stylesheet" href="style.css"><meta name="robots" content="index"></head><body>
+<header><img src="logo.png" alt="PullTopia"><h1>Pull<span>Topia</span></h1></header>
+<nav><a href="./">Start</a><a href="privacy.html">Datenschutz / Privacy</a><a href="terms.html">Nutzungsbedingungen / Terms</a><a href="imprint.html">Impressum</a></nav>
+<main>
+<div class="card"><h2>Verträge hier kündigen</h2>
+<p>Hier kannst du deine <b>PullTopia-Premium-Mitgliedschaft</b> kündigen. Am schnellsten geht es direkt im Discord: Kanal <b>#mitgliedschaften</b> → <b>„Abo verwalten / kündigen“</b>. Dort öffnet sich dein persönliches Stripe-Kundenportal, in dem du sofort kündigen kannst.</p>
+<p>Ohne Discord kannst du auch dieses Formular nutzen:</p>
+<form id="f" onsubmit="return send(event)">
+<p><label>Name (Pflicht)<br><input required id="name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #3b3480;background:#0b0a1c;color:#fff"></label></p>
+<p><label>Discord-Name oder E-Mail-Adresse, mit der du gebucht hast (Pflicht)<br><input required id="ident" style="width:100%;padding:10px;border-radius:8px;border:1px solid #3b3480;background:#0b0a1c;color:#fff"></label></p>
+<p><label>Vertrag<br><input id="vertrag" value="PullTopia Premium" style="width:100%;padding:10px;border-radius:8px;border:1px solid #3b3480;background:#0b0a1c;color:#fff"></label></p>
+<p><label>Art der Kündigung<br><select id="art" style="padding:10px;border-radius:8px"><option>ordentliche Kündigung</option><option>außerordentliche Kündigung</option></select></label></p>
+<p><label>Grund (nur bei außerordentlicher Kündigung)<br><input id="grund" style="width:100%;padding:10px;border-radius:8px;border:1px solid #3b3480;background:#0b0a1c;color:#fff"></label></p>
+<p><label>Kündigen zum<br><select id="zeit" style="padding:10px;border-radius:8px"><option>nächstmöglichen Zeitpunkt</option><option>sofort (außerordentlich)</option></select></label></p>
+<p><label>E-Mail für deine Kündigungsbestätigung (Pflicht)<br><input required type="email" id="mail" style="width:100%;padding:10px;border-radius:8px;border:1px solid #3b3480;background:#0b0a1c;color:#fff"></label></p>
+<button type="submit">jetzt kündigen</button>
+</form>
+<p id="ok" style="display:none"><b>Fast fertig:</b> Dein E-Mail-Programm hat sich mit der vorbereiteten Kündigung geöffnet – bitte noch <b>absenden</b>. Du erhältst eine Bestätigung mit Datum und Uhrzeit des Eingangs. Falls sich nichts geöffnet hat, schreibe bitte an <a href="mailto:Pablo2211x@proton.me">Pablo2211x@proton.me</a>.</p>
+<p><small>Diese Seite speichert und überträgt nichts selbst; die Angaben werden nur in deine E-Mail übernommen.</small></p></div>
+<script>
+function send(e){e.preventDefault();var v=function(i){return document.getElementById(i).value};
+var body="Kündigung\n\nName: "+v("name")+"\nDiscord-Name / Buchungs-E-Mail: "+v("ident")+"\nVertrag: "+v("vertrag")+"\nArt: "+v("art")+(v("grund")?"\nGrund: "+v("grund"):"")+"\nZum: "+v("zeit")+"\nBestätigung an: "+v("mail")+"\n\nErstellt am: "+new Date().toLocaleString("de-DE");
+location.href="mailto:Pablo2211x@proton.me?subject="+encodeURIComponent("Kündigung PullTopia Premium")+"&body="+encodeURIComponent(body);
+document.getElementById("ok").style.display="block";return false;}
+</script>
+</main>
+<footer>© 2026 PullTopia · <a href="./privacy.html">Datenschutz / Privacy Policy</a> · <a href="./terms.html">Nutzungsbedingungen / Terms of Service</a> · <a href="./imprint.html">Impressum</a> · <a href="./kuendigen.html"><b>Verträge hier kündigen</b></a></footer></body></html>
