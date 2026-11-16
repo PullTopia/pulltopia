@@ -424,7 +424,7 @@ h1,h2,h3,.lead,.hero-sub{text-wrap:balance}
 .fc-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-size:15px;color:var(--gd2);font-weight:600}
 .fc-head b{font-variant-numeric:tabular-nums;color:#fff3c9}
 .fc-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}
-.fc-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#c98a2a,var(--gd),#fff3c9,var(--gd));background-size:200% 100%;box-shadow:0 0 18px rgba(247,195,92,.5);transition:width 1.2s var(--ease2)}
+.fc-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gd) 0%,#ffe7a6 25%,var(--gd) 50%,#ffe7a6 75%,var(--gd) 100%);background-size:200% 100%;box-shadow:0 0 18px rgba(247,195,92,.5);transition:width 1.2s var(--ease2)}
 .js .fc-bar i{animation:sheen 5s linear infinite}
 .fc-note{font-size:13px;color:var(--m);margin-top:10px;text-align:center}
 .keep{font-size:14px;color:var(--gd2);margin-top:14px;font-weight:550}
@@ -569,3 +569,4 @@ h1,h2,h3,.lead,.hero-sub{text-wrap:balance}
 .pcard img{box-shadow:none!important;border-radius:0!important}
 .scene-grid > *{min-width:0}
 .scene-copy .eyebrow,.scene-copy .lead,.scene-copy .h-md,.scene-copy .h-lg,.scene-copy .fine{text-align:left!important;margin-left:0!important}
+.spot-meta{padding:0 24px}
