@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>PullTopia – Die TCG-Community auf Discord</title>
 <meta name="description" content="PullTopia ist die deutschsprachige Discord-Community für Pokémon, One Piece, Yu-Gi-Oh!, Magic und weitere Sammelkartenspiele. Drop-Radar, News-Radar, Tauschbörse, Cardverse und mehr – alles per Klick.">
-<meta name="theme-color" content="#000000">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
 <meta property="og:title" content="PullTopia – Die TCG-Community auf Discord">
 <meta property="og:description" content="Drop-Radar, News-Radar, Tauschbörse, Cardverse. Alles in einem Discord. Alles per Klick.">
 <meta property="og:type" content="website">
@@ -14,12 +14,50 @@
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/img/card-051.webp" as="image">
+<link rel="preload" href="../assets/img/card-secret.webp" as="image">
 <link rel="stylesheet" href="../assets/site.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-fire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff3d00"/><stop offset=".55" stop-color="#ff8a1a"/><stop offset="1" stop-color="#ffe066"/></linearGradient>
+    <linearGradient id="g-grass" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0f9d58"/><stop offset="1" stop-color="#b6ff6a"/></linearGradient>
+    <linearGradient id="g-elec" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6a8"/><stop offset="1" stop-color="#ffb800"/></linearGradient>
+    <radialGradient id="g-psy"><stop offset="0" stop-color="#ffd1f4"/><stop offset="1" stop-color="#b48cff" stop-opacity="0"/></radialGradient>
+    <filter id="f-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <symbol id="m-fire" viewBox="0 0 100 80"><g filter="url(#f-glow)">
+    <path class="mo-a" fill="url(#g-fire)" d="M50 76C33 70 31 52 41 38c1 9 6 12 8 6 2-9-2-18 6-28 2 12 15 20 16 36 1 16-8 24-21 24z"/>
+    <path class="mo-a" style="animation-delay:-.8s" fill="url(#g-fire)" opacity=".85" d="M27 76c-9-5-9-15-3-23 1 5 4 6 5 3 1-6 0-10 5-15 0 8 7 12 7 21 0 9-6 14-14 14z"/>
+    <path class="mo-a" style="animation-delay:-1.5s" fill="url(#g-fire)" opacity=".85" d="M74 76c-8-4-9-14-3-21 1 4 3 5 4 2 1-5 1-9 5-13 0 7 6 11 6 19 0 8-5 13-12 13z"/>
+    <circle class="mo-e" cx="38" cy="30" r="1.2" fill="#ffd166"/><circle class="mo-e" style="animation-delay:-1s" cx="62" cy="24" r="1" fill="#ffb347"/><circle class="mo-e" style="animation-delay:-1.8s" cx="55" cy="34" r="1.4" fill="#ffe08a"/><circle class="mo-e" style="animation-delay:-.4s" cx="30" cy="44" r=".9" fill="#ff9f43"/><circle class="mo-e" style="animation-delay:-2.2s" cx="70" cy="40" r="1.1" fill="#ffd166"/>
+  </g></symbol>
+  <symbol id="m-grass" viewBox="0 0 100 80"><g filter="url(#f-glow)" fill="url(#g-grass)">
+    <path fill="none" stroke="#5cf29a" stroke-width="1.4" stroke-linecap="round" d="M6 74C22 58 30 70 44 52S66 30 94 14"/>
+    <path fill="none" stroke="#3ddc84" stroke-width="1" stroke-linecap="round" opacity=".7" d="M10 30c14 4 18 16 30 14s16-14 30-8 18 4 24-2"/>
+    <g class="mo-b"><path d="M30 60c4-10 14-12 20-8-4 9-12 12-20 8z"/><path d="M52 44c2-11 12-15 19-12-2 10-11 15-19 12z"/><path d="M72 28c1-9 9-13 15-11-1 8-8 13-15 11z"/></g>
+    <g class="mo-b" style="animation-delay:-1.6s"><path d="M20 66c-6-7-4-15 2-18 4 7 3 14-2 18z"/><path d="M44 50c-7-5-7-13-2-17 5 6 5 13 2 17z"/><path d="M64 34c-6-4-6-11-2-14 4 5 4 11 2 14z"/></g>
+  </g></symbol>
+  <symbol id="m-water" viewBox="0 0 100 80"><g filter="url(#f-glow)" fill="none" stroke-linecap="round">
+    <path class="mo-b" stroke="#7ae4ff" stroke-width="1.8" d="M-10 34q12.5-9 25 0t25 0 25 0 25 0 25 0"/>
+    <path class="mo-b" style="animation-delay:-1s" stroke="#2ea8ff" stroke-width="2.4" d="M-10 48q12.5-10 25 0t25 0 25 0 25 0 25 0"/>
+    <path class="mo-b" style="animation-delay:-2s" stroke="#1b6fff" stroke-width="3" d="M-10 63q12.5-11 25 0t25 0 25 0 25 0 25 0"/>
+    <path fill="#7ae4ff" stroke="none" d="M50 8c5 8 8 12 8 16a8 8 0 0 1-16 0c0-4 3-8 8-16z" opacity=".9"/>
+  </g></symbol>
+  <symbol id="m-elec" viewBox="0 0 100 80"><g filter="url(#f-glow)" fill="url(#g-elec)">
+    <path class="mo-a" d="M56 4 30 42h16l-8 34 32-44H52z"/>
+    <path class="mo-a" style="animation-delay:-1s" opacity=".7" d="M22 14 12 30h7l-4 14 13-18h-7z"/>
+    <path class="mo-a" style="animation-delay:-1.7s" opacity=".7" d="M84 30 74 46h7l-4 14 13-18h-7z"/>
+  </g></symbol>
+  <symbol id="m-psy" viewBox="0 0 100 80"><g filter="url(#f-glow)">
+    <circle cx="50" cy="40" r="22" fill="url(#g-psy)" opacity=".7"/>
+    <circle class="mo-b" cx="50" cy="40" r="14" fill="none" stroke="#ff8ae2" stroke-width="1.4"/>
+    <circle class="mo-b" style="animation-delay:-1.4s" cx="50" cy="40" r="26" fill="none" stroke="#b48cff" stroke-width="1" stroke-dasharray="3 4"/>
+    <path fill="#ffd1f4" d="M24 18l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5zM78 56l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z"/>
+  </g></symbol>
+</svg>
 
 <header class="nav" id="nav">
   <div class="nav-in">
@@ -32,6 +70,7 @@
       <a href="#news">News</a>
       <a href="#cardverse">Cardverse</a>
       <a href="#tausch">Tauschbörse</a>
+      <a href="#archiv">Archiv</a>
       <a href="#community">Community</a>
       <a href="#premium">Premium</a>
     </nav>
@@ -61,13 +100,13 @@
       <div class="aura"></div>
       <div class="fcard f1"><img src="../assets/img/card-001.webp" width="400" height="560" alt=""></div>
       <div class="fcard f2"><img src="../assets/img/card-049.webp" width="400" height="560" alt=""></div>
-      <div class="fcard f3 holo"><img src="../assets/img/card-051.webp" width="600" height="840" alt=""><span class="shine"></span></div>
+      <div class="fcard f3 holo secret-hero"><img src="../assets/img/card-secret.webp" width="540" height="756" alt=""><div class="sc-veil" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6%"><img src="../assets/img/logo-160.webp" width="160" height="160" alt="" style="width:42%;height:auto;filter:drop-shadow(0 0 18px rgba(190,170,255,.65))"><span class="sc-q" style="font-weight:700;letter-spacing:.35em;color:#e9ddff;text-shadow:0 0 18px rgba(155,107,255,.9);font-size:clamp(10px,1.3vw,16px)">1 / 1</span></div><span class="shine"></span></div>
       <div class="fcard f4"><img src="../assets/img/card-036.webp" width="400" height="560" alt="" loading="lazy"></div>
       <div class="fcard f5"><img src="../assets/img/card-007.webp" width="400" height="560" alt="" loading="lazy"></div>
     </div>
     <div class="floor" aria-hidden="true"></div>
   </div>
-  <p class="hero-note">Karten: eigene Cardverse-Motive von PullTopia.</p>
+  <p class="hero-note">Karten: eigene Cardverse-Motive von PullTopia. Die Geheimkarte bleibt verdeckt.</p>
 </section>
 
 <!-- ============ MANIFEST ============ -->
@@ -116,6 +155,39 @@
         <div class="tl-steps"><div class="tl-step tl-a"><b>Premium</b><span>sofort</span></div><div class="tl-step tl-b"><b>Alle Verifizierten</b><span>+15 Min · kostenlos</span></div></div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ============ DROP RADAR · DISCORD-SZENE ============ -->
+<section class="scene-band" id="radar-discord" aria-label="Drop-Radar im Discord">
+  <div class="wrap scene-grid">
+    <div class="scene-copy rv">
+      <p class="eyebrow cy">So sieht's im Discord aus</p>
+      <h3 class="h-md">Alert rein.<br><span class="silver">Ping nur, wenn du willst.</span></h3>
+      <p class="lead">Gepingt wird nur, wer die passende Interessenrolle gewählt hat, zum Beispiel Pokémon. Nie @everyone.</p>
+      <p class="fine">Nachgebaute Darstellung mit fiktivem Produkt, Shop und Preis. Premium bekommt denselben Alert sofort in #mitglieder-alerts.</p>
+    </div>
+    <figure class="dc rv" data-scene="drop" style="--dch:380px" aria-label="Beispiel: Drop-Alert im Kanal drop-alerts (nachgebaut)">
+      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>drop-alerts<span class="dc-ex">Beispiel</span></div>
+      <div class="dc-body">
+        <div class="dc-msg st" data-t="500">
+          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+          <div class="dc-c">
+            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+            <p><span class="dc-ment">@🔔 Free-Alert · Pokémon</span></p>
+            <div class="dc-embed" style="--ec:#30d158">
+              <div class="dc-tags"><span>🟢 Bestätigt</span><span class="n">NEU</span></div>
+              <h4>Beispiel-Set · Booster-Display</h4>
+              <p>beispiel-shop.de · fiktives Produkt</p>
+              <div class="row"><div><small>Preis</small><b>129,90 €</b></div><div><small>Bewertung</small><b style="color:#7ef0a0">fair</b></div><div><small>Typ</small><b>Drop</b></div></div>
+            </div>
+            <div class="dc-btns st" data-t="1100"><span class="dc-btn">Zum Produkt</span><span class="dc-btn">Preisvergleich</span><span class="dc-btn">Quellen / Details</span></div>
+            <div class="dc-react st" data-t="1700"><span>🔥 <i data-t="1750" data-count="14" data-dur="1800">0</i></span><span class="me">👀 <i data-t="1900" data-count="9" data-dur="1800">0</i></span><span>⚡ <i data-t="2100" data-count="6" data-dur="1600">0</i></span></div>
+          </div>
+        </div>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -244,17 +316,22 @@
   <div class="wrap">
     <p class="eyebrow rv">Cardverse First Edition</p>
     <h2 class="h-lg rv"><span class="silver">50 Karten.</span><br><span class="gold">Eine gibt es nur einmal.</span></h2>
-    <p class="lead rv">Das virtuelle Sammelspiel von PullTopia. Booster öffnen, Album füllen, tauschen, aufsteigen. Und irgendwo wartet die Geheimkarte: 1 von 1.</p>
+    <p class="lead rv">Das virtuelle Sammelspiel von PullTopia. Booster öffnen, Album füllen, tauschen, aufsteigen. Und irgendwo wartet die Geheimkarte: 1 von 1. Verdeckt, bis jemand sie zieht.</p>
   </div>
   <div class="spot rv">
-    <div class="spot-card holo tilt" id="aeth">
-      <img src="../assets/img/card-051.webp" width="600" height="840" alt="Cardverse-Geheimkarte Ursprungsdrache Aetherion, 1 von 1" loading="lazy">
+    <div class="spot-card holo tilt secret" id="aeth" role="button" tabindex="0" aria-label="Verdeckte Cardverse-Geheimkarte, 1 von 1. Antippen für einen kurzen Blick.">
+      <img src="../assets/img/card-secret.webp" width="540" height="756" alt="" loading="lazy">
+      <img class="sc-flash" src="../assets/img/card-secret-flash.webp" width="540" height="756" alt="" loading="lazy">
+      <div class="sc-veil"><img src="../assets/img/logo-160.webp" width="160" height="160" alt="" loading="lazy"><span class="sc-q">???</span></div>
+      <span class="sc-frame" aria-hidden="true"></span>
       <span class="shine"></span>
     </div>
     <div class="spot-meta">
       <span class="badge-1of1">1 / 1</span>
-      <h3>Ursprungsdrache Aetherion</h3>
-      <p>Mythic · #051/050. Genau ein Exemplar im gesamten Cardverse.</p>
+      <h3>Die Geheimkarte</h3>
+      <p>Mythic · #051/050. Genau ein Exemplar im gesamten Cardverse. Wie sie aussieht, bleibt ein Geheimnis.</p>
+      <p class="secret-cta silver">Nur eine existiert. Finde sie im Nexus.</p>
+      <p class="secret-hint">Antippen oder darüberfahren für einen kurzen Blick.</p>
     </div>
   </div>
   <div class="reel" aria-label="Auswahl an Cardverse-Karten">
@@ -277,6 +354,45 @@
     </div>
     <p class="fine center rv">Erfolge von Bronze bis Holografisch. Alles virtuell, ohne Echtgeldwert, kein Pay-to-win.</p>
   </div>
+  <div class="scene-band tight">
+    <div class="wrap scene-grid rev">
+      <div class="scene-copy rv">
+        <p class="eyebrow">Booster Opening in #minigames</p>
+        <h3 class="h-md">Ein Klick.<br><span class="neon">Ein Pull. Nur für dich.</span></h3>
+        <p class="lead">„Booster öffnen“ drücken und deine Karte erscheint privat direkt bei dir, ohne Scrollen. Jeder Booster enthält eine Karte. 5 Booster pro Tag kostenlos, mit Mitgliedschaft 10.</p>
+        <p class="fine">Virtuelle Cardverse-Karten, kein Geldwert. Das Limit setzt sich um Mitternacht (Europe/Berlin) zurück. Darstellung nachgebaut, Werte als Beispiel.</p>
+      </div>
+      <figure class="dc rv" data-scene="booster" style="--dch:430px" aria-label="Beispiel: Booster öffnen im Discord (nachgebaut)">
+        <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>minigames<span class="dc-ex">Beispiel</span></div>
+        <div class="dc-body">
+          <div class="dc-msg">
+            <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+            <div class="dc-c">
+              <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+              <div class="dc-embed" style="--ec:#9b6bff"><h4>✦ Minigames · Cardverse Booster</h4><p>Free: 5 Öffnungen/Tag · Unterstützer: 10/Tag</p></div>
+              <div class="dc-btns"><span class="dc-btn p" data-t="900" data-k="press">Booster öffnen</span><span class="dc-btn">Rangliste</span><span class="dc-btn g">Mein Album</span></div>
+            </div>
+          </div>
+          <div class="dc-msg st" data-t="1300">
+            <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+            <div class="dc-c">
+              <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+              <div class="bo-row bo1" data-t="6400" data-k="off">
+                <div class="bo-s" data-t="1400" data-k="shake"><div class="bo" data-t="2500" data-k="open"><img class="pk" src="../assets/img/booster.webp" width="420" height="588" alt="" loading="lazy"><img class="cd" src="../assets/img/card-016.webp" width="400" height="560" alt="Cardverse-Karte Lunafuchs" loading="lazy"></div></div>
+                <div class="dc-embed st" data-t="3000" style="--ec:#a1a1a6"><h4>✦ Booster-Zug: Lunafuchs</h4><p>Nr. #016 · Seltenheit: Normal · Besitz: ×1</p><p>+5 Punkte · Heute noch 4/5</p></div>
+              </div>
+              <div class="bo-row bo2" data-t="6400">
+                <div class="bo-s" data-t="6450" data-k="shake"><div class="bo" data-t="7500" data-k="open"><img class="pk" src="../assets/img/booster.webp" width="420" height="588" alt="" loading="lazy"><img class="cd" src="../assets/img/card-033.webp" width="400" height="560" alt="Cardverse-Karte Vulkanphönix" loading="lazy"></div></div>
+                <div class="dc-embed st" data-t="8000" style="--ec:#2ee6ff"><h4>✦ Booster-Zug: Vulkanphönix</h4><p>Nr. #033 · Seltenheit: Selten · Besitz: ×1</p><p>+15 Punkte · Heute noch 3/5</p></div>
+              </div>
+              <div class="dc-btns"><span class="dc-btn p" data-t="5600" data-k="press">Noch einen Booster öffnen</span><span class="dc-btn">Mein Album</span></div>
+              <p class="dc-eph">Nur du kannst das sehen</p>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- ============ TAUSCH ============ -->
@@ -287,17 +403,94 @@
       <h2 class="h-lg">Die passende Karte<br><span class="neon">findet dich.</span></h2>
     </div>
     <div class="match">
-      <div class="m-card m-l"><img src="../assets/img/card-036.webp" width="400" height="560" alt="" loading="lazy"><span>Biete</span></div>
+      <div class="m-card m-l"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><span>Biete</span></div>
       <div class="m-mid">
         <span class="crit k1">Set</span><span class="crit k2">Nummer</span><span class="crit k3">Variante</span><span class="crit k4">Sprache</span><span class="crit k5">Zustand</span>
         <span class="m-ok">Match</span>
       </div>
-      <div class="m-card m-r"><img src="../assets/img/card-049.webp" width="400" height="560" alt="" loading="lazy"><span>Suche</span></div>
+      <div class="m-card m-r"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><span>Suche</span></div>
     </div>
     <div class="wrap">
       <p class="lead center">Angebote und Gesuche anlegen. TradeMatch findet Partner nach Set, Nummer, Variante, Sprache und Zustand. Ein privater Tauschraum öffnet sich erst, wenn <b>beide</b> zustimmen.</p>
-      <p class="fine center">Für echte Sammelkarten. Der Cardverse-Tausch läuft strikt getrennt und virtuell. Keine Preis-, Fairness- oder Sicherheitsgarantie. Abbildung mit Cardverse-Karten.</p>
+      <p class="fine center">Für echte Sammelkarten. Der Cardverse-Tausch läuft strikt getrennt und virtuell. Keine Preis-, Fairness- oder Sicherheitsgarantie. Beispiel mit echtem Kartennamen im eigenen PullTopia-Kartendesign.</p>
     </div>
+  </div>
+</section>
+
+
+<!-- ============ TAUSCH · DISCORD-SZENE ============ -->
+<section class="scene-band" id="tausch-discord" aria-label="Tauschbörse im Discord">
+  <div class="wrap scene-grid rev">
+    <div class="scene-copy rv">
+      <p class="eyebrow">#karten-tauschboerse</p>
+      <h3 class="h-md">Suchen. Finden.<br><span class="neon">Interesse zeigen.</span></h3>
+      <p class="lead">Karte eintippen, passendes Angebot erscheint. Ein Klick auf „Interesse zeigen“, und sobald beide zustimmen, öffnet sich euer privater Tauschraum.</p>
+      <p class="fine">Nachgebaute Darstellung. Angebot, Nummer und Ablauf sind Beispiele, keine echten Mitglieder oder Angebote.</p>
+    </div>
+    <figure class="dc rv" data-scene="trade" style="--dch:420px" aria-label="Beispiel: Angebot in der Tauschbörse finden (nachgebaut)">
+      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>karten-tauschboerse<span class="dc-ex">Beispiel</span></div>
+      <div class="dc-body">
+        <div class="dc-msg">
+          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+          <div class="dc-c">
+            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+            <div class="dc-btns"><span class="dc-btn p">➕ Angebot erstellen</span><span class="dc-btn p">🔎 Gesuch erstellen</span><span class="dc-btn" data-t="700" data-k="press">🧭 Angebote durchsuchen</span></div>
+          </div>
+        </div>
+        <div class="gone" data-t="3900"><div class="dc-modal st" data-t="1000"><small>Angebote durchsuchen · Pokémon</small><div class="dc-field"><span class="ty" data-t="1300" data-type="Glurak-ex 151"></span></div></div></div>
+        <div class="dc-msg st" data-t="3900">
+          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+          <div class="dc-c">
+            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+            <div class="dc-embed" style="--ec:#2ee6ff"><div class="dc-res"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div><h4>ANGEBOT · Pokémon · #12</h4><p>🎴 <b>Glurak-ex</b> · 151 006/165</p><p>Deutsch · Near Mint</p></div></div></div>
+            <div class="dc-btns"><span class="dc-btn g" data-t="5200" data-k="press">🤝 Interesse zeigen</span><span class="dc-btn">🚩 Melden</span></div>
+            <p class="dc-ok st" data-t="5600">✅ Interesse gezeigt. Der Tauschraum öffnet sich, wenn beide zustimmen.</p>
+            <p class="dc-eph">Nur du kannst das sehen</p>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ POKÉMON-ARCHIV ============ -->
+<section class="archive" id="archiv">
+  <div class="wrap scene-grid">
+    <div class="scene-copy">
+      <p class="eyebrow cy rv">Pokémon-Archiv · #pokemon-archiv</p>
+      <h2 class="h-lg rv">Deine Sammlung.<br><span class="neon">Immer dabei.</span></h2>
+      <p class="lead rv">Karte suchen, mit einem Klick zur Sammlung hinzufügen und zusehen, wie dein Set-Fortschritt wächst. Dazu Wunschliste und Set-Explorer. Alles privat, nur du siehst deine Ansichten.</p>
+      <div class="chips rv"><span><b>31</b> Sets</span><span><b>5.239</b> Karten</span><span>Stand 16.11.2026</span></div>
+      <p class="lead rv" style="font-size:clamp(17px,1.6vw,20px)"><b>Funktioniert mit deinen echten Pokémon-Karten.</b></p>
+      <div class="real-cards rv"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass" role="img" aria-label="Bisaflor-ex · 151 · 003/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-grass"/></svg></div><div class="pc-name">Bisaflor-ex</div><div class="pc-set">151 · 003/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-water"/></svg></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-elec" role="img" aria-label="Pikachu-ex · Stürmische Funken · 057/191 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Elektro</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-elec"/></svg></div><div class="pc-name">Pikachu-ex</div><div class="pc-set">Stürmische Funken · 057/191</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
+      <p class="fine rv">Echte Kartennamen, Sets und Nummern, dargestellt im eigenen PullTopia-Kartendesign. Keine offiziellen Kartenbilder. Preise nur als Cardmarket-Trend und Schätzung; hier ist der Wert ein Beispiel.</p>
+    </div>
+    <figure class="dc rv" data-scene="archive" style="--dch:520px" aria-label="Beispiel: Karte im Pokémon-Archiv suchen und zur Sammlung hinzufügen (nachgebaut)">
+      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>📚│pokemon-archiv<span class="dc-ex">Beispiel</span></div>
+      <div class="dc-body">
+        <div class="dc-msg">
+          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+          <div class="dc-c">
+            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+            <div class="dc-embed" style="--ec:#2ee6ff"><h4>📚 Pokémon-Archiv</h4><p>31 Sets · 5.239 Karten · Stand 16.11.2026</p></div>
+            <div class="dc-btns"><span class="dc-btn p" data-t="700" data-k="press">Karte suchen</span><span class="dc-btn">Meine Sammlung</span><span class="dc-btn">Wunschliste</span><span class="dc-btn">Set-Fortschritt</span><span class="dc-btn">📚 Alle Sets</span></div>
+          </div>
+        </div>
+        <div class="gone" data-t="3700"><div class="dc-modal st" data-t="1000"><small>Karte suchen</small><div class="dc-field"><span class="ty" data-t="1300" data-type="Glurak-ex 151"></span></div></div></div>
+        <div class="dc-msg st" data-t="3700">
+          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+          <div class="dc-c">
+            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+            <div class="dc-embed" style="--ec:#ff7a1a"><div class="dc-res"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div><h4>Glurak-ex</h4><p>151 · 006/165 · Doppelt selten</p><p style="margin-top:6px"><small style="color:#949ba4;font-weight:600">Cardmarket-Trend · Schätzung</small><br><b style="color:#fff">12,34 €</b> <span class="dc-ex" style="margin-left:4px;font-size:9.5px;padding:1px 6px">Beispiel</span></p></div></div></div>
+            <div class="dc-btns"><span class="dc-btn p" data-t="5000" data-k="press">Zur Sammlung hinzufügen</span><span class="dc-btn">Auf Wunschliste</span></div>
+            <div class="st" data-t="5400"><p class="dc-ok">✅ Zur Sammlung hinzugefügt</p>
+              <div class="dc-prog"><div class="lb"><span>Set-Fortschritt · 151 (regulär)</span><b><i style="font-style:normal" data-t="5700" data-from="47" data-count="48" data-dur="900">47</i> / 165</b></div><div class="tr"><i style="--w0:28.5%" data-t="5700" data-w="29.1%"></i></div></div>
+            </div>
+            <p class="dc-eph">Nur du kannst das sehen</p>
+          </div>
+        </div>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -308,25 +501,75 @@
     <h2 class="h-lg rv"><span class="silver">Sofort.</span><br><span class="gold">Statt 15 Minuten später.</span></h2>
     <p class="lead rv">Ein Paket, drei Laufzeiten, dieselben Leistungen. Premium-Alerts ohne Verzögerung in der Mitglieder-Lounge.</p>
 
-    <div class="founder rv"><span class="spark" aria-hidden="true">✦</span> Gründerpreis für die ersten 50 zahlenden Mitglieder. Er bleibt, solange dein Abo ununterbrochen läuft.</div>
+    <!-- GRÜNDERPLÄTZE: Nur die zwei Zahlen hier ändern (frei / gesamt). Der Balken rechnet sich daraus (assets/scenes.js). -->
+    <div class="fc rv" role="group" aria-label="Gründerplätze">
+      <div class="fc-head"><span><span aria-hidden="true">✦</span> Gründerpreis</span><span>noch <b data-fc-free>50</b> von <b data-fc-total>50</b> Plätzen</span></div>
+      <div class="fc-bar" aria-hidden="true"><i style="width:100%"></i></div>
+      <p class="fc-note">Für die ersten 50 zahlenden Mitglieder. Dein Gründerpreis bleibt, solange dein Abo ununterbrochen läuft. Stand: 16.11.2026</p>
+    </div>
 
     <div class="plans">
       <article class="plan rv">
         <h3>Monatlich</h3>
         <p class="price"><b>4,99 €</b><span>/ Monat</span></p>
-        <p class="reg">danach regulär 6,99 €</p>
+        <p class="keep">Dein Preis bleibt, solange dein Abo läuft.</p>
+        <p class="reg">Regulär <b>6,99 €</b> · gilt erst, wenn alle 50 Gründerplätze vergeben sind</p>
       </article>
       <article class="plan rv">
         <h3>Quartal</h3>
         <p class="price"><b>12,99 €</b><span>/ 3 Monate</span></p>
-        <p class="reg">danach regulär 17,99 €</p>
+        <p class="keep">Dein Preis bleibt, solange dein Abo läuft.</p>
+        <p class="reg">Regulär <b>17,99 €</b> · gilt erst, wenn alle 50 Gründerplätze vergeben sind</p>
       </article>
       <article class="plan plan-hl rv">
         <span class="plan-tag">Längste Laufzeit</span>
         <h3>Jährlich</h3>
         <p class="price"><b>39,99 €</b><span>/ 12 Monate</span></p>
-        <p class="reg">danach regulär 54,99 €</p>
+        <p class="keep">Dein Preis bleibt, solange dein Abo läuft.</p>
+        <p class="reg">Regulär <b>54,99 €</b> · gilt erst, wenn alle 50 Gründerplätze vergeben sind</p>
       </article>
+    </div>
+
+
+    <div class="scene-band tight">
+      <div class="scene-grid">
+        <div class="scene-copy rv">
+          <p class="eyebrow gold-t">Gebucht in #mitgliedschaften</p>
+          <h3 class="h-md">Button drücken.<br><span class="gold">Premium aktiv.</span></h3>
+          <p class="lead">Laufzeit wählen, sicher über Stripe zahlen, fertig. Deine Premium-Rolle kommt automatisch, und die Alerts landen ab sofort ohne Verzögerung bei dir.</p>
+          <p class="fine">Nachgebaute Darstellung, Ablauf als Beispiel.</p>
+        </div>
+        <figure class="dc rv" data-scene="premium" style="--dch:400px" aria-label="Beispiel: Premium im Discord buchen (nachgebaut)">
+          <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>mitgliedschaften<span class="dc-ex">Beispiel</span></div>
+          <div class="dc-body">
+            <div class="dc-msg">
+              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+              <div class="dc-c">
+                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+                <div class="dc-embed" style="--ec:#f7c35c"><h4>PullTopia Premium</h4><p>Ein Paket, drei Laufzeiten. 🌟 Gründerpreis</p></div>
+                <div class="dc-btns"><span class="dc-btn p">🌙 Monatlich · 4,99 €</span><span class="dc-btn p">🔮 Quartal · 12,99 €</span><span class="dc-btn g" data-t="800" data-k="press">👑 Jährlich · 39,99 €</span></div>
+              </div>
+            </div>
+            <div class="dc-msg st" data-t="1300">
+              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+              <div class="dc-c">
+                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+                <div class="dc-embed" style="--ec:#f7c35c"><h4>👑 PullTopia Premium · Jährlich · 🌟 Gründerpreis</h4><p>Gründerpreis: bleibt dir erhalten, solange dein Abo ununterbrochen läuft.</p></div>
+                <div class="dc-btns"><span class="dc-btn g" data-t="2600" data-k="press">💳 Zahlungspflichtig weiter (39,99 €)</span><span class="dc-btn">✖️ Abbrechen</span></div>
+                <p class="dc-eph">Nur du kannst das sehen</p>
+              </div>
+            </div>
+            <div class="dc-msg st" data-t="3600">
+              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+              <div class="dc-c">
+                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+                <p style="color:#c4c8ce">Zahlung über Stripe bestätigt. Rolle erhalten: <span class="dc-role">Premium · Jährlich</span></p>
+                <div class="dc-prem pop" data-t="4300">✦ Premium aktiv</div>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
     </div>
 
     <div class="compare rv">
@@ -399,11 +642,12 @@
         <a href="../kuendigen.html"><b>Verträge hier kündigen</b></a>
       </nav>
     </div>
-    <p class="disc">PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert. Wir sind nicht mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Amazon oder den genannten Shops verbunden. Pokémon, One Piece, Yu-Gi-Oh!, Magic: The Gathering und alle weiteren Marken gehören ihren jeweiligen Inhabern. Alle Kartenmotive auf dieser Seite sind eigene Cardverse-Motive von PullTopia.</p>
+    <p class="disc">PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert. Wir sind nicht mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Amazon oder den genannten Shops verbunden. Pokémon, One Piece, Yu-Gi-Oh!, Magic: The Gathering und alle weiteren Marken gehören ihren jeweiligen Inhabern. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Echte Kartennamen, Sets und Nummern werden nur zur Beschreibung genannt und im eigenen PullTopia-Kartendesign ohne offizielle Kartenbilder, Figuren oder Logos dargestellt. Alle übrigen Kartenmotive sind eigene Cardverse-Motive von PullTopia.</p>
     <p class="copy">© 2026 PullTopia</p>
   </div>
 </footer>
 
 <script src="../assets/site.js" defer></script>
+<script src="../assets/scenes.js" defer></script>
 </body>
 </html>
