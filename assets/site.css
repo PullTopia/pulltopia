@@ -570,3 +570,112 @@ h1,h2,h3,.lead,.hero-sub{text-wrap:balance}
 .scene-grid > *{min-width:0}
 .scene-copy .eyebrow,.scene-copy .lead,.scene-copy .h-md,.scene-copy .h-lg,.scene-copy .fine{text-align:left!important;margin-left:0!important}
 .spot-meta{padding:0 24px}
+
+/* ===== v3 (16.11.2026): Nebel-Geheimkarte, Kreaturen, Gegen-Match, Set-Explorer ===== */
+.secret{isolation:isolate;overflow:hidden;background:#05030c}
+.secret .sc-base{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(.7)}
+.secret .sc-sil{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;filter:drop-shadow(0 0 6px rgba(201,168,255,.5));transform:scale(1.02);transition:opacity .5s var(--ease),filter .5s var(--ease)}
+.secret .sc-fog{position:absolute;inset:-35%;pointer-events:none;background:url(img/fog-1.webp) 0 0/45% auto repeat;opacity:.62;will-change:transform;transition:filter .45s var(--ease)}
+.secret .sc-f2{background-image:url(img/fog-2.webp);background-size:62% auto;opacity:.5}
+.secret .sc-f3{background-size:80% auto;opacity:.4;transform:rotate(180deg)}
+.secret::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(60% 45% at 50% 40%,rgba(155,107,255,.22),transparent 70%),linear-gradient(180deg,rgba(5,3,12,.1),rgba(5,3,12,.55))}
+.secret .sc-fog,.secret .sc-sil{z-index:0}
+.secret .sc-sil{z-index:0}
+.secret .sc-mark{position:absolute;top:6%;left:50%;transform:translateX(-50%);width:15%;z-index:2;display:block}
+.secret .sc-mark img{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(247,213,138,.7))}
+.secret .sc-q{position:absolute;left:0;right:0;bottom:7%;text-align:center;z-index:2;font-size:clamp(11px,1.6vw,20px);letter-spacing:.3em}
+.fcard.secret .sc-q{font-size:clamp(8px,1vw,13px)}
+.secret .sc-frame{z-index:3;border-color:rgba(247,195,92,.6)}
+.js .secret .sc-f1{animation:fogA 28s ease-in-out infinite alternate,fogTear 11s ease-in-out infinite}
+.js .secret .sc-f2{animation:fogB 36s ease-in-out infinite alternate,fogTear2 11s ease-in-out infinite}
+.js .secret .sc-f3{animation:fogC 44s linear infinite alternate,fogTear3 11s ease-in-out infinite}
+.js .secret .sc-sil{animation:silPeek 11s ease-in-out infinite}
+.js .secret .sc-frame{animation:goldPulse 3.4s ease-in-out infinite}
+.js .secret:not(.inview) .sc-fog,.js .secret:not(.inview) .sc-sil,.js .secret:not(.inview) .sc-frame{animation-play-state:paused}
+@keyframes fogA{from{transform:translate3d(0,0,0)}to{transform:translate3d(-14%,-7%,0)}}
+@keyframes fogB{from{transform:translate3d(-10%,4%,0) scale(1.05)}to{transform:translate3d(8%,-6%,0) scale(1)}}
+@keyframes fogC{from{transform:rotate(180deg) translate3d(0,0,0)}to{transform:rotate(180deg) translate3d(10%,9%,0)}}
+@keyframes fogTear{0%,58%{opacity:.62}68%,76%{opacity:.14}88%,100%{opacity:.62}}
+@keyframes fogTear2{0%,60%{opacity:.5}70%,77%{opacity:.08}90%,100%{opacity:.5}}
+@keyframes fogTear3{0%,56%{opacity:.4}67%,75%{opacity:.1}86%,100%{opacity:.4}}
+@keyframes silPeek{0%,58%{opacity:.4;filter:drop-shadow(0 0 4px rgba(201,168,255,.35))}70%,76%{opacity:.85;filter:drop-shadow(0 0 10px rgba(247,213,138,.75))}90%,100%{opacity:.4;filter:drop-shadow(0 0 4px rgba(201,168,255,.35))}}
+@keyframes goldPulse{0%,100%{box-shadow:inset 0 0 24px rgba(247,195,92,.12),0 0 14px rgba(247,195,92,.2)}50%{box-shadow:inset 0 0 40px rgba(247,195,92,.32),0 0 34px rgba(247,195,92,.55);border-color:rgba(255,226,150,.95)}}
+.secret.flash .sc-fog{filter:opacity(.18)}
+.secret.flash .sc-sil{opacity:1!important;filter:drop-shadow(0 0 14px rgba(247,213,138,.95))!important;animation:none}
+.secret:focus-visible{outline:2px solid var(--gd,#f7c35c)}
+
+/* Kreaturen in Beispielkarten */
+.pc-art img.pc-cr{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc-art:has(.pc-cr)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,color-mix(in srgb,var(--tc) 28%,transparent));pointer-events:none}
+.pcard.mini .pc-foot{display:none}
+.pcard.mini > :last-child{margin-bottom:7cqw}
+
+/* Gegen-Match */
+.m-side{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;flex:none;transition:transform 1s var(--ease2)}
+.m-who{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--m);margin-bottom:4px}
+.m-who small{font-weight:500;text-transform:none;letter-spacing:0;color:var(--m2)}
+.m-tag{font-size:13px;color:#d8d8e0;white-space:nowrap}
+.m-tag b{display:inline-block;min-width:44px;font-weight:700;color:#2ee6ff}
+.m-tag.want b{color:#ff8be0}
+.m-r .m-tag b{color:#ff8be0}.m-r .m-tag.want b{color:#2ee6ff}
+.m-x{position:absolute;left:-6%;right:-6%;top:6%;width:112%;height:88%;overflow:visible;pointer-events:none;z-index:0}
+.m-x path{fill:none;stroke-width:2.2;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--p2,0))}
+.m-x .mx1{stroke:#2ee6ff;filter:drop-shadow(0 0 6px rgba(46,230,255,.7))}
+.m-x .mx2{stroke:#ff5fd2;filter:drop-shadow(0 0 6px rgba(255,95,210,.7))}
+.m-mid > span{position:relative;z-index:1}
+.m-mid .crit{backdrop-filter:blur(2px);background:rgba(10,8,22,.75)}
+.m-mid .crit.on{background:rgba(6,30,40,.85)}
+
+/* TradeMatch-Szene */
+.tm-swap{display:flex;align-items:center;gap:10px;margin-top:10px}
+.tm-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.tm-col small{font-size:12px;font-weight:700;color:#dbdee1}
+.tm-col .pcard{width:74px}
+.tm-col p{font-size:12px!important;line-height:1.35}
+.tm-arrows{font-size:26px;color:#2ee6ff;text-shadow:0 0 14px rgba(46,230,255,.7)}
+.js .dc .stg-i{display:none}.js .dc .stg-i.on{display:inline}
+.dc-btn.dis-to-p{opacity:.45;cursor:default}
+.dc-btn.dis-to-p.on{opacity:1;background:#5865f2;box-shadow:0 0 0 2px rgba(46,230,255,.45),0 0 22px rgba(88,101,242,.6)}
+
+/* Set-Explorer */
+.explorer-row{margin-top:12vh}
+.js .dc .stg{display:none}
+.js .dc .stg.on{display:block;animation:stgIn .35s var(--ease) both}
+@keyframes stgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dc-sel{display:flex;justify-content:space-between;align-items:center;max-width:440px;margin-top:8px;height:38px;padding:0 12px;border-radius:8px;background:#1e1f22;border:1px solid #3f4147;font-size:13.5px;color:#949ba4}
+.dc-opts{list-style:none;margin:4px 0 0;padding:4px;max-width:440px;border-radius:8px;background:#2b2d31;border:1px solid #3f4147;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dc-opt{display:flex;flex-direction:column;padding:6px 10px;border-radius:5px;transition:background .25s}
+.dc-opt b{font-size:13.5px;font-weight:600;color:#f2f3f5}
+.dc-opt span{font-size:12px;color:#949ba4}
+.dc-opt.on{background:#404249;box-shadow:inset 3px 0 0 #2ee6ff}
+.xgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.xgrid .pcard{width:100%}
+.xpage{font-size:12px!important;color:#949ba4!important;margin-top:8px}
+@media (max-width:480px){
+  .m-tag,.m-who{font-size:11px}
+  .m-tag b{min-width:36px}
+  .m-side{gap:4px}
+  .xgrid{grid-template-columns:repeat(2,1fr);max-width:220px}
+  .tm-col .pcard{width:62px}
+  .explorer-row{margin-top:8vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .secret .sc-fog,.js .secret .sc-sil,.js .secret .sc-frame{animation:none}
+  .secret .sc-fog{opacity:.55}
+  .secret .sc-sil{opacity:.45}
+  .m-x path{stroke-dashoffset:0}
+  .js .dc .stg.on{animation:none}
+}
+@media (max-width:600px){
+  .match{gap:2vw;width:98vw}
+  .m-side{width:34vw}
+  .m-side .m-card{width:30vw}
+  .m-mid{flex:0 0 27vw;gap:5px}
+  .m-mid .crit{font-size:11px;padding:5px 8px}
+  .m-mid .m-ok{font-size:13px;padding:7px 10px;text-align:center;line-height:1.15;margin-top:6px}
+  .m-tag{white-space:normal;text-align:center;font-size:10.5px;line-height:1.3}
+  .m-tag b{display:block;min-width:0}
+  .m-who{font-size:10px;text-align:center}
+  .m-who small{display:block}
+  .m-x{left:-14%;right:-14%;width:128%}
+}

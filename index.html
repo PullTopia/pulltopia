@@ -99,7 +99,7 @@
       <div class="aura"></div>
       <div class="fcard f1"><img src="assets/img/card-001.webp" width="400" height="560" alt=""></div>
       <div class="fcard f2"><img src="assets/img/card-049.webp" width="400" height="560" alt=""></div>
-      <div class="fcard f3 holo secret-hero"><img src="assets/img/card-secret.webp" width="540" height="756" alt=""><div class="sc-veil" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6%"><img src="assets/img/logo-160.webp" width="160" height="160" alt="" style="width:42%;height:auto;filter:drop-shadow(0 0 18px rgba(190,170,255,.65))"><span class="sc-q" style="font-weight:700;letter-spacing:.35em;color:#e9ddff;text-shadow:0 0 18px rgba(155,107,255,.9);font-size:clamp(10px,1.3vw,16px)">1 / 1</span></div><span class="shine"></span></div>
+      <div class="fcard f3 secret secret-hero"><img class="sc-base" src="assets/img/card-secret.webp" width="540" height="756" alt=""><img class="sc-sil" src="assets/img/card-secret-sil.webp" width="540" height="756" alt=""><span class="sc-fog sc-f1" aria-hidden="true"></span><span class="sc-fog sc-f2" aria-hidden="true"></span><span class="sc-fog sc-f3" aria-hidden="true"></span><span class="sc-mark" aria-hidden="true"><img src="assets/img/logo-64.webp" width="64" height="64" alt=""></span><span class="sc-q" aria-hidden="true">1 / 1 · ???</span><span class="sc-frame" aria-hidden="true"></span></div>
       <div class="fcard f4"><img src="assets/img/card-036.webp" width="400" height="560" alt="" loading="lazy"></div>
       <div class="fcard f5"><img src="assets/img/card-007.webp" width="400" height="560" alt="" loading="lazy"></div>
     </div>
@@ -318,19 +318,15 @@
     <p class="lead rv">Das virtuelle Sammelspiel von PullTopia. Booster öffnen, Album füllen, tauschen, aufsteigen. Und irgendwo wartet die Geheimkarte: 1 von 1. Verdeckt, bis jemand sie zieht.</p>
   </div>
   <div class="spot rv">
-    <div class="spot-card holo tilt secret" id="aeth" role="button" tabindex="0" aria-label="Verdeckte Cardverse-Geheimkarte, 1 von 1. Antippen für einen kurzen Blick.">
-      <img src="assets/img/card-secret.webp" width="540" height="756" alt="" loading="lazy">
-      <img class="sc-flash" src="assets/img/card-secret-flash.webp" width="540" height="756" alt="" loading="lazy">
-      <div class="sc-veil"><img src="assets/img/logo-160.webp" width="160" height="160" alt="" loading="lazy"><span class="sc-q">???</span></div>
-      <span class="sc-frame" aria-hidden="true"></span>
-      <span class="shine"></span>
+    <div class="spot-card tilt secret" id="aeth" role="button" tabindex="0" aria-label="Verdeckte Cardverse-Geheimkarte, 1 von 1, im Nebel. Antippen für einen kurzen Blick auf den Umriss.">
+      <img class="sc-base" src="assets/img/card-secret.webp" width="540" height="756" alt="" loading="lazy"><img class="sc-sil" src="assets/img/card-secret-sil.webp" width="540" height="756" alt="" loading="lazy"><span class="sc-fog sc-f1" aria-hidden="true"></span><span class="sc-fog sc-f2" aria-hidden="true"></span><span class="sc-fog sc-f3" aria-hidden="true"></span><span class="sc-mark" aria-hidden="true"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"></span><span class="sc-q" aria-hidden="true">1 / 1 · ???</span><span class="sc-frame" aria-hidden="true"></span>
     </div>
     <div class="spot-meta">
       <span class="badge-1of1">1 / 1</span>
       <h3>Die Geheimkarte</h3>
       <p>Mythic · #051/050. Genau ein Exemplar im gesamten Cardverse. Wie sie aussieht, bleibt ein Geheimnis.</p>
       <p class="secret-cta silver">Nur eine existiert. Finde sie im Nexus.</p>
-      <p class="secret-hint">Antippen oder darüberfahren für einen kurzen Blick.</p>
+      <p class="secret-hint">Antippen oder darüberfahren: Der Nebel reißt kurz auf. Mehr als den Umriss verrät er nie.</p>
     </div>
   </div>
   <div class="reel" aria-label="Auswahl an Cardverse-Karten">
@@ -402,16 +398,31 @@
       <h2 class="h-lg">Die passende Karte<br><span class="neon">findet dich.</span></h2>
     </div>
     <div class="match">
-      <div class="m-card m-l"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><span>Biete</span></div>
-      <div class="m-mid">
-        <span class="crit k1">Set</span><span class="crit k2">Nummer</span><span class="crit k3">Variante</span><span class="crit k4">Sprache</span><span class="crit k5">Zustand</span>
-        <span class="m-ok">Match</span>
+      <div class="m-side m-l">
+        <p class="m-who">Du</p>
+        <div class="m-card"><div class="pcard t-water" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Gezeiten-Seeschlange), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-water.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
+        <p class="m-tag"><b>Biete</b> Turtok-ex · 009/165</p>
+        <p class="m-tag want"><b>Suche</b> Glurak-ex · 006/165</p>
       </div>
-      <div class="m-card m-r"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><span>Suche</span></div>
+      <div class="m-mid">
+        <svg class="m-x" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true">
+          <defs><marker id="ah1" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2ee6ff"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff5fd2"/></marker></defs>
+          <path class="mx1" d="M4 20 C70 20 130 100 192 100" pathLength="1" marker-end="url(#ah1)"/>
+          <path class="mx2" d="M196 20 C130 20 70 100 8 100" pathLength="1" marker-end="url(#ah2)"/>
+        </svg>
+        <span class="crit k1">Set</span><span class="crit k2">Nummer</span><span class="crit k3">Variante</span><span class="crit k4">Sprache</span><span class="crit k5">Zustand</span>
+        <span class="m-ok">Gegenseitiger Match</span>
+      </div>
+      <div class="m-side m-r">
+        <p class="m-who">Tauschpartner <small>(Beispiel)</small></p>
+        <div class="m-card"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
+        <p class="m-tag"><b>Biete</b> Glurak-ex · 006/165</p>
+        <p class="m-tag want"><b>Suche</b> Turtok-ex · 009/165</p>
+      </div>
     </div>
     <div class="wrap">
-      <p class="lead center">Angebote und Gesuche anlegen. TradeMatch findet Partner nach Set, Nummer, Variante, Sprache und Zustand. Ein privater Tauschraum öffnet sich erst, wenn <b>beide</b> zustimmen.</p>
-      <p class="fine center">Für echte Sammelkarten. Der Cardverse-Tausch läuft strikt getrennt und virtuell. Keine Preis-, Fairness- oder Sicherheitsgarantie. Beispiel mit echtem Kartennamen im eigenen PullTopia-Kartendesign.</p>
+      <p class="lead center">Dein Angebot passt zum Gesuch des anderen und umgekehrt? Dann meldet TradeMatch einen gegenseitigen Match, geprüft nach Set, Nummer, Variante, Sprache und Zustand. Ein privater Tauschraum öffnet sich erst, wenn <b>beide</b> zustimmen.</p>
+      <p class="fine center">Für echte Sammelkarten. Der Cardverse-Tausch läuft strikt getrennt und virtuell. Keine Preis-, Fairness- oder Sicherheitsgarantie. Beispiel mit echten Kartennamen im eigenen PullTopia-Kartendesign; die Motive sind eigene PullTopia-Kreaturen und keine Darstellung der Pokémon.</p>
     </div>
   </div>
 </section>
@@ -422,28 +433,36 @@
   <div class="wrap scene-grid rev">
     <div class="scene-copy rv">
       <p class="eyebrow">#karten-tauschboerse</p>
-      <h3 class="h-md">Suchen. Finden.<br><span class="neon">Interesse zeigen.</span></h3>
-      <p class="lead">Karte eintippen, passendes Angebot erscheint. Ein Klick auf „Interesse zeigen“, und sobald beide zustimmen, öffnet sich euer privater Tauschraum.</p>
-      <p class="fine">Nachgebaute Darstellung. Angebot, Nummer und Ablauf sind Beispiele, keine echten Mitglieder oder Angebote.</p>
+      <h3 class="h-md">Match gefunden.<br><span class="neon">Beide sagen Ja.</span></h3>
+      <p class="lead">Du bietest Turtok-ex und suchst Glurak-ex, jemand anderes genau umgekehrt. TradeMatch bringt euch zusammen. Zeigt ihr beide Interesse, öffnet sich euer privater Tauschraum.</p>
+      <p class="fine">Nachgebaute Darstellung. Match-Nummer, Partner und Ablauf sind Beispiele, keine echten Mitglieder oder Angebote. Kein Preis-, Fairness- oder Sicherheitsversprechen.</p>
     </div>
-    <figure class="dc rv" data-scene="trade" style="--dch:420px" aria-label="Beispiel: Angebot in der Tauschbörse finden (nachgebaut)">
+    <figure class="dc rv" data-scene="trade" style="--dch:470px" aria-label="Beispiel: gegenseitiger TradeMatch in der Tauschbörse (nachgebaut)">
       <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>karten-tauschboerse<span class="dc-ex">Beispiel</span></div>
       <div class="dc-body">
         <div class="dc-msg">
           <img class="dc-av" src="assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
           <div class="dc-c">
             <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-btns"><span class="dc-btn p">➕ Angebot erstellen</span><span class="dc-btn p">🔎 Gesuch erstellen</span><span class="dc-btn" data-t="700" data-k="press">🧭 Angebote durchsuchen</span></div>
+            <div class="dc-btns"><span class="dc-btn p">➕ Angebot erstellen</span><span class="dc-btn p">🔎 Gesuch erstellen</span><span class="dc-btn g" data-t="700" data-k="press">🤝 Meine Matches</span></div>
           </div>
         </div>
-        <div class="gone" data-t="3900"><div class="dc-modal st" data-t="1000"><small>Angebote durchsuchen · Pokémon</small><div class="dc-field"><span class="ty" data-t="1300" data-type="Glurak-ex 151"></span></div></div></div>
-        <div class="dc-msg st" data-t="3900">
+        <div class="dc-msg st" data-t="1200">
           <img class="dc-av" src="assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
           <div class="dc-c">
             <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-embed" style="--ec:#2ee6ff"><div class="dc-res"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div><h4>ANGEBOT · Pokémon · #12</h4><p>🎴 <b>Glurak-ex</b> · 151 006/165</p><p>Deutsch · Near Mint</p></div></div></div>
-            <div class="dc-btns"><span class="dc-btn g" data-t="5200" data-k="press">🤝 Interesse zeigen</span><span class="dc-btn">🚩 Melden</span></div>
-            <p class="dc-ok st" data-t="5600">✅ Interesse gezeigt. Der Tauschraum öffnet sich, wenn beide zustimmen.</p>
+            <div class="dc-embed" style="--ec:#2ee6ff">
+              <h4>TradeMatch #7 · 🔁 Gegenseitiger Match</h4>
+              <p>Partner: <span class="dc-ment">@Tauschpartner</span> <small style="color:#949ba4">(Beispiel)</small></p>
+              <p><span class="gone" data-t="2900">Du: ⏳ offen</span><span class="stg-i" data-t="2900">Du: ✅ Interesse</span> · Partner: ✅ Interesse</p>
+              <div class="tm-swap">
+                <div class="tm-col"><small>Du könntest geben</small><div class="pcard t-water mini" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Gezeiten-Seeschlange), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-water.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><p>Turtok-ex · 151 009/165<br>Deutsch · Near Mint</p></div>
+                <div class="tm-arrows" aria-hidden="true">⇄</div>
+                <div class="tm-col"><small>Partner könnte geben</small><div class="pcard t-fire mini" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><p>Glurak-ex · 151 006/165<br>Deutsch · Near Mint</p></div>
+              </div>
+            </div>
+            <div class="dc-btns"><span class="dc-btn">👁️ Match ansehen</span><span class="dc-btn g" data-t="2500" data-k="press">🤝 Interesse zeigen</span><span class="dc-btn dis-to-p" data-t="3400">🚪 Tauschraum öffnen</span></div>
+            <p class="dc-ok st" data-t="3600">✅ Beide haben zugestimmt. Euer privater Tauschraum ist bereit.</p>
             <p class="dc-eph">Nur du kannst das sehen</p>
           </div>
         </div>
@@ -458,11 +477,11 @@
     <div class="scene-copy">
       <p class="eyebrow cy rv">Pokémon-Archiv · #pokemon-archiv</p>
       <h2 class="h-lg rv">Deine Sammlung.<br><span class="neon">Immer dabei.</span></h2>
-      <p class="lead rv">Karte suchen, mit einem Klick zur Sammlung hinzufügen und zusehen, wie dein Set-Fortschritt wächst. Dazu Wunschliste und Set-Explorer. Alles privat, nur du siehst deine Ansichten.</p>
-      <div class="chips rv"><span><b>31</b> Sets</span><span><b>5.239</b> Karten</span><span>Stand 16.11.2026</span></div>
+      <p class="lead rv">Karte suchen, mit einem Klick zur Sammlung hinzufügen und zusehen, wie dein Set-Fortschritt wächst. Oder ganze Sets durchstöbern, Seite für Seite. Dazu Wunschliste. Alles privat, nur du siehst deine Ansichten.</p>
+      <div class="chips rv"><span><b>3</b> Ären</span><span><b>31</b> Sets</span><span><b>5.239</b> Karten</span><span>Stand 16.11.2026</span></div>
       <p class="lead rv" style="font-size:clamp(17px,1.6vw,20px)"><b>Funktioniert mit deinen echten Pokémon-Karten.</b></p>
-      <div class="real-cards rv"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass" role="img" aria-label="Bisaflor-ex · 151 · 003/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-grass"/></svg></div><div class="pc-name">Bisaflor-ex</div><div class="pc-set">151 · 003/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-water"/></svg></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-elec" role="img" aria-label="Pikachu-ex · Stürmische Funken · 057/191 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Elektro</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-elec"/></svg></div><div class="pc-name">Pikachu-ex</div><div class="pc-set">Stürmische Funken · 057/191</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
-      <p class="fine rv">Echte Kartennamen, Sets und Nummern, dargestellt im eigenen PullTopia-Kartendesign. Keine offiziellen Kartenbilder. Preise nur als Cardmarket-Trend und Schätzung; hier ist der Wert ein Beispiel.</p>
+      <div class="real-cards rv"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass" role="img" aria-label="Bisaflor-ex · 151 · 003/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Rankenhirsch), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-grass.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Bisaflor-ex</div><div class="pc-set">151 · 003/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Gezeiten-Seeschlange), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-water.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-elec" role="img" aria-label="Pikachu-ex · Stürmische Funken · 057/191 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Sturmfalke), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Elektro</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-elec.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Pikachu-ex</div><div class="pc-set">Stürmische Funken · 057/191</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
+      <p class="fine rv">Echte Kartennamen, Sets und Nummern im eigenen PullTopia-Kartendesign. Die Motive sind eigene PullTopia-Kreaturen (Glut-Phönix, Rankenhirsch, Gezeiten-Seeschlange, Sturmfalke) und keine Darstellung des jeweiligen Pokémon. Keine offiziellen Kartenbilder. Preise nur als Cardmarket-Trend und Schätzung; hier ist der Wert ein Beispiel.</p>
     </div>
     <figure class="dc rv" data-scene="archive" style="--dch:520px" aria-label="Beispiel: Karte im Pokémon-Archiv suchen und zur Sammlung hinzufügen (nachgebaut)">
       <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>📚│pokemon-archiv<span class="dc-ex">Beispiel</span></div>
@@ -480,10 +499,60 @@
           <img class="dc-av" src="assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
           <div class="dc-c">
             <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-embed" style="--ec:#ff7a1a"><div class="dc-res"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div><h4>Glurak-ex</h4><p>151 · 006/165 · Doppelt selten</p><p style="margin-top:6px"><small style="color:#949ba4;font-weight:600">Cardmarket-Trend · Schätzung</small><br><b style="color:#fff">12,34 €</b> <span class="dc-ex" style="margin-left:4px;font-size:9.5px;padding:1px 6px">Beispiel</span></p></div></div></div>
+            <div class="dc-embed" style="--ec:#ff7a1a"><div class="dc-res"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div><h4>Glurak-ex</h4><p>151 · 006/165 · Doppelt selten</p><p style="margin-top:6px"><small style="color:#949ba4;font-weight:600">Cardmarket-Trend · Schätzung</small><br><b style="color:#fff">12,34 €</b> <span class="dc-ex" style="margin-left:4px;font-size:9.5px;padding:1px 6px">Beispiel</span></p></div></div></div>
             <div class="dc-btns"><span class="dc-btn p" data-t="5000" data-k="press">Zur Sammlung hinzufügen</span><span class="dc-btn">Auf Wunschliste</span></div>
             <div class="st" data-t="5400"><p class="dc-ok">✅ Zur Sammlung hinzugefügt</p>
               <div class="dc-prog"><div class="lb"><span>Set-Fortschritt · 151 (regulär)</span><b><i style="font-style:normal" data-t="5700" data-from="47" data-count="48" data-dur="900">47</i> / 165</b></div><div class="tr"><i style="--w0:28.5%" data-t="5700" data-w="29.1%"></i></div></div>
+            </div>
+            <p class="dc-eph">Nur du kannst das sehen</p>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </div>
+
+  <div class="wrap scene-grid rev explorer-row">
+    <div class="scene-copy rv">
+      <p class="eyebrow cy">Set-Explorer</p>
+      <h3 class="h-md">Sets durchstöbern.<br><span class="neon">Seite für Seite.</span></h3>
+      <p class="lead">„📚 Alle Sets“ antippen, eine Ära wählen, ein Set öffnen und im Explorer durch alle Karten blättern. Jede Karte lässt sich groß öffnen und direkt zur Sammlung oder Wunschliste legen.</p>
+      <p class="fine">Ären, Set-Namen und Kartenzahlen aus unserer Karten-Datenbank (Stand 16.11.2026). Kartenraster nachgebaut im eigenen PullTopia-Design, ohne offizielle Kartenbilder.</p>
+    </div>
+    <figure class="dc rv" data-scene="explorer" style="--dch:560px" aria-label="Beispiel: Sets im Pokémon-Archiv durchstöbern (nachgebaut)">
+      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>📚│pokemon-archiv<span class="dc-ex">Beispiel</span></div>
+      <div class="dc-body">
+        <div class="dc-msg">
+          <img class="dc-av" src="assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+          <div class="dc-c">
+            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+            <div class="dc-btns"><span class="dc-btn p">Karte suchen</span><span class="dc-btn">Meine Sammlung</span><span class="dc-btn">Set-Fortschritt</span><span class="dc-btn" data-t="600" data-k="press">📚 Alle Sets</span></div>
+          </div>
+        </div>
+        <div class="dc-msg st" data-t="1000">
+          <img class="dc-av" src="assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+          <div class="dc-c">
+            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+            <div class="gone" data-t="3000"><div>
+              <div class="dc-embed" style="--ec:#2ee6ff"><h4>📚 Alle Sets</h4><p>Wähle eine Ära (Serie), um die darin enthaltenen Sets zu sehen. Ären in der Datenbank: 3.</p></div>
+              <div class="dc-sel"><span>Ära wählen</span><i>▾</i></div>
+              <ul class="dc-opts st" data-t="1700"><li class="dc-opt"><b>Grund (Base)</b><span>1 Sets · 1999-01-09–1999-01-09</span></li><li class="dc-opt" data-t="2400"><b>Karmesin &amp; Purpur (Scarlet &amp; Violet)</b><span>19 Sets · 2023-03-31–2025-07-17</span></li><li class="dc-opt"><b>Mega-Entwicklung (Mega Evolution)</b><span>11 Sets · 2025-09-25–2026-11-06</span></li></ul>
+            </div></div>
+            <div class="gone" data-t="5200"><div class="stg" data-t="3000">
+              <div class="dc-embed" style="--ec:#2ee6ff"><h4>Sets · Karmesin &amp; Purpur (Scarlet &amp; Violet)</h4><p>Sets dieser Ära: 19. Wähle ein Set oder suche nach Name oder Set-ID.</p></div>
+              <div class="dc-sel"><span>Set wählen</span><i>▾</i></div>
+              <ul class="dc-opts st" data-t="3600"><li class="dc-opt"><b>Karmesin &amp; Purpur (sv01)</b><span>2023-03-31 · regulär 198 · gesamt 258</span></li><li class="dc-opt"><b>Entwicklungen in Paldea (sv02)</b><span>2023-06-09 · regulär 193 · gesamt 279</span></li><li class="dc-opt"><b>Obsidian Flammen (sv03)</b><span>2023-08-11 · regulär 197 · gesamt 230</span></li><li class="dc-opt" data-t="4500"><b>151 (sv03.5)</b><span>2023-09-22 · regulär 165 · gesamt 207 · DB 207/207</span></li></ul>
+            </div></div>
+            <div class="gone" data-t="6900"><div class="stg" data-t="5200">
+              <div class="dc-embed" style="--ec:#2ee6ff"><h4>151</h4><p>Karmesin &amp; Purpur · erschienen 2023-09-22 · regulär 165 · gesamt 207 Karten</p></div>
+              <div class="dc-btns"><span class="dc-btn p" data-t="6300" data-k="press">📚 Explorer</span><span class="dc-btn">⭐ Top-Karten</span><span class="dc-btn">💎 Mein Fortschritt</span><span class="dc-btn">↩ Zurück</span></div>
+            </div></div>
+            <div class="stg" data-t="6900">
+              <div class="dc-embed" style="--ec:#2ee6ff"><h4>Card Explorer · 151</h4>
+                <div class="gone" data-t="9000"><div class="xgrid"><div class="pcard t-grass mini" role="img" aria-label="Bisasam · 151 · 001/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-grass"/></svg></div><div class="pc-name">Bisasam</div><div class="pc-set">151 · 001/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass mini" role="img" aria-label="Bisaknosp · 151 · 002/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-grass"/></svg></div><div class="pc-name">Bisaknosp</div><div class="pc-set">151 · 002/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass mini" role="img" aria-label="Bisaflor-ex · 151 · 003/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Rankenhirsch), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-grass.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Bisaflor-ex</div><div class="pc-set">151 · 003/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-fire mini" role="img" aria-label="Glumanda · 151 · 004/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glumanda</div><div class="pc-set">151 · 004/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div><p class="xpage">Seite 1 / 52</p></div>
+                <div class="stg" data-t="9000"><div class="xgrid"><div class="pcard t-fire mini" role="img" aria-label="Glutexo · 151 · 005/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glutexo</div><div class="pc-set">151 · 005/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-fire mini" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water mini" role="img" aria-label="Schiggy · 151 · 007/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-water"/></svg></div><div class="pc-name">Schiggy</div><div class="pc-set">151 · 007/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water mini" role="img" aria-label="Schillok · 151 · 008/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-water"/></svg></div><div class="pc-name">Schillok</div><div class="pc-set">151 · 008/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div><p class="xpage">Seite 2 / 52</p></div>
+              </div>
+              <div class="dc-sel"><span>Karte öffnen</span><i>▾</i></div>
+              <div class="dc-btns"><span class="dc-btn">◀</span><span class="dc-btn p" data-t="8600" data-k="press">▶</span><span class="dc-btn">Suchen</span><span class="dc-btn">Filter</span><span class="dc-btn">↩ Zum Set</span></div>
             </div>
             <p class="dc-eph">Nur du kannst das sehen</p>
           </div>
@@ -641,7 +710,7 @@
         <a href="kuendigen.html"><b>Verträge hier kündigen</b></a>
       </nav>
     </div>
-    <p class="disc">PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert. Wir sind nicht mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Amazon oder den genannten Shops verbunden. Pokémon, One Piece, Yu-Gi-Oh!, Magic: The Gathering und alle weiteren Marken gehören ihren jeweiligen Inhabern. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Echte Kartennamen, Sets und Nummern werden nur zur Beschreibung genannt und im eigenen PullTopia-Kartendesign ohne offizielle Kartenbilder, Figuren oder Logos dargestellt. Alle übrigen Kartenmotive sind eigene Cardverse-Motive von PullTopia.</p>
+    <p class="disc">PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert. Wir sind nicht mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Amazon oder den genannten Shops verbunden. Pokémon, One Piece, Yu-Gi-Oh!, Magic: The Gathering und alle weiteren Marken gehören ihren jeweiligen Inhabern. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Echte Kartennamen, Sets und Nummern werden nur zur Beschreibung genannt und im eigenen PullTopia-Kartendesign ohne offizielle Kartenbilder, Figuren oder Logos dargestellt. Die Motive auf diesen Beispielkarten sind eigene PullTopia-Kreaturen und keine Darstellung des jeweiligen Pokémon. Alle übrigen Kartenmotive sind eigene Cardverse-Motive von PullTopia.</p>
     <p class="copy">© 2026 PullTopia</p>
   </div>
 </footer>

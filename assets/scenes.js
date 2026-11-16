@@ -19,13 +19,19 @@
     const flash = () => {
       if (busy) return; busy = true;
       c.classList.add("flash");
-      setTimeout(() => c.classList.remove("flash"), reduce ? 500 : 650);
+      setTimeout(() => c.classList.remove("flash"), reduce ? 700 : 1100);
       setTimeout(() => { busy = false; }, 1400);
     };
     c.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") flash(); });
     c.addEventListener("click", flash);
     c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flash(); } });
   });
+
+  /* Nebel nur animieren, solange die Karte sichtbar ist (spart Akku auf Mobilgeräten). */
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("inview", e.isIntersecting)), { rootMargin: "80px" });
+    d.querySelectorAll(".secret").forEach(c => io.observe(c));
+  } else d.querySelectorAll(".secret").forEach(c => c.classList.add("inview"));
 
   /* Discord-Szenen: Schritte mit data-t (ms) werden nacheinander aktiviert, sobald die Szene sichtbar ist. */
   const scenes = [...d.querySelectorAll(".dc[data-scene]")];
