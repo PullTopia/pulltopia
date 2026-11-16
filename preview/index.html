@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/img/card-secret.webp" as="image">
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/site.next.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -669,20 +669,117 @@
 </section>
 
 <!-- ============ CREATOR NEXUS ============ -->
-<section class="creator" id="creator">
-  <div class="wrap creator-in">
-    <div class="rv">
-      <p class="eyebrow">Creator Nexus</p>
-      <h2 class="h-md">Für unsere Partner.<br><span class="muted">Mit eigenem Bereich.</span></h2>
+<!-- Alle Inhalte belegt im Bot-Code lib/partners/* (template.json, cockpit.js, badge.js, public.js, poller.js, social.js) und ops/docs/CREATOR_NEXUS.md, Stand 16.11.2026. Kein echter Partnername. -->
+<section class="creator cn" id="creator">
+  <div class="cn-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cn-head">
+      <p class="eyebrow cn-eye rv">Creator Nexus · für Streamer &amp; Content Creator</p>
+      <h2 class="h-lg rv">Dein eigener Bereich.<br><span class="neon cn-neon">Mitten im Nexus.</span></h2>
+      <div class="cn-badge rv" aria-label="Rolle 🤝 Offizieller Partner"><span class="cn-ring" aria-hidden="true"></span><span class="cn-badge-in"><i aria-hidden="true">🤝</i>Offizieller Partner</span></div>
+      <p class="lead rv">Offizielle PullTopia-Partner bekommen eine eigene Kategorie auf unserem Discord-Server, ein eigenes Abzeichen, Follower mit eigener Creator-Rolle und ein privates Cockpit, aus dem sie ihre Community steuern.</p>
     </div>
-    <div class="creator-copy rv">
+
+    <figure class="dc cn-dc rv" data-scene="creator" style="--dch:430px" aria-label="Beispiel: Partner-Bereich im Discord mit Creator-Cockpit und Social-Drops (nachgebaut, kein echter Partner)">
+      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span><span class="gone" data-t="5600">🛠️│creator-cockpit</span><span class="stg-i" data-t="5600">📱│social-drops</span><span class="dc-ex">Beispiel</span></div>
+      <div class="cn-grid">
+        <aside class="cn-side" aria-label="Kanalliste (Beispiel)">
+          <p class="cn-pub"><b>#</b> 🤝│creator-nexus</p>
+          <p class="cn-cat">🤝 · ✦ BEISPIEL-CREATOR · CREATOR</p>
+          <ul class="cn-ch">
+            <li><b>#</b> 📢│ankündigungen</li>
+            <li><b>#</b> 💬│fan-chat</li>
+            <li class="cn-sd" data-t="5600"><b>#</b> 📱│social-drops<em class="cn-new">NEU</em></li>
+            <li><b>🔊</b> 🎙️│talk</li>
+            <li class="act" data-t="5600" data-k="off"><b>#</b> 🛠️│creator-cockpit <span aria-label="privat">🔒</span></li>
+          </ul>
+        </aside>
+        <div class="dc-body cn-main">
+          <div class="gone" data-t="5600"><div class="cn-pane">
+            <div class="dc-msg">
+              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+              <div class="dc-c">
+                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+                <div class="dc-embed" style="--ec:#2dd4bf">
+                  <h4>🛠️ CREATOR COCKPIT · ✦ Beispiel-Creator</h4>
+                  <p>Willkommen in deinem privaten Cockpit! Nur du, der Owner und das Team sehen diesen Kanal.</p>
+                  <p class="cn-small">🔒 Du kannst nur deine eigene Creator-Rolle erwähnen, nie @everyone oder @here.</p>
+                </div>
+                <div class="dc-btns cn-btns">
+                  <span class="dc-btn p">📣 Ankündigung</span><span class="dc-btn p">📊 Umfrage</span><span class="dc-btn g">👥 Übersicht</span>
+                  <span class="dc-btn">✏️ Beschreibung</span><span class="dc-btn">🔗 Social-Links</span><span class="dc-btn">🔔 Benachrichtigungen</span>
+                  <span class="dc-btn p" data-t="900" data-k="press">📱 Neuen Post teilen</span><span class="dc-btn">🎵 TikTok verbinden</span>
+                </div>
+              </div>
+            </div>
+            <div class="gone" data-t="3900"><div class="dc-modal st" data-t="1300"><small>📱 Neuen Post teilen · Link zu deinem Post / Video / Stream</small><div class="dc-field"><span class="ty" data-t="1600" data-type="tiktok.com/@beispiel/video/…"></span></div>
+              <small style="margin-top:10px">Kurzer Text dazu (optional)</small><div class="dc-field"><span class="ty" data-t="2900" data-type="Neues Opening ist online!"></span></div></div></div>
+            <div class="stg" data-t="3900">
+              <div class="dc-embed" style="--ec:#2dd4bf"><h4>Vorschau — noch nicht veröffentlicht</h4><p><b style="color:#fff">Kanal:</b> 📱│social-drops<br><b style="color:#fff">Heute geteilt:</b> 0/10</p></div>
+              <div class="dc-btns"><span class="dc-btn g" data-t="4800" data-k="press">✅ Posten</span><span class="dc-btn" style="background:#da373c">❌ Abbrechen</span></div>
+              <p class="dc-eph">Nur du kannst das sehen</p>
+            </div>
+          </div></div>
+          <div class="stg" data-t="5600"><div class="cn-pane">
+            <div class="dc-msg">
+              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
+              <div class="dc-c">
+                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
+                <div class="dc-embed cn-drop" style="--ec:#ff2f8f">
+                  <div class="cn-drop-in">
+                    <div>
+                      <p class="cn-author"><span class="cn-mini-av" aria-hidden="true">✦</span>✦ Beispiel-Creator</p>
+                      <h4>🔥 ✦ Beispiel-Creator hat einen neuen TikTok – schau ihn dir jetzt an!</h4>
+                      <p>Neues Opening ist online!</p>
+                      <p class="cn-link">🎵 Auf TikTok öffnen</p>
+                    </div>
+                    <img class="cn-thumb" src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy">
+                  </div>
+                  <p class="cn-foot">PullTopia Nexus · Social-Drops · von ✦ Beispiel-Creator geteilt · TikTok</p>
+                </div>
+                <div class="dc-btns"><span class="dc-btn cn-tt" data-t="6600" data-k="press">🎵 Auf TikTok ansehen ↗</span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+        <aside class="cn-members" aria-label="Mitgliederliste (Beispiel)">
+          <p class="cn-mh">🤝 OFFIZIELLER PARTNER — 1</p>
+          <div class="cn-m cn-partner"><span class="cn-mav" aria-hidden="true">✦</span><b>✦ Beispiel-Creator</b></div>
+          <p class="cn-mh cn-mh2">MITGLIEDER</p>
+          <div class="cn-m cn-ph" aria-hidden="true"><span class="cn-mav"></span><i></i></div>
+          <div class="cn-m cn-ph" aria-hidden="true"><span class="cn-mav"></span><i style="width:52%"></i></div>
+          <div class="cn-m cn-ph" aria-hidden="true"><span class="cn-mav"></span><i style="width:64%"></i></div>
+        </aside>
+      </div>
+    </figure>
+    <p class="fine center cn-fine rv">Nachgebaute Darstellung mit Beispielnamen, kein echter Partner und keine echten Mitglieder. Beschriftungen wie im Bot. Geteilte Links zeigt der Bot ohne fremdes Vorschaubild.</p>
+
+    <div class="cn-bento">
+      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">🏰</span><h3>Eigene Kategorie</h3><p>Dein Bereich auf dem Server: 📢 Ankündigungen, 💬 Fan-Chat, 📱 Social-Drops, 🎙️ Talk und dein privates 🛠️ Cockpit.</p>
+        <div class="bx-ch" aria-hidden="true"><i>📢 ankündigungen</i><i>💬 fan-chat</i><i>📱 social-drops</i><i>🎙️ talk</i><i>🛠️ creator-cockpit 🔒</i></div></article>
+      <article class="bx rv"><span class="bx-ic bx-badge" aria-hidden="true">🤝</span><h3>Partner-Abzeichen</h3><p>Die Rolle „🤝 Offizieller Partner“ mit eigenem Block in der Mitgliederliste. Jeder sieht, wer offizieller Partner ist.</p></article>
+      <article class="bx rv"><span class="bx-ic bx-star" aria-hidden="true">⭐</span><h3>Follower mit Creator-Rolle</h3><p>Fans tippen „⭐ Creator folgen“, bekommen deine Creator-Rolle und schalten deinen Fan-Bereich frei.</p></article>
+      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">🛠️</span><h3>Privates Cockpit</h3><p>Ankündigungen im PullTopia-Stil mit Vorschau und optionaler Rechtschreibprüfung, echte Discord-Umfragen, Beschreibung, Social-Links, Benachrichtigungen. Alles per Button.</p></article>
+      <article class="bx rv"><span class="bx-ic bx-share" aria-hidden="true">📱</span><h3>Neuen Post teilen</h3><p>Links von TikTok, Instagram, Kick, X, YouTube oder Twitch landen als Karte in 📱 social-drops. Bis zu 10 pro Tag, doppelte Links werden erkannt.</p></article>
+      <article class="bx rv"><span class="bx-ic bx-sync" aria-hidden="true">🔁</span><h3>Automatische Drops</h3><p>Neue YouTube-Videos und Bluesky-Posts erscheinen automatisch, geprüft alle 10 Minuten. TikTok über das offizielle Login Kit, sobald TikTok die App freigegeben hat.</p></article>
+      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">🔎</span><h3>Im 🤝│creator-nexus</h3><p>Mitglieder entdecken dich über „🔎 Partner entdecken“: Profil, TCG-Schwerpunkte und Social-Links auf einen Blick.</p></article>
+      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">👥</span><h3>Übersicht &amp; Pings</h3><p>Follower-Zahl und Status deiner Anbindungen im Cockpit. Pings gehen nur an deine eigene Creator-Rolle, nie an @everyone.</p></article>
+    </div>
+
+    <div class="cn-cta rv">
+      <div><h3>Du bist Creator?</h3><p>Partnerschaften vergeben wir persönlich. Schreib uns im Discord, wir melden uns.</p></div>
+      <a class="btn btn-primary cn-btn" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">🤝 Partner werden · Im Discord anfragen</a>
+    </div>
+
+    <div class="cn-tiktok rv" id="tiktok">
+      <div class="cn-tt-head"><span class="cn-tt-ic" aria-hidden="true">🎵</span><div><p class="eyebrow">TikTok-Anbindung für Partner</p><h3>Freiwillig. Nur lesend. Jederzeit trennbar.</h3></div></div>
       <p>Offizielle PullTopia-Partner (Streamer und Content Creator) erhalten einen eigenen Bereich auf unserem Discord-Server. Wenn ein Partner das möchte, verbindet er im privaten Creator-Cockpit sein TikTok-Konto über das offizielle <b>TikTok Login Kit</b>. PullTopia Nexus zeigt dann seine <b>neu veröffentlichten TikTok-Videos</b> (Titel, Vorschaubild, Link) im Kanal „📱│social-drops“ seines Partnerbereichs.</p>
-      <ul class="checks">
-        <li>Berechtigungen: <code>user.info.basic</code> (Anzeigename) und <code>video.list</code> (eigene öffentliche Videos)</li>
-        <li>Nur lesend: PullTopia postet nichts auf TikTok und verändert nichts am Konto</li>
-        <li>Trennen jederzeit im Cockpit („TikTok trennen“): Zugangsdaten werden gelöscht und bei TikTok widerrufen</li>
+      <ul class="cn-tt-list">
+        <li><span>🔑</span><div><b>Berechtigungen</b><br><code>user.info.basic</code> (Anzeigename) und <code>video.list</code> (eigene öffentliche Videos)</div></li>
+        <li><span>👁️</span><div><b>Nur lesend</b><br>PullTopia postet nichts auf TikTok und verändert nichts am Konto</div></li>
+        <li><span>🔌</span><div><b>Trennen jederzeit</b><br>im Cockpit („TikTok trennen“): Zugangsdaten werden gelöscht und bei TikTok widerrufen</div></li>
       </ul>
-      <p class="en">English: PullTopia is a German trading card game community on Discord. Official PullTopia partners (creators) may connect their own TikTok account via TikTok Login Kit; our bot then shows their newly published videos (title, cover, link) in their partner channel on our Discord server. Read-only; disconnect any time.</p>
+      <p class="en" lang="en"><b>English:</b> PullTopia is a German trading card game community on Discord. Official PullTopia partners (creators) may connect their own TikTok account via TikTok Login Kit; our bot then shows their newly published videos (title, cover, link) in their partner channel on our Discord server. Read-only; disconnect any time.</p>
     </div>
   </div>
 </section>
