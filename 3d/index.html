@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#000000">
+<title>PullTopia · 3D-Vorschau (Testseite)</title>
+<meta name="description" content="Interne Testseite. Nicht die offizielle PullTopia-Website.">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="3d.css">
+<script>document.documentElement.classList.remove("no-js");</script>
+</head>
+<body>
+
+<div class="testbar" role="note"><b>Testseite</b> · 3D-Vorschau, nicht öffentlich · <a href="../">Zur Live-Seite</a></div>
+
+<header class="nav">
+  <a class="brand" href="#top" aria-label="PullTopia"><img src="../assets/img/logo-64.webp" width="30" height="30" alt=""><span>PullTopia</span></a>
+  <a class="nav-cta" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">Beitreten</a>
+</header>
+
+<main id="top">
+
+<!-- ============ 3D-STORY ============ -->
+<section class="story" id="story" aria-label="PullTopia Nexus in 3D">
+  <div class="stage" id="stage">
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="loader" id="loader" aria-hidden="true"><span></span></div>
+
+    <div class="panels">
+      <article class="panel p-intro" data-a="0" data-b=".115">
+        <figure class="sfig sfig-logo"><img src="../assets/img/logo-400.webp" width="400" height="400" alt="PullTopia-Logo: gekröntes silbernes P"></figure>
+        <p class="eyebrow">PullTopia Nexus</p>
+        <h1 class="h-xl"><span class="silver">Dein TCG-Universum.</span><br><span class="neon">Auf Discord.</span></h1>
+        <p class="lead">Drop-Radar, News-Radar, Archiv und Premium. Scroll dich durch.</p>
+      </article>
+
+      <article class="panel side-l" data-a=".2" data-b=".355" data-screen="0">
+        <figure class="sfig" data-fig="0"></figure>
+        <p class="eyebrow cy">Drop- &amp; Restock-Radar · #drop-alerts</p>
+        <h2 class="h-lg">Alert rein.<br><span class="silver">Ping nur, wenn du willst.</span></h2>
+        <p class="lead">Neue TCG-Produkte, Restocks und Backdrops mit Preis und Direktlink. Gepingt wird nur, wer die passende Interessenrolle gewählt hat. Nie @everyone.</p>
+        <p class="live-line"><span class="ldot" aria-hidden="true"></span><b data-stat-text="shops">153 Shops</b> + <b data-stat-text="signals">28 Signalquellen</b> live</p>
+        <p class="fine">Beispiel-Alert mit fiktivem Produkt, Shop und Preis. Eine Bewertung gibt es nur bei verifizierter UVP.</p>
+      </article>
+
+      <article class="panel side-r" data-a=".385" data-b=".525" data-screen="1">
+        <figure class="sfig" data-fig="1"></figure>
+        <p class="eyebrow vi">News-Radar · 6 News-Kanäle</p>
+        <h2 class="h-lg">Rund um die Uhr.<br><span class="neon">Klar gekennzeichnet.</span></h2>
+        <p class="lead">Jede Meldung bekommt ein Label, zum Beispiel <b>Offiziell</b>, <b>Berichtet</b> oder <b>Gerücht</b>. So sieht ein Gerücht nie wie ein Fakt aus.</p>
+        <p class="fine">Beispiel-Meldungen. Pings nur per Opt-in-Interessenrolle.</p>
+      </article>
+
+      <article class="panel side-l" data-a=".565" data-b=".695" data-screen="2">
+        <figure class="sfig" data-fig="2"></figure>
+        <p class="eyebrow cy">Pokémon-Archiv · #pokemon-archiv</p>
+        <h2 class="h-lg">Deine Sammlung.<br><span class="silver">Immer dabei.</span></h2>
+        <p class="lead">Karte suchen, zur Sammlung hinzufügen, Wunschliste führen und den Set-Fortschritt wachsen sehen. Privat, nur du siehst deine Ansichten.</p>
+        <p class="fine">31 Sets · 5.239 Karten, Stand 16.11.2026. Eigenes PullTopia-Kartendesign, keine offiziellen Kartenbilder.</p>
+      </article>
+
+      <article class="panel side-r" data-a=".74" data-b=".865" data-screen="3">
+        <figure class="sfig" data-fig="3"></figure>
+        <p class="eyebrow gd">PullTopia Premium</p>
+        <h2 class="h-lg"><span class="silver">Sofort.</span><br><span class="gold">Statt 15 Minuten später.</span></h2>
+        <p class="lead">Premium sieht denselben Alert sofort in #mitglieder-alerts. Alle Verifizierten bekommen ihn kostenlos 15 Minuten später in #drop-alerts.</p>
+        <p class="live-line"><span class="ldot" aria-hidden="true"></span>Median <b data-stat-text="premium">14,5 s</b> bis zum Premium-Alert</p>
+        <p class="fine">Gemessen als interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung.</p>
+      </article>
+
+      <article class="panel p-final" data-a=".9" data-b="1.01" data-screen="4">
+        <figure class="sfig" data-fig="4"></figure>
+        <p class="eyebrow">Dein Glow</p>
+        <h2 class="h-lg"><span class="silver">Wähle deine Farbe.</span></h2>
+        <p class="lead">Tippe auf eine Farbe, das Handy leuchtet live mit.</p>
+      </article>
+    </div>
+
+    <div class="swatches" id="swatches" role="radiogroup" aria-label="Neon-Farbe wählen">
+      <button type="button" role="radio" aria-checked="true" data-c="#2ee6ff" style="--s:#2ee6ff" aria-label="Cyan"></button>
+      <button type="button" role="radio" aria-checked="false" data-c="#9b6bff" style="--s:#9b6bff" aria-label="Violett"></button>
+      <button type="button" role="radio" aria-checked="false" data-c="#f7c35c" style="--s:#f7c35c" aria-label="Gold"></button>
+      <button type="button" role="radio" aria-checked="false" data-c="#ff5fd2" style="--s:#ff5fd2" aria-label="Pink"></button>
+      <span class="sw-name" id="sw-name">Cyan</span>
+    </div>
+
+    <div class="hint" id="hint" aria-hidden="true"><span>Scrollen</span><i></i></div>
+  </div>
+</section>
+
+<!-- ============ LIVE-ZAHLEN ============ -->
+<section class="sec" id="zahlen">
+  <div class="wrap">
+    <div class="num-panel">
+      <div class="num-top">
+        <p class="eyebrow">Hinter den Kulissen</p>
+        <p class="num-live" id="zahlen-live" hidden><span class="num-live-dot" aria-hidden="true"></span><span>Live</span><span class="num-live-ago" id="zahlen-ago"></span></p>
+      </div>
+      <h2 class="h-lg">Echte Zahlen.<br><span class="muted">Nichts aufgerundet.</span></h2>
+      <div class="num-grid">
+        <div class="num"><b><span class="cnt" data-stat-count="drops" data-to="727">727</span></b><p>neue Shop-Drops erkannt<br><small data-stat-note="drops">seit Start der Aufzeichnung · 12.11.2026, 01:22 Uhr (Europe/Berlin)</small></p></div>
+        <div class="num"><b><span class="cnt" data-stat-count="premium-median" data-to="15">15</span><em>s</em></b><p>Median von Erkennung bis Premium-Alert<br><small data-stat-note="premium-median">n = 796 · Median 14,5 s · interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung</small></p></div>
+        <div class="num"><b><span class="cnt" data-stat-count="free-delay" data-to="15">15</span><em>Min</em></b><p>später kommen die kostenlosen Alerts<br><small data-stat-note="free-delay">gemessen: Median 15,1 Min · keiner vor Ablauf der 15 Minuten</small></p></div>
+        <div class="num"><b><span class="cnt" data-stat-count="shops" data-to="153">153</span><em data-stat-em="signals">+28</em></b><p>Shops plus Signalquellen, alle live<br><small data-stat-note="shops">118 DE · 11 AT · 8 CH · 8 NL · 7 BE · 1 FR</small></p></div>
+        <div class="num num-wide"><b><span class="cnt" data-stat-count="restocks" data-to="54">54</span><em> Restocks</em> · <span class="cnt" data-stat-count="backdrops" data-to="26">26</span><em> Backdrops</em></b><p>seit Start der Aufzeichnung</p></div>
+      </div>
+      <p class="fine">Zählung ab dem Zeitpunkt, an dem der Bot Ereignisse protokolliert. Keine Schätzwerte. Alerts sind Hinweise, keine Kauf- oder Verfügbarkeitsgarantie. PullTopia kauft nichts, reserviert nichts und umgeht keine Warteschlangen oder Bot-Schutz. Die Shops sind keine Partner von PullTopia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERGLEICH ============ -->
+<section class="sec" id="vergleich">
+  <div class="wrap">
+    <p class="eyebrow gd">Vergleich</p>
+    <h2 class="h-lg"><span class="silver">Kostenlos oder Premium.</span><br><span class="muted">Du entscheidest.</span></h2>
+    <div class="tbl-wrap">
+      <table class="cmp">
+        <thead><tr><th scope="col"><span class="sr">Funktion</span></th><th scope="col">Kostenlos</th><th scope="col" class="p">Premium</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Drop-Alerts</th><td>15 Minuten später in #drop-alerts</td><td class="p"><b>Sofort</b> in #mitglieder-alerts</td></tr>
+          <tr><th scope="row">News-Radar, 6 News-Kanäle</th><td><i class="ok" aria-label="enthalten"></i></td><td class="p"><i class="ok" aria-label="enthalten"></i></td></tr>
+          <tr><th scope="row">Pokémon-Center-Frühwarnung &amp; Amazon-Einladungen</th><td><i class="ok" aria-label="enthalten"></i></td><td class="p"><i class="ok" aria-label="enthalten"></i></td></tr>
+          <tr><th scope="row">Pokémon-Archiv: Sammlung, Wunschliste, Set-Fortschritt</th><td><i class="ok" aria-label="enthalten"></i></td><td class="p"><i class="ok" aria-label="enthalten"></i></td></tr>
+          <tr><th scope="row">Tauschbörse, Cardverse, Voice Nexus</th><td><i class="ok" aria-label="enthalten"></i></td><td class="p"><i class="ok" aria-label="enthalten"></i></td></tr>
+          <tr><th scope="row">Mitglieder-Lounge</th><td><i class="no" aria-label="nicht enthalten"></i></td><td class="p"><i class="ok" aria-label="enthalten"></i></td></tr>
+          <tr class="price-row"><th scope="row">Preis</th><td><b>0 €</b></td><td class="p"><b>ab 4,99 €</b> / Monat</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="plans">
+      <article class="plan"><h3>Monatlich</h3><p class="price"><b>4,99 €</b><span>/ Monat</span></p><p class="reg">danach regulär <b>6,99 €</b></p></article>
+      <article class="plan"><h3>Quartal</h3><p class="price"><b>12,99 €</b><span>/ 3 Monate</span></p><p class="reg">danach regulär <b>17,99 €</b></p></article>
+      <article class="plan plan-hl"><span class="plan-tag">Längste Laufzeit</span><h3>Jährlich</h3><p class="price"><b>39,99 €</b><span>/ 12 Monate</span></p><p class="reg">danach regulär <b>54,99 €</b></p></article>
+    </div>
+    <p class="fine center">Gründerpreise für die ersten 50 zahlenden Mitglieder. Dein Gründerpreis bleibt, solange dein Abo ununterbrochen läuft. Die regulären Preise gelten erst, wenn alle 50 Gründerplätze vergeben sind. Gebucht wird im Discord in #mitgliedschaften, sicher über Stripe. Verlängert sich automatisch, zum Ende der Laufzeit kündbar. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sec cta">
+  <img class="cta-logo" src="../assets/img/logo-160.webp" width="96" height="96" alt="" loading="lazy">
+  <h2 class="h-xl"><span class="silver">Dein nächster Pull</span><br><span class="neon">beginnt hier.</span></h2>
+  <p class="lead center">Kostenlos beitreten, Interessen wählen, loslegen.</p>
+  <a class="btn" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">PullTopia auf Discord beitreten</a>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <nav class="foot-links" aria-label="Rechtliches">
+      <a href="../imprint.html">Impressum</a><a href="../privacy.html">Datenschutz</a><a href="../terms.html">AGB / Nutzungsbedingungen</a><a href="../terms.html#premium">Abo-Bedingungen</a><a href="../terms.html#widerruf">Widerruf</a><a href="../kuendigen.html"><b>Verträge hier kündigen</b></a>
+    </nav>
+    <p class="disc">Testseite (3D-Vorschau). Alle Discord-Ansichten sind nachgebaut, Alerts und Meldungen sind Beispiele mit fiktiven Inhalten. PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert. Wir sind nicht mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Amazon oder den genannten Shops verbunden. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Kartenmotive sind eigene PullTopia-Kreaturen. 3D: three.js (MIT), Animation: GSAP.</p>
+    <p class="copy">© 2026 PullTopia</p>
+  </div>
+</footer>
+
+<script src="vendor/gsap.min.js" defer></script>
+<script src="vendor/ScrollTrigger.min.js" defer></script>
+<script type="module" src="3d.js"></script>
+</body>
+</html>
