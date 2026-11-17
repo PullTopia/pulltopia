@@ -158,20 +158,46 @@ async function makeCoin(mobile) {
   // Bildschirmposition der Münzmitte (für den Zoom-Kreis)
   const scr = new THREE.Vector3();
   return {
-    render(t, appear, u, b) {
+    render(t, appear, u, b, tx, ty, m) {
       size();
-      const yb = mobile ? 1.05 : .95;
-      coin.position.set(0, yb + u * .25 - b * .25, lerp(-7, 0, appear) + b * 5.2);
+      const yb = mobile ? 1.05 : .95, cz = lerp(-7, 0, appear) + b * 5.2;
+      const hh = (8 - cz) * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), hw = hh * camera.aspect;
+      coin.position.set(lerp(0, (tx / W * 2 - 1) * hw, m), lerp(yb + u * .25, (1 - ty / H * 2) * hh, m), cz);
       coin.scale.setScalar((mobile ? .74 : .7) * (.55 + .45 * appear) * (1 + .1 * u));
       coin.rotation.set(Math.sin(t * .6) * .08, Math.sin(t * .5) * .25 + u * 1.6 + b * 2.2 + (1 - appear) * Math.PI, 0);
       const op = 1 - smooth(.55, .95, b); [silver, capMat].forEach(m => { m.opacity = op; }); halo.material.opacity = op * (.55 + .15 * Math.sin(t * 1.7));
       fogs.forEach((f, i) => { const q = f.userData; f.rotation.z += q.spd / 60; const clr = q.front ? Math.max(appear * .75, u) : 0; f.position.set(q.x * (1 + clr * 1.6), q.y, q.z + clr * 3); f.material.opacity = q.op * (1 - clr) * (1 - smooth(0, .45, b)); });
-      points.rotation.y = t * .012 + u * .3; points.position.z = b * 4;
+      points.rotation.y = t * .012 + u * .3; points.position.z = b * 9; points.scale.set(1, 1, 1 + b * 6); points.material.size = .05 + b * .06;
       renderer.render(scene, camera);
       scr.copy(coin.position).project(camera);
       return { x: (scr.x * .5 + .5) * W, y: (-scr.y * .5 + .5) * H };
     }
   };
+}
+
+
+/* ---------------- v5-Effekte ---------------- */
+function buildFX(mobile) {
+  const box = $("#streams"); if (!box) return;
+  const ns = mobile ? 5 : 12, np = mobile ? 6 : 16, fr = d.createDocumentFragment();
+  for (let i = 0; i < ns; i++) { const e = d.createElement("i"); e.className = "str" + (i % 3 === 1 ? " v" : ""); e.style.left = (4 + Math.random() * 92).toFixed(1) + "%"; e.style.setProperty("--d", (4.5 + Math.random() * 5).toFixed(1) + "s"); e.style.setProperty("--dl", (-Math.random() * 8).toFixed(1) + "s"); fr.appendChild(e); }
+  for (let i = 0; i < np; i++) { const e = d.createElement("i"); e.className = "pt"; e.style.left = (Math.random() * 100).toFixed(1) + "%"; e.style.top = (Math.random() * 100).toFixed(1) + "%"; e.style.setProperty("--d", (6 + Math.random() * 8).toFixed(1) + "s"); e.style.setProperty("--dl", (-Math.random() * 8).toFixed(1) + "s"); e.style.setProperty("--x", ((Math.random() - .5) * 80).toFixed(0) + "px"); e.style.setProperty("--y", (-20 - Math.random() * 80).toFixed(0) + "px"); fr.appendChild(e); }
+  box.appendChild(fr);
+  // HUD-Label pro Erklärung
+  $$(".ex .pn").forEach(pn => { const k = SIDX[pn.dataset.s]; const h = d.createElement("p"); h.className = "hud"; h.setAttribute("aria-hidden", "true"); h.textContent = `${String(k).padStart(2, "0")} / ${N - 1} · Nexus-Link`; pn.prepend(h); });
+}
+/* Titel kurz „entschlüsseln“ (0,45 s), danach exakt der Originaltext */
+const GLY = "ABCDEFGHKMNPRSTUVWXYZ0123456789#/<>*+";
+function decode(el) {
+  const h = el.querySelector(".hl"); if (!h || h._busy) return; h._busy = true;
+  const nodes = []; const walk = (n) => n.childNodes.forEach(c => c.nodeType === 3 ? (c.textContent.trim() && nodes.push([c, c._orig || (c._orig = c.textContent)])) : walk(c)); walk(h);
+  const total = nodes.reduce((a, [, t]) => a + t.length, 0), t0 = performance.now(), dur = 450;
+  const step = (now) => {
+    const p = clamp((now - t0) / dur), rev = Math.floor(p * total * 1.15); let idx = 0;
+    nodes.forEach(([n, t]) => { let o = ""; for (let i = 0; i < t.length; i++, idx++) { const ch = t[i]; o += (idx < rev || ch === " " || ch === "." || ch === "\u2011") ? ch : GLY[(Math.random() * GLY.length) | 0]; } n.textContent = o; });
+    if (p < 1) requestAnimationFrame(step); else { nodes.forEach(([n, t]) => { n.textContent = t; }); h._busy = false; }
+  };
+  requestAnimationFrame(step);
 }
 
 /* ---------------- Story ---------------- */
@@ -181,6 +207,7 @@ async function start(useGL) {
   const coinGL = useGL ? await makeCoin(mobile).catch(e => { console.warn("Münze ohne WebGL", e); return null; }) : null;
   if (!coinGL) root.classList.add("nogl");
   const stage = $("#stage"), dc = $("#dc"), cl = $("#cl"), clIn = $("#clIn"), act = $("#act"), strip = $("#strip"), stripIn = $("#stripIn"), sact = $("#sact");
+  const warp = $("#warp"), ring = $("#ring"), beam = $("#beam"), scan = $("#scan"), typing = $("#typing"), hudTag = $("#hudTag");
   const chName = $("#chName"), chTopic = $("#chTopic"), chIc = $("#chIc"), composer = $("#composer"), coin2d = $("#coin2d"), vus = $("#vus");
   const cs = SC.map(s => { const el = $(`.cs[data-s="${s.k}"]`); return { el, parts: [...el.querySelectorAll(".st")], last: "" }; });
   const panels = $$(".pn").map(el => ({ el, i: SIDX[el.dataset.s], last: -1, off: 0 }));
@@ -190,7 +217,8 @@ async function start(useGL) {
   let G = {};
   function measureLayout() {
     const vusH = vus ? vus.scrollHeight : 0;
-    G = { dcTop: dc.offsetTop, listH: cl.clientHeight, listFull: clIn.scrollHeight + vusH, stripW: strip.clientWidth,
+    const r = dc.getBoundingClientRect(), ex = $("#ex").getBoundingClientRect(), side = $(".side");
+    G = { dcR: r, exL: ex.left, x0: mobile ? 0 : (side.getBoundingClientRect().left), msgsH: $("#msgs").clientHeight, chTop: 48, dcTop: dc.offsetTop, listH: cl.clientHeight, listFull: clIn.scrollHeight + vusH, stripW: strip.clientWidth,
       rowY: sceneRow.map(r => r ? r.offsetTop : 0), rowH: 32,
       chipX: sceneChip.map(c => c ? c.offsetLeft : 0), chipW: sceneChip.map(c => c ? c.offsetWidth : 60), vusH };
   }
@@ -217,7 +245,9 @@ async function start(useGL) {
   const dots = $("#dots"), hint = $("#hint");
   SC.forEach(() => dots.appendChild(d.createElement("i"))); const dotEls = [...dots.children];
   const set = (el, prop, v, cache) => { if (el["_" + prop] === v) return; el["_" + prop] = v; el.style[prop] = v; };
-  let lastOn = -1, lastI = -1;
+  let lastOn = -1, lastI = -1, tiltX = 0, tiltY = 0, mouseX = 0, mouseY = 0;
+  if (!mobile) addEventListener("pointermove", e => { mouseX = e.clientX / innerWidth - .5; mouseY = e.clientY / innerHeight - .5; }, { passive: true });
+  buildFX(mobile);
 
   root.classList.add("loaded");
   dc.style.visibility = "visible";
@@ -235,15 +265,23 @@ async function start(useGL) {
 
     /* Intro: Münze, dann Zoom in den Discord */
     const z = A.i === 0 ? A.b : 1;           // 0 = nur Münze, 1 = Discord voll
-    let cx = innerWidth / 2, cy = innerHeight * (mobile ? .34 : .38);
+    const tx = G.dcR.left + G.dcR.width / 2, ty = G.dcR.top + G.dcR.height / 2;
+    const mv = A.i === 0 ? smooth(.3, .62, A.u) : 1; // Münze gleitet vor dem Portal in die Mitte des Discord-Bereichs
+    let cx = lerp(innerWidth / 2, tx, mv), cy = lerp(innerHeight * (mobile ? .34 : .38), ty, mv);
     if (z < 1) {
-      if (coinGL) { const p = coinGL.render(time, appear, A.i === 0 ? A.u : 1, z); cx = p.x; cy = p.y; }
-      else set(coin2d, "transform", `translate(-50%,-50%) scale(${(1 + A.u * .1 + z * 3).toFixed(3)})`), set(coin2d, "opacity", String((1 - smooth(.5, .9, z)).toFixed(3)));
+      if (coinGL) { coinGL.render(time, appear, A.i === 0 ? A.u : 1, z, tx, ty, mv); cx = tx; cy = ty; }
+      else set(coin2d, "transform", `translate(calc(-50% + ${(cx - innerWidth / 2).toFixed(0)}px),calc(-50% + ${(cy - innerHeight * (mobile ? .34 : .38)).toFixed(0)}px)) scale(${(1 + A.u * .1 + z * 3).toFixed(3)})`), set(coin2d, "opacity", String((1 - smooth(.5, .9, z)).toFixed(3)));
     }
     set($("#gl"), "visibility", z < 1 ? "visible" : "hidden");
     const R = z >= 1 ? -1 : Math.pow(z, 1.35) * Math.hypot(innerWidth, innerHeight) * 1.05;
     set(dc, "clipPath", R < 0 ? "none" : `circle(${R.toFixed(1)}px at ${cx.toFixed(0)}px ${(cy - G.dcTop).toFixed(0)}px)`);
-    set(dc, "transform", z >= 1 ? "none" : `scale(${(1.06 - .06 * z).toFixed(4)})`);
+    const wv = z > 0 && z < 1 ? Math.pow(Math.sin(Math.PI * z), .8) : 0;
+    set(warp, "opacity", (wv * .85).toFixed(3)); if (wv > 0) set(warp, "transform", `translate3d(${cx.toFixed(0)}px,${cy.toFixed(0)}px,0) scale(${(.25 + z * 1.4).toFixed(3)}) rotate(${(z * 40).toFixed(1)}deg)`);
+    set(ring, "opacity", (wv * (1 - smooth(.7, 1, z))).toFixed(3)); if (wv > 0) { const D = Math.max(8, 2 * R); set(ring, "width", D.toFixed(0) + "px"); set(ring, "height", D.toFixed(0) + "px"); set(ring, "left", cx.toFixed(0) + "px"); set(ring, "top", cy.toFixed(0) + "px"); }
+    /* leichte 3D-Neigung zur Maus (Desktop) bzw. zum Scroll */
+    tiltX += ((mobile ? 0 : mouseY * -2.2) - tiltX) * .08; tiltY += ((mobile ? 0 : mouseX * 2.8) + Math.sin(prog * N * Math.PI) * (mobile ? 0 : .6) - tiltY) * .08;
+    const tilt = mobile ? "" : ` perspective(1800px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+    set(dc, "transform", z >= 1 ? (tilt || "none") : `${tilt} scale(${(1.08 - .08 * z).toFixed(4)})`);
 
     /* Aktiver Kanal: Markierung springt animiert */
     const ry = lerp(G.rowY[A.i], G.rowY[j], A.b);
@@ -259,7 +297,15 @@ async function start(useGL) {
       if (lastOn >= 0) { sceneRow[lastOn] && sceneRow[lastOn].classList.remove("on"); sceneChip[lastOn] && sceneChip[lastOn].classList.remove("on"); }
       sceneRow[on] && sceneRow[on].classList.add("on"); sceneChip[on] && sceneChip[on].classList.add("on"); lastOn = on;
       const s = SC[on]; chName.textContent = s.ch; chTopic.textContent = s.t || ""; chIc.textContent = VOICE.has(s.ch) ? "🔈" : "#"; composer.textContent = "Nachricht an " + (VOICE.has(s.ch) ? "🔈" : "#") + s.ch;
+      hudTag.textContent = on > 0 ? `CH ${String(on).padStart(2, "0")}/${N - 1} · SYNC` : "SYNC";
+      if (lastOn !== -2 && !measure) { chName.classList.remove("gl"); void chName.offsetWidth; chName.classList.add("gl"); }
     }
+    /* Scan über den Chat beim Wechsel, Lichtstrahl zur Erklärung */
+    const sc = A.b > 0 && A.b < 1 ? A.b : 0;
+    set(scan, "opacity", (Math.sin(Math.PI * sc) * .9).toFixed(3)); if (sc) set(scan, "transform", `translate3d(0,${(sc * (G.msgsH + 70) - 70).toFixed(1)}px,0)`);
+    const bu = A.i > 0 ? smooth(0, .26, A.u) * (A.b === 0 ? 1 : 1 - A.b) : 0, bv = A.i > 0 && A.u < .3 ? Math.sin(Math.PI * clamp(A.u / .3)) : 0;
+    set(beam, "opacity", bv.toFixed(3));
+    if (bv > 0) { const y = mobile ? G.dcR.bottom - 1 : G.dcR.top + G.chTop + 8 + ryS - scroll + 15, x0 = mobile ? -160 : G.x0, x1 = mobile ? innerWidth : G.exL + 10; set(beam, "transform", `translate3d(${lerp(x0, x1 - 160, bu).toFixed(1)}px,${y.toFixed(1)}px,0)`); }
     if (mobile) {
       const cxp = lerp(G.chipX[A.i], G.chipX[j], A.b), cw = lerp(G.chipW[A.i], G.chipW[j], A.b);
       set(sact, "transform", `translate3d(${cxp.toFixed(1)}px,0,0)`); set(sact, "width", cw.toFixed(1) + "px");
@@ -267,6 +313,7 @@ async function start(useGL) {
     }
 
     /* Chat-Szenen: Wechsel mit Kanal, Teile erscheinen nacheinander (erste Reaktion ab dem ersten Pixel) */
+    let typingOn = false;
     const vec = measure ? [ryS / 40, scroll / 40, z, A.i + A.b] : null;
     cs.forEach((c, k) => {
       let w = 0, y = 0;
@@ -284,13 +331,15 @@ async function start(useGL) {
       c.parts.forEach((el, q) => {
         const t0p = q === 0 ? -1 : (q - 1) * gap * 1.0, v = q === 0 ? 1 : smooth(t0p, t0p + .14, pu);
         const kk = v.toFixed(3); if (el._v === kk) return; el._v = kk;
-        el.style.opacity = kk; el.style.transform = v >= 1 ? "none" : `translate3d(0,${((1 - v) * 14).toFixed(1)}px,0) scale(${(.97 + .03 * v).toFixed(3)})`;
+        el.style.setProperty("--v", kk); el.style.opacity = kk; el.style.transform = v >= 1 ? "none" : `translate3d(0,${((1 - v) * 14).toFixed(1)}px,0) scale(${(.97 + .03 * v).toFixed(3)})`;
         if (vec) vec.push(v * w);
       });
       const fx = SC[k].k === "cardverse" ? smooth(.05, .45, pu) : SC[k].k === "trade" ? smooth(.05, .4, pu) : SC[k].k === "rank" ? smooth(0, .4, pu) : -1;
       if (fx >= 0) { const fk = fx.toFixed(3); if (c.el._p !== fk) { c.el._p = fk; c.el.style.setProperty("--p", fk); } if (vec) vec.push(fx * w); }
       if (vec) vec.push(w, w * y / 30);
+      if (k === A.i) { const lastT = (n - 2) * gap; typingOn = k > 0 && A.b < .2 && n > 1 && pu > -.02 && pu < lastT + .1; }
     });
+    typing.classList.toggle("on", typingOn);
 
     /* Erklärung rechts / unten */
     panels.forEach(o => {
@@ -299,7 +348,7 @@ async function start(useGL) {
       const q = Math.round(v * 1000) / 1000;
       const off = Math.round(((1 - v) * (A.u < .3 ? 1 : -1) + (o.i === A.i && o.i < N - 1 ? .5 - A.u : 0) * .7) * 1000) / 1000;
       if (vec) vec.push(q, off * q);
-      if (q === o.last && off === o.off) return; o.last = q; o.off = off;
+      if (q === o.last && off === o.off) return; if (o.last < .01 && q >= .01 && !measure) decode(o.el); o.last = q; o.off = off;
       o.el.style.opacity = q; o.el.style.visibility = v < .01 ? "hidden" : "visible";
       const intro = o.i === 0;
       o.el.style.transform = intro ? `translate3d(0,${(off * 24).toFixed(1)}px,0)` : (mobile ? `translate3d(0,${(off * 22).toFixed(1)}px,0)` : `translate3d(${(off * -30).toFixed(1)}px,calc(-50% + ${(off * 10).toFixed(1)}px),0)`);
