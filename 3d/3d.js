@@ -240,7 +240,7 @@ async function start3D(assets, L) {
       }
       const r = pe ? pe.el.getBoundingClientRect() : { left: w * .06, right: w * .38 };
       const side = pe ? pe.side : 0;
-      const x0 = side < 0 ? r.right + w * .02 : w * .035, x1 = side < 0 ? w - 56 : r.left - w * .02;
+      const x0 = side < 0 ? r.right + w * .02 : w * .035, x1 = side < 0 ? w - 96 : r.left - w * .02;
       const sc = Math.min(((x1 - x0) * k) / (WW * 1.02), ((h - top - 30) * k) / (WH * 1.08), 1.25);
       const cx = (x0 + x1) / 2, cy = top + (h - top) / 2;
       return { x: cx * k - Wv / 2, y: Hv / 2 - cy * k, z: 0, s: sc, rx: .06, ry: side < 0 ? -.3 : .3, rz: 0, dim: 1 };
@@ -358,8 +358,8 @@ async function start3D(assets, L) {
       showObj(bPartner, crv); bPartner.position.set(mobile ? 0 : WW * .22, -WH * .34, .3 + .4 * crv);
       // Premium sofort / +15 Min
       const prv = inA(wPr) * (A.i === SIDX.premium ? smooth(.12, .3, A.u) : 1), frv = inA(wPr) * (A.i === SIDX.premium ? smooth(.3, .45, A.u) : 1);
-      showObj(bPrem, prv); if (mobile) { bPrem.scale.setScalar(.8); bPrem.position.set(0, -WH * .2, .25 + .3 * prv); } else bPrem.position.set(WW * .18, WH * .3, .3 + .4 * prv);
-      showObj(bFree, frv); if (mobile) { bFree.scale.setScalar(.8); bFree.position.set(0, -WH * .2 - bW * .3, .2 + .3 * frv); } else bFree.position.set(WW * .3, WH * .3 - bW * .3, .2 + .3 * frv);
+      showObj(bPrem, prv); if (mobile) { bPrem.scale.setScalar(.8); bPrem.position.set(0, -WH * .2, .25 + .3 * prv); } else bPrem.position.set(WW * .1, -WH * .12, .3 + .4 * prv);
+      showObj(bFree, frv); if (mobile) { bFree.scale.setScalar(.8); bFree.position.set(0, -WH * .2 - bW * .3, .2 + .3 * frv); } else bFree.position.set(WW * .22, -WH * .12 - bW * .3, .2 + .3 * frv);
     }
     updatePanels(A);
     renderer.render(scene, camera);
