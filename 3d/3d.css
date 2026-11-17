@@ -29,7 +29,8 @@ img{display:block;max-width:100%;height:auto}
 .btn:hover{box-shadow:0 0 36px var(--acc)}
 
 /* story */
-.story{position:relative;height:calc(var(--n,13) * 120vh)}
+.story{position:relative;height:calc(var(--n,13) * 112vh + 100vh)}
+@supports (height:1svh){.story{height:calc(var(--n,13) * 112svh + 100svh)}}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(70% 55% at 50% 45%,#0d0820 0%,#000 70%)}
 #gl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .loader{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;transition:opacity .6s}
@@ -41,9 +42,9 @@ img{display:block;max-width:100%;height:auto}
 .pn a,.pn button{pointer-events:auto}
 .pn-l{left:6vw}.pn-r{right:6vw}
 .pn-c{left:0;right:0;width:auto;margin:0 auto;text-align:center;padding:0 22px}
-.pn-intro{top:auto;bottom:8vh}
+.pn-intro{top:auto;bottom:8vh;bottom:8svh}
 .pn-intro .ld{max-width:560px;margin:14px auto 0}
-.pn-join{top:auto;bottom:10vh}
+.pn-join{top:auto;bottom:10vh;bottom:10svh}
 .pn-card{max-width:760px}
 .fig{display:none}
 .glass{text-align:left;border:1px solid rgba(46,230,255,.22);border-radius:28px;padding:26px 28px;background:radial-gradient(80% 60% at 100% 0%,rgba(46,230,255,.08),transparent 60%),radial-gradient(70% 60% at 0% 100%,rgba(155,107,255,.1),transparent 60%),rgba(8,8,12,.82);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 0 60px rgba(46,230,255,.08)}
@@ -98,6 +99,8 @@ img{display:block;max-width:100%;height:auto}
 
 /* iPhone / Hochformat: Fenster oben, Text unten, nichts überlappt */
 @media (max-width:760px),(max-aspect-ratio:4/5){
+  .story{height:calc(var(--n,13) * 85vh + 100vh)}
+  @supports (height:1svh){.story{height:calc(var(--n,13) * 85svh + 100svh)}}
   .pn,.pn-l,.pn-r{left:20px;right:20px;width:auto;top:auto;bottom:calc(30px + env(safe-area-inset-bottom));text-align:left}
   .pn-c{text-align:center}
   .pn-intro{bottom:calc(40px + env(safe-area-inset-bottom))}

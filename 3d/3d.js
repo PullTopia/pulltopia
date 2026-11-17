@@ -7,6 +7,7 @@ import { LAYOUTS, SCREENS, drawPCard, drawSecret, drawBadge } from "./screens.js
 const d = document, root = d.documentElement;
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const forceStatic = /[?&]static\b/.test(location.search);
+const measure = /[?&]measure\b/.test(location.search); // nur für Timing-Messung: ohne Nachlauf, Vektor der scroll-gesteuerten Werte
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -133,7 +134,7 @@ async function start3D(assets, L) {
   const canvas = $("#gl"), stage = $("#stage");
   const mobile = L.mobile;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, mobile ? 2 : 1.75));
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, mobile ? 1.5 : 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(mobile ? 38 : 32, 1, .1, 80); camera.position.set(0, 0, 8);
@@ -227,7 +228,7 @@ async function start3D(assets, L) {
     const Hv = 2 * 8 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), Wv = Hv * camera.aspect, k = Hv / h;
     const top = parseFloat(getComputedStyle(root).getPropertyValue("--tb")) + parseFloat(getComputedStyle(root).getPropertyValue("--nv")) + 14;
     state = SC.map((s, i) => {
-      if (s.win === "hide") return { x: 0, y: -Hv * .9, z: 0, s: .8, rx: .7, ry: -.5, rz: .1, dim: 1 };
+      if (s.win === "hide") return { x: 0, y: -Hv * .8, z: 0, s: .8, rx: .7, ry: -.5, rz: .1, dim: 1 };
       if (s.win === "back") return { x: 0, y: mobile ? .2 : 0, z: -5, s: 1, rx: .05, ry: 0, rz: 0, dim: .28 };
       if (s.win === "far") return { x: 0, y: Hv * 1.1, z: -4, s: .8, rx: -.6, ry: .4, rz: 0, dim: .2 };
       const pe = panels.find(p => p.i === i);
@@ -247,7 +248,11 @@ async function start3D(assets, L) {
     });
   }
   layout();
-  let rzT; addEventListener("resize", () => { clearTimeout(rzT); rzT = setTimeout(() => { if (isMobileVP() !== mobile) location.reload(); else { layout(); ScrollTrigger && ScrollTrigger.refresh(); } }, 150); });
+  let rzT, lastW = innerWidth; addEventListener("resize", () => { clearTimeout(rzT); rzT = setTimeout(() => {
+    if (isMobileVP() !== mobile) { location.reload(); return; }
+    if (mobile && innerWidth === lastW) return; // iOS-Adressleiste ein/aus: Bühne ist 100svh, also nichts neu berechnen (kein Sprung)
+    lastW = innerWidth; layout(); window.ScrollTrigger && ScrollTrigger.refresh();
+  }, 150); });
 
   /* Fortschritt */
   let target = 0, prog = 0;
@@ -256,7 +261,10 @@ async function start3D(assets, L) {
     gsap.registerPlugin(ScrollTrigger); ScrollTrigger.config({ ignoreMobileResize: true });
     ScrollTrigger.create({ trigger: storyEl, start: "top top", end: "bottom bottom", onUpdate: s => { target = s.progress; } });
   } else addEventListener("scroll", () => { const r = storyEl.getBoundingClientRect(); target = clamp(-r.top / Math.max(1, storyEl.offsetHeight - innerHeight)); }, { passive: true });
-  const at = (p) => { const f = clamp(p) * N, i = Math.min(N - 1, Math.floor(f)), u = f - i; const b = i < N - 1 ? smooth(.7, 1, u) : 0; return { i, u, b }; };
+  /* Timing pro Szene (u = 0..1): 0-14 % Text blendet ein, bis 50 % Lesen mit leichter Drift, 58-100 % weicher Übergang zur nächsten Szene. */
+  const T_IN = .2, T_OUT0 = .44, T_OUT1 = .64, T_B0 = .56;
+  const ease = (t) => .5 - .5 * Math.cos(Math.PI * clamp(t));
+  const at = (p) => { const f = clamp(p) * N, i = Math.min(N - 1, Math.floor(f)), u = f - i; const b = i < N - 1 ? ease((u - T_B0) / (1 - T_B0)) : 0; return { i, u, b }; };
   const weight = (k, A) => (A.i === k ? 1 - A.b : 0) + (A.i === k - 1 ? A.b : 0);
 
   /* UI */
@@ -268,10 +276,11 @@ async function start3D(assets, L) {
     let gr = false;
     panels.forEach(o => {
       let v = 0;
-      if (o.i === A.i) v = (o.i === 0 ? 1 : smooth(.06, .2, A.u)) * (o.i === N - 1 ? 1 : 1 - smooth(.6, .72, A.u));
+      if (o.i === A.i) v = (o.i === 0 ? 1 : smooth(0, T_IN, A.u)) * (o.i === N - 1 ? 1 : 1 - smooth(T_OUT0, T_OUT1, A.u));
       if (v > .02 && !o.el.classList.contains("pn-card")) gr = true;
-      const q = Math.round(v * 1000) / 1000; if (q === o.last) return; o.last = q;
-      const off = (1 - v) * (A.u < .4 ? 1 : -1);
+      const q = Math.round(v * 1000) / 1000;
+      const off = Math.round(((1 - v) * (A.u < .3 ? 1 : -1) + (o.i === A.i && o.i < N - 1 ? .5 - A.u : 0) * .7) * 1000) / 1000; // Drift: Text wandert beim Lesen leicht weiter
+      if (q === o.last && off === o.off) return; o.last = q; o.off = off;
       o.el.style.opacity = q; o.el.style.visibility = v < .01 ? "hidden" : "visible";
       o.el.style.transform = (mobile || !o.side) ? (o.el.classList.contains("pn-intro") || o.el.classList.contains("pn-join") || mobile ? `translate3d(0,${off * 24}px,0)` : `translate3d(0,calc(-50% + ${off * 24}px),0)`) : `translate3d(${o.side * -off * 44}px,-50%,0)`;
       if (o.i === SIDX.numbers && v > .5) countUp();
@@ -279,7 +288,7 @@ async function start3D(assets, L) {
     panelsBox.classList.toggle("nogr", !gr);
     if (A.i !== lastI) { lastI = A.i; dotEls.forEach((e, j) => e.classList.toggle("on", j === A.i)); }
     sw.classList.toggle("on", A.i > 0 && A.i < N - 1 && !SC[A.i].win);
-    hint.style.opacity = A.i === 0 ? 1 - smooth(.0, .25, A.u) : 0;
+    hint.style.opacity = A.i === 0 ? 1 - smooth(0, .12, A.u) : 0;
   }
 
   let inView = true; new IntersectionObserver(es => { inView = es[0].isIntersecting; }).observe(storyEl);
@@ -294,7 +303,7 @@ async function start3D(assets, L) {
     if (!inView) return;
     const dt = Math.min(clock.getDelta(), .05), time = clock.elapsedTime; if (t0 === null) t0 = time;
     frames++; fpsT += dt; if (fpsT > 1) { window.__pt3d.fps = Math.round(frames / fpsT); frames = 0; fpsT = 0; }
-    prog += (target - prog) * (1 - Math.pow(.0009, dt)); if (Math.abs(target - prog) < 1e-5) prog = target;
+    prog += (target - prog) * (1 - Math.pow(.012, dt)); if (measure || Math.abs(target - prog) < 1e-5) prog = target;
     const A = at(prog);
     accent.lerp(accentT, 1 - Math.pow(.002, dt)); pulse = Math.max(0, pulse - dt * 1.6);
 
@@ -305,7 +314,9 @@ async function start3D(assets, L) {
     if (coin.visible) {
       const yb = mobile ? 1.0 : .95;
       coin.position.set(0, yb + (1 - wIntro) * (wJoin > .01 ? 0 : 3) + Math.sin(time * 1.1) * .04, wJoin > wIntro ? lerp(-6, 0, wJoin) : lerp(-7, 0, appear) - (1 - wIntro) * 1.2);
-      coin.scale.setScalar((mobile ? .74 : .7) * (.55 + .45 * Math.max(appear * wIntro, wJoin)));
+      const cu = A.i === 0 ? A.u : A.i === N - 1 ? 1 - A.u : 0; // Intro: wächst ab dem ersten Pixel; Schluss: kommt bis zum Ende näher
+      coin.position.y += A.i === 0 ? cu * .35 : 0; coin.position.z += A.i === N - 1 ? (1 - cu) * .8 : -cu * .6;
+      coin.scale.setScalar((mobile ? .74 : .7) * (.55 + .45 * Math.max(appear * wIntro, wJoin)) * (1 + .1 * cu));
       coin.rotation.set(Math.sin(time * .6) * .08, Math.sin(time * .5) * .25 + prog * 6 + (1 - cw) * Math.PI, 0);
       [silver, capMat].forEach(m => { m.opacity = cw; }); coinHalo.material.opacity = cw * (.55 + .15 * Math.sin(time * 1.7));
     }
@@ -319,7 +330,9 @@ async function start3D(assets, L) {
     /* Fenster */
     const S0 = state[A.i], S1 = state[Math.min(N - 1, A.i + 1)];
     keys.forEach(k => { st[k] = lerp(S0[k], S1[k], A.b); });
+    { const dr = A.u * (1 - A.b), sg = A.i % 2 ? -1 : 1; st.ry += dr * .22 * sg; st.rx -= dr * .07; st.s *= 1 + dr * .06; st.y += dr * .12; } // leichte Bewegung auch in der Lesephase
     win.visible = st.y > -6 && st.y < Hv0 * 1.05;
+    let ov = [];
     if (win.visible) {
       win.position.set(st.x, st.y + Math.sin(time * 1.1) * .025, st.z); win.scale.setScalar(st.s);
       pivot.rotation.set(st.rx + Math.sin(time * .8) * .012, st.ry + Math.sin(time * .6) * .02 + A.b * (A.i % 2 ? -.25 : .25) * Math.sin(A.b * Math.PI), st.rz);
@@ -332,10 +345,10 @@ async function start3D(assets, L) {
       const wDrop = weight(SIDX.drop, A), wCv = weight(SIDX.cardverse, A), wTr = weight(SIDX.trade, A), wCr = weight(SIDX.creator, A), wPr = weight(SIDX.premium, A);
       const inA = (w) => smooth(.15, .6, w);
       // Ping
-      const pv = inA(wDrop) * (A.i === SIDX.drop ? smooth(.12, .3, A.u) : 1);
+      const pv = inA(wDrop) * (A.i === SIDX.drop ? smooth(.04, .26, A.u) : 1);
       showObj(bPing, pv); bPing.position.set(mobile ? 0 : WW * .12, WH * .36, .25 + .4 * pv); bPing.scale.setScalar(.75 + .25 * pv);
       // Cardverse: Karten fliegen aus dem Fenster
-      const cv = inA(wCv) * (A.i === SIDX.cardverse ? smooth(.1, .45, A.u) : 1);
+      const cv = inA(wCv) * (A.i === SIDX.cardverse ? smooth(.03, .42, A.u) : 1);
       fan.forEach((c, j) => {
         const a = (j - 1.5) / 1.5, spread = mobile ? .38 : .46;
         showObj(c, cv);
@@ -345,23 +358,25 @@ async function start3D(assets, L) {
       showObj(secret, cv); secret.position.set(0, lerp(-WH * .1, WH * .02 + Math.sin(time * 1.1) * .04, cv), lerp(0, 1.0, cv));
       secret.rotation.set(-.05, Math.sin(time * .9) * .25 + (1 - cv) * Math.PI, 0);
       // TradeMatch: zwei Karten treffen sich
-      const tv = inA(wTr), tm = A.i === SIDX.trade ? smooth(.15, .55, A.u) : (wTr > .5 ? 1 : 0);
+      const tv = inA(wTr), tm = A.i === SIDX.trade ? smooth(.03, .4, A.u) : (wTr > .5 ? 1 : 0);
       [[tc1, -1], [tc2, 1]].forEach(([c, sgn]) => {
         showObj(c, tv);
         c.position.set(sgn * lerp(WW * .55, WW * (mobile ? .2 : .16), tm), -WH * .05 + Math.sin(time * 1.2 + sgn) * .03, .6);
         c.rotation.set(-.05, -sgn * lerp(.9, .35, tm), sgn * -.06);
       });
-      const mv = tv * smooth(.5, .62, A.i === SIDX.trade ? A.u : 0);
+      const mv = tv * smooth(.36, .5, A.i === SIDX.trade ? A.u : 0);
       showObj(bMatch, mv); bMatch.position.set(0, -WH * .05 - cardH * .62, .9); bMatch.scale.setScalar((.8 + .2 * mv) * (1 + .03 * Math.sin(time * 4)));
       // Partner-Abzeichen
-      const crv = inA(wCr) * (A.i === SIDX.creator ? smooth(.15, .35, A.u) : 1);
+      const crv = inA(wCr) * (A.i === SIDX.creator ? smooth(.04, .3, A.u) : 1);
       showObj(bPartner, crv); bPartner.position.set(mobile ? 0 : WW * .22, -WH * .34, .3 + .4 * crv);
       // Premium sofort / +15 Min
-      const prv = inA(wPr) * (A.i === SIDX.premium ? smooth(.12, .3, A.u) : 1), frv = inA(wPr) * (A.i === SIDX.premium ? smooth(.3, .45, A.u) : 1);
+      const prv = inA(wPr) * (A.i === SIDX.premium ? smooth(.04, .24, A.u) : 1), frv = inA(wPr) * (A.i === SIDX.premium ? smooth(.2, .4, A.u) : 1);
       showObj(bPrem, prv); if (mobile) { bPrem.scale.setScalar(.8); bPrem.position.set(0, -WH * .2, .25 + .3 * prv); } else bPrem.position.set(WW * .1, -WH * .12, .3 + .4 * prv);
+      ov = [pv, cv, tm * tv, mv, crv, prv, frv];
       showObj(bFree, frv); if (mobile) { bFree.scale.setScalar(.8); bFree.position.set(0, -WH * .2 - bW * .3, .2 + .3 * frv); } else bFree.position.set(WW * .22, -WH * .12 - bW * .3, .2 + .3 * frv);
     }
     updatePanels(A);
+    if (measure) window.__pt3d.vec = [...keys.map(k => k === "z" ? st[k] * .25 : st[k]), cw, A.i + A.b, ...panels.map(o => o.last), ...panels.map(o => (o.off || 0) * o.last), cw * coin.position.y, cw * coin.position.z * .2, cw * coin.scale.x, ...ov];
     renderer.render(scene, camera);
   }
   requestAnimationFrame(frame);
