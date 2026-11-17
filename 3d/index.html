@@ -3,859 +3,163 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>PullTopia · 3D-Vorschau v2 (Testseite)</title>
-<meta name="description" content="PullTopia ist die deutschsprachige Discord-Community für Pokémon, One Piece, Yu-Gi-Oh!, Magic und weitere Sammelkartenspiele. Drop-Radar, News-Radar, Tauschbörse, Cardverse und mehr – alles per Klick.">
-<meta name="theme-color" content="#000000">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<link rel="icon" type="image/png" href="../assets/img/favicon.png">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<title>PullTopia · 3D-Vorschau v3 (Testseite)</title>
+<meta name="description" content="Interne Testseite. Nicht die offizielle PullTopia-Website.">
+<link rel="icon" href="../assets/img/favicon.png">
 <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/img/card-secret.webp" as="image">
-<link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="3d.css">
-<script>document.documentElement.classList.add('js')</script>
 </head>
-<body data-x3>
-<a class="skip" href="#main">Zum Inhalt springen</a>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <linearGradient id="g-fire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff3d00"/><stop offset=".55" stop-color="#ff8a1a"/><stop offset="1" stop-color="#ffe066"/></linearGradient>
-    <linearGradient id="g-grass" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0f9d58"/><stop offset="1" stop-color="#b6ff6a"/></linearGradient>
-    <linearGradient id="g-elec" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6a8"/><stop offset="1" stop-color="#ffb800"/></linearGradient>
-    <radialGradient id="g-psy"><stop offset="0" stop-color="#ffd1f4"/><stop offset="1" stop-color="#b48cff" stop-opacity="0"/></radialGradient>
-    <filter id="f-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <symbol id="m-fire" viewBox="0 0 100 80"><g filter="url(#f-glow)">
-    <path class="mo-a" fill="url(#g-fire)" d="M50 76C33 70 31 52 41 38c1 9 6 12 8 6 2-9-2-18 6-28 2 12 15 20 16 36 1 16-8 24-21 24z"/>
-    <path class="mo-a" style="animation-delay:-.8s" fill="url(#g-fire)" opacity=".85" d="M27 76c-9-5-9-15-3-23 1 5 4 6 5 3 1-6 0-10 5-15 0 8 7 12 7 21 0 9-6 14-14 14z"/>
-    <path class="mo-a" style="animation-delay:-1.5s" fill="url(#g-fire)" opacity=".85" d="M74 76c-8-4-9-14-3-21 1 4 3 5 4 2 1-5 1-9 5-13 0 7 6 11 6 19 0 8-5 13-12 13z"/>
-    <circle class="mo-e" cx="38" cy="30" r="1.2" fill="#ffd166"/><circle class="mo-e" style="animation-delay:-1s" cx="62" cy="24" r="1" fill="#ffb347"/><circle class="mo-e" style="animation-delay:-1.8s" cx="55" cy="34" r="1.4" fill="#ffe08a"/><circle class="mo-e" style="animation-delay:-.4s" cx="30" cy="44" r=".9" fill="#ff9f43"/><circle class="mo-e" style="animation-delay:-2.2s" cx="70" cy="40" r="1.1" fill="#ffd166"/>
-  </g></symbol>
-  <symbol id="m-grass" viewBox="0 0 100 80"><g filter="url(#f-glow)" fill="url(#g-grass)">
-    <path fill="none" stroke="#5cf29a" stroke-width="1.4" stroke-linecap="round" d="M6 74C22 58 30 70 44 52S66 30 94 14"/>
-    <path fill="none" stroke="#3ddc84" stroke-width="1" stroke-linecap="round" opacity=".7" d="M10 30c14 4 18 16 30 14s16-14 30-8 18 4 24-2"/>
-    <g class="mo-b"><path d="M30 60c4-10 14-12 20-8-4 9-12 12-20 8z"/><path d="M52 44c2-11 12-15 19-12-2 10-11 15-19 12z"/><path d="M72 28c1-9 9-13 15-11-1 8-8 13-15 11z"/></g>
-    <g class="mo-b" style="animation-delay:-1.6s"><path d="M20 66c-6-7-4-15 2-18 4 7 3 14-2 18z"/><path d="M44 50c-7-5-7-13-2-17 5 6 5 13 2 17z"/><path d="M64 34c-6-4-6-11-2-14 4 5 4 11 2 14z"/></g>
-  </g></symbol>
-  <symbol id="m-water" viewBox="0 0 100 80"><g filter="url(#f-glow)" fill="none" stroke-linecap="round">
-    <path class="mo-b" stroke="#7ae4ff" stroke-width="1.8" d="M-10 34q12.5-9 25 0t25 0 25 0 25 0 25 0"/>
-    <path class="mo-b" style="animation-delay:-1s" stroke="#2ea8ff" stroke-width="2.4" d="M-10 48q12.5-10 25 0t25 0 25 0 25 0 25 0"/>
-    <path class="mo-b" style="animation-delay:-2s" stroke="#1b6fff" stroke-width="3" d="M-10 63q12.5-11 25 0t25 0 25 0 25 0 25 0"/>
-    <path fill="#7ae4ff" stroke="none" d="M50 8c5 8 8 12 8 16a8 8 0 0 1-16 0c0-4 3-8 8-16z" opacity=".9"/>
-  </g></symbol>
-  <symbol id="m-elec" viewBox="0 0 100 80"><g filter="url(#f-glow)" fill="url(#g-elec)">
-    <path class="mo-a" d="M56 4 30 42h16l-8 34 32-44H52z"/>
-    <path class="mo-a" style="animation-delay:-1s" opacity=".7" d="M22 14 12 30h7l-4 14 13-18h-7z"/>
-    <path class="mo-a" style="animation-delay:-1.7s" opacity=".7" d="M84 30 74 46h7l-4 14 13-18h-7z"/>
-  </g></symbol>
-  <symbol id="m-psy" viewBox="0 0 100 80"><g filter="url(#f-glow)">
-    <circle cx="50" cy="40" r="22" fill="url(#g-psy)" opacity=".7"/>
-    <circle class="mo-b" cx="50" cy="40" r="14" fill="none" stroke="#ff8ae2" stroke-width="1.4"/>
-    <circle class="mo-b" style="animation-delay:-1.4s" cx="50" cy="40" r="26" fill="none" stroke="#b48cff" stroke-width="1" stroke-dasharray="3 4"/>
-    <path fill="#ffd1f4" d="M24 18l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5zM78 56l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z"/>
-  </g></symbol>
-</svg>
-
-<div class="x3-testbar" role="note"><b>Testseite</b> · 3D-Vorschau, nicht öffentlich · <a href="../">Zur Live-Seite</a></div>
-
-<header class="nav" id="nav">
-  <div class="nav-in">
-    <a class="brand" href="#top" aria-label="PullTopia Startseite">
-      <img src="../assets/img/logo-64.webp" width="28" height="28" alt="">
-      <span>PullTopia</span>
-    </a>
-    <nav class="nav-links" id="navlinks" aria-label="Hauptnavigation">
-      <a href="#radar">Drop-Radar</a>
-      <a href="#news">News</a>
-      <a href="#cardverse">Cardverse</a>
-      <a href="#tausch">Tauschbörse</a>
-      <a href="#archiv">Archiv</a>
-      <a href="#community">Community</a>
-      <a href="#premium">Premium</a>
-    </nav>
-    <a class="nav-cta" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">Beitreten</a>
-    <button class="nav-burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navlinks"><span></span><span></span></button>
-  </div>
+<body>
+<div class="tb" role="note"><b>Testseite</b> · 3D-Vorschau, nicht öffentlich · <a href="../">Zur Live-Seite</a></div>
+<header class="nv">
+  <a class="brand" href="#top" aria-label="PullTopia"><img src="../assets/img/logo-64.webp" width="28" height="28" alt=""><span>PullTopia</span></a>
+  <a class="nv-cta" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">Beitreten</a>
 </header>
 
-<main id="main">
-
-<!-- ============ 3D-STORY (nur Testseite /3d/) ============ -->
-<section class="x3-story" id="top" aria-label="PullTopia Nexus in 3D">
-  <div class="x3-stage" id="x3stage">
+<main id="top">
+<section class="story" id="story" aria-label="PullTopia Nexus">
+  <div class="stage" id="stage">
     <canvas id="gl" aria-hidden="true"></canvas>
-    <div class="x3-loader" aria-hidden="true"><span></span></div>
-    <div class="x3-panels">
-      <article class="x3-panel x3-intro" data-a="0" data-b=".115">
-        <figure class="x3-fig x3-fig-logo"><img src="../assets/img/logo-400.webp" width="400" height="400" alt="PullTopia Logo: gekröntes P"></figure>
-        <p class="eyebrow">PullTopia Nexus · Discord-Community</p>
-        <h1 class="h-xl"><span class="silver">Dein TCG&#8209;Universum.</span><br><span class="neon">Hellwach.</span></h1>
-        <p class="lead">Drops, News, Tausch und Sammeln für Pokémon, One Piece, Yu-Gi-Oh!, Magic und mehr. In einem Discord. Per Klick.</p>
-        <div class="x3-ctas"><a class="btn btn-primary" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">Kostenlos beitreten</a></div>
+    <div class="loader" aria-hidden="true"><span></span></div>
+    <div class="panels" id="panels">
+
+      <article class="pn pn-c pn-intro" data-s="intro">
+        <figure class="fig fig-logo"><img src="../assets/img/logo-400.webp" width="400" height="400" alt="PullTopia Logo: gekröntes P"></figure>
+        <p class="ey">PullTopia Nexus · Discord-Community</p>
+        <h1 class="hx"><span class="silver">Dein TCG&#8209;Universum.</span><br><span class="neon">Hellwach.</span></h1>
+        <p class="ld">Drops, News, Tausch und Sammeln. In einem Discord. Per Klick.</p>
       </article>
-      <article class="x3-panel x3-l" data-a=".2" data-b=".355">
-        <figure class="x3-fig" data-fig="0"></figure>
-        <p class="eyebrow cy">Drop- &amp; Restock-Radar · #drop-alerts</p>
-        <h2 class="h-lg">Alert rein.<br><span class="silver">Ping nur, wenn du willst.</span></h2>
-        <p class="lead">Gepingt wird nur, wer die passende Interessenrolle gewählt hat, zum Beispiel Pokémon. Nie @everyone.</p>
-        <p class="x3-live"><span class="x3-dot" aria-hidden="true"></span><b data-x3-stat="shops">153 Shops</b> + <b data-x3-stat="signals">28 Signalquellen</b></p>
-        <p class="fine">Nachgebaute Darstellung mit fiktivem Produkt, Shop und Preis. Premium bekommt denselben Alert sofort in #mitglieder-alerts.</p>
+
+      <article class="pn pn-l" data-s="drop">
+        <figure class="fig" data-fig="drop"></figure>
+        <p class="ey cy">Drop- &amp; Restock-Radar · Beta</p>
+        <h2 class="hl">Es piept.<br><span class="silver">Bevor du suchst.</span></h2>
+        <p class="ld">Gepingt wird nur, wer die passende Interessenrolle gewählt hat. Nie @everyone.</p>
+        <p class="fn">Beispiel mit fiktivem Produkt, Shop und Preis.</p>
       </article>
-      <article class="x3-panel x3-r" data-a=".385" data-b=".525">
-        <figure class="x3-fig" data-fig="1"></figure>
-        <p class="eyebrow">News-Radar</p>
-        <h2 class="h-lg">Rund um die Uhr.<br><span class="neon">Vollautomatisch.</span></h2>
-        <p class="lead">Sechs News-Kanäle. Jede Meldung klar gekennzeichnet, damit ein Gerücht nie wie ein Fakt aussieht.</p>
-        <p class="fine">Beispiel-Meldungen. Pings nur per Opt-in-Interessenrolle und mit Limits. Kein @everyone.</p>
+
+      <article class="pn pn-r" data-s="pc">
+        <figure class="fig" data-fig="pc"></figure>
+        <p class="ey yl">Pokémon-Center-Frühwarnung</p>
+        <h2 class="hl">Drei Farben.<br><span class="silver">Volle Klarheit.</span></h2>
+        <p class="ld">Jeder Hinweis bekommt eine Stufe. So siehst du auf einen Blick, wie belastbar er ist.</p>
+        <p class="fn">Abo über „Pokémon-Center-Warteschlangen“ in #start-hier. Der Warteschlangen-Alarm ist in Arbeit.</p>
       </article>
-      <article class="x3-panel x3-l" data-a=".565" data-b=".695">
-        <figure class="x3-fig" data-fig="2"></figure>
-        <p class="eyebrow cy">Pokémon-Archiv · #pokemon-archiv</p>
-        <h2 class="h-lg">Deine Sammlung.<br><span class="silver">Immer dabei.</span></h2>
-        <p class="lead">Karte suchen, mit einem Klick zur Sammlung hinzufügen und zusehen, wie dein Set-Fortschritt wächst. Alles privat, nur du siehst deine Ansichten.</p>
-        <p class="fine">3 Ären · 31 Sets · 5.239 Karten, Stand 16.11.2026. Eigenes PullTopia-Kartendesign, keine offiziellen Kartenbilder.</p>
+
+      <article class="pn pn-l" data-s="news">
+        <figure class="fig" data-fig="news"></figure>
+        <p class="ey">News-Radar · sechs News-Kanäle</p>
+        <h2 class="hl">Rund um die Uhr.<br><span class="neon">Vollautomatisch.</span></h2>
+        <p class="ld">Jede Meldung klar gekennzeichnet, damit ein Gerücht nie wie ein Fakt aussieht.</p>
       </article>
-      <article class="x3-panel x3-r" data-a=".74" data-b=".865">
-        <figure class="x3-fig" data-fig="3"></figure>
-        <p class="eyebrow gold-t">PullTopia Premium</p>
-        <h2 class="h-lg"><span class="silver">Sofort.</span><br><span class="gold">Statt 15 Minuten später.</span></h2>
-        <p class="lead">Premium sieht ihn <b>sofort</b>. Alle anderen <b>15 Minuten später</b> in #drop-alerts. Gratis.</p>
-        <p class="x3-live"><span class="x3-dot" aria-hidden="true"></span>Median <b data-x3-stat="premium">14,5 s</b> bis zum Premium-Alert</p>
-        <p class="fine">Interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung.</p>
+
+      <article class="pn pn-r" data-s="cardverse">
+        <figure class="fig" data-fig="cardverse"></figure>
+        <p class="ey vi">Cardverse First Edition</p>
+        <h2 class="hl"><span class="silver">50 Karten.</span><br><span class="gold">Eine gibt es nur einmal.</span></h2>
+        <p class="ld">Booster öffnen, Album füllen, tauschen, aufsteigen. Die Geheimkarte: 1 von 1, verdeckt, bis jemand sie zieht.</p>
+        <p class="fn">Virtuelle Karten, kein Geldwert. Eigene Cardverse-Motive.</p>
       </article>
-      <article class="x3-panel x3-final" data-a=".9" data-b="1.01">
-        <figure class="x3-fig" data-fig="4"></figure>
-        <p class="eyebrow">Dein Glow</p>
-        <h2 class="h-lg"><span class="silver">Wähle deine Farbe.</span></h2>
-        <p class="lead">Tippe auf eine Farbe, das Handy leuchtet live mit. Danach geht's weiter mit allem, was drin ist.</p>
+
+      <article class="pn pn-l" data-s="trade">
+        <figure class="fig" data-fig="trade"></figure>
+        <p class="ey cy">Tauschbörse mit TradeMatch</p>
+        <h2 class="hl">Die passende Karte<br><span class="neon">findet dich.</span></h2>
+        <p class="ld">Gegenseitiger Match nach Set, Nummer, Variante, Sprache und Zustand. Der Tauschraum öffnet sich erst, wenn beide zustimmen.</p>
+        <p class="fn">Beispiel. Eigenes Kartendesign, keine Darstellung der Pokémon.</p>
+      </article>
+
+      <article class="pn pn-r" data-s="voice">
+        <figure class="fig" data-fig="voice"></figure>
+        <p class="ey gr">Voice Nexus</p>
+        <h2 class="hl">Ein Klick.<br><span class="silver">Dein eigener Talk.</span></h2>
+        <p class="ld">Nexus Lounge 1–3, TCG Gaming, Creator Lounge. Leere Räume verschwinden automatisch.</p>
+      </article>
+
+      <article class="pn pn-l" data-s="rank">
+        <figure class="fig" data-fig="rank"></figure>
+        <p class="ey gd">Live-Sammler-Rangliste</p>
+        <h2 class="hl">Sie aktualisiert<br><span class="gold">sich selbst.</span></h2>
+        <p class="ld">Punkte aus Cardverse-Boostern und Tausch, rein virtuell.</p>
+        <p class="fn">Fiktive Namen im Beispiel.</p>
+      </article>
+
+      <article class="pn pn-r" data-s="creator">
+        <figure class="fig" data-fig="creator"></figure>
+        <p class="ey pk">Creator Nexus</p>
+        <h2 class="hl">Dein eigener Bereich.<br><span class="neon">Mitten im Nexus.</span></h2>
+        <p class="ld">Offizielle Partner bekommen eine eigene Kategorie, das Abzeichen „Offizieller Partner“ und ein privates Cockpit.</p>
+        <p class="fn">Beispiel, kein echter Partner. Partnerschaften vergeben wir persönlich.</p>
+      </article>
+
+      <article class="pn pn-c pn-card" data-s="numbers">
+        <div class="glass">
+          <div class="g-top"><p class="ey">Hinter den Kulissen</p><p class="live" id="zahlen-live" hidden><span class="ldot" aria-hidden="true"></span>Live <span id="zahlen-ago"></span></p></div>
+          <h2 class="hl sm">Echte Zahlen.<br><span class="muted">Nichts aufgerundet.</span></h2>
+          <div class="ngrid">
+            <div><b data-n="drops">727</b><span>neue Shop-Drops erkannt</span></div>
+            <div><b><i data-n="premium">15</i><em>s</em></b><span>Median bis Premium-Alert</span></div>
+            <div><b><i data-n="shops">153</i><em data-n="signals">+28</em></b><span>Shops plus Signalquellen</span></div>
+            <div><b><i data-n="restocks">54</i><em>/</em><i data-n="backdrops">26</i></b><span>Restocks / Backdrops</span></div>
+          </div>
+          <p class="fn" data-n="since">Seit Start der Aufzeichnung · 12.11.2026, 01:22 Uhr (Europe/Berlin). Keine Schätzwerte. Alerts sind Hinweise, keine Kaufgarantie.</p>
+        </div>
+      </article>
+
+      <article class="pn pn-l" data-s="premium">
+        <figure class="fig" data-fig="premium"></figure>
+        <p class="ey gd">PullTopia Premium</p>
+        <h2 class="hl"><span class="silver">Sofort.</span><br><span class="gold">Statt 15 Minuten später.</span></h2>
+        <!-- GRÜNDERPLÄTZE: gleiche Werte wie auf der Live-Seite (index.html). Der Balken wird von ../assets/scenes.js berechnet. -->
+        <div class="fc" role="group" aria-label="Gründerplätze">
+          <div class="fc-head"><span>✦ Gründerpreis</span><span>noch <b data-fc-free>50</b> von <b data-fc-total>50</b> Plätzen</span></div>
+          <div class="fc-bar" aria-hidden="true"><i style="width:100%"></i></div>
+          <p class="fc-note">Für die ersten 50 zahlenden Mitglieder. Dein Gründerpreis bleibt, solange dein Abo ununterbrochen läuft. Stand: 16.11.2026</p>
+        </div>
+      </article>
+
+      <article class="pn pn-c pn-card" data-s="plans">
+        <div class="glass">
+          <div class="plans">
+            <div class="pl"><span>Monatlich</span><b>4,99 €</b><small>regulär 6,99 €</small></div>
+            <div class="pl"><span>Quartal</span><b>12,99 €</b><small>regulär 17,99 €</small></div>
+            <div class="pl hl-g"><span>Jährlich</span><b>39,99 €</b><small>regulär 54,99 €</small></div>
+          </div>
+          <p class="fn c">Dein Preis bleibt, solange dein Abo läuft. Regulär gilt erst, wenn alle 50 Gründerplätze vergeben sind.</p>
+          <div class="cmp">
+            <div><h4>Kostenlos</h4><ul><li>Drop-Alerts in #drop-alerts, 15 Minuten nach Premium</li><li>News-Radar, Frühwarnungen &amp; Amazon-Einladungen</li><li>Tauschbörse, Cardverse, Voice Nexus</li></ul></div>
+            <div class="p"><h4>Premium</h4><ul><li>Drop-Alerts <b>sofort</b> in #mitglieder-alerts</li><li>Zugang zur Mitglieder-Lounge</li><li>Alles aus Kostenlos</li></ul></div>
+          </div>
+          <p class="fn c">Gebucht im Discord in #mitgliedschaften, sicher über Stripe. Verlängert sich automatisch, zum Ende der Laufzeit kündbar. Gemäß § 19 UStG keine Umsatzsteuer. <a href="../terms.html#premium">Abo-Bedingungen</a> · <a href="../terms.html#widerruf">Widerruf</a> · <a href="../kuendigen.html">Kündigen</a></p>
+        </div>
+      </article>
+
+      <article class="pn pn-c pn-join" data-s="join">
+        <h2 class="hx"><span class="silver">Dein nächster Pull</span><br><span class="neon">beginnt hier.</span></h2>
+        <p class="ld">Kostenlos beitreten, Interessen wählen, loslegen.</p>
+        <a class="btn" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">PullTopia auf Discord öffnen</a>
       </article>
     </div>
-    <div class="x3-sw" id="swatches" role="radiogroup" aria-label="Neon-Farbe wählen">
+
+    <div class="sw" id="swatches" role="radiogroup" aria-label="Neon-Farbe wählen">
       <button type="button" role="radio" aria-checked="true" data-c="#2ee6ff" style="--s:#2ee6ff" aria-label="Cyan"></button>
       <button type="button" role="radio" aria-checked="false" data-c="#9b6bff" style="--s:#9b6bff" aria-label="Violett"></button>
       <button type="button" role="radio" aria-checked="false" data-c="#f7c35c" style="--s:#f7c35c" aria-label="Gold"></button>
       <button type="button" role="radio" aria-checked="false" data-c="#ff5fd2" style="--s:#ff5fd2" aria-label="Pink"></button>
-      <span class="x3-swn" id="sw-name">Cyan</span>
     </div>
-    <div class="x3-hint" id="hint" aria-hidden="true"><span>Scrollen</span><i></i></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div class="hint" id="hint" aria-hidden="true"><span>Scrollen</span><i></i></div>
   </div>
 </section>
-
-<!-- ============ MANIFEST ============ -->
-<section class="manifest" id="manifest" data-scrub>
-  <div class="sticky">
-    <p class="mf" id="mf">
-      <span>Drops.</span> <span>News.</span> <span>Tausch.</span> <span>Sammeln.</span>
-      <span class="br"></span>
-      <span>Alles</span> <span>in</span> <span>einem</span> <span>Discord.</span>
-      <span class="br"></span>
-      <span class="g">Alles</span> <span class="g">per</span> <span class="g">Klick.</span>
-    </p>
-  </div>
-</section>
-
-<!-- ============ DROP RADAR (pinned) ============ -->
-<section class="radar" id="radar" data-scrub>
-  <div class="sticky radar-sticky">
-    <div class="radar-head">
-      <p class="eyebrow cy">Drop- &amp; Restock-Radar · Beta</p>
-      <h2 class="h-lg">Es piept.<br><span class="silver">Bevor du suchst.</span></h2>
-    </div>
-    <div class="radar-stage">
-      <div class="scope" aria-hidden="true">
-        <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-        <div class="sweep"></div>
-        <span class="blip b1">DE</span><span class="blip b2">AT</span><span class="blip b3">CH</span><span class="blip b4">NL</span><span class="blip b5">BE</span><span class="blip b6">DE</span><span class="blip b7">DE</span>
-        <div class="scope-core"><img src="../assets/img/logo-64.webp" width="44" height="44" alt=""></div>
-      </div>
-      <article class="alert" aria-label="Beispiel einer Drop-Alert-Karte">
-        <div class="alert-top"><span class="tag tag-ok">🟢 Bestätigt</span><span class="tag tag-new">NEU</span><span class="tag tag-demo">BEISPIEL</span></div>
-        <h3>Beispiel-Set · Booster-Display</h3>
-        <p class="alert-shop">beispiel-shop.de · Fiktives Produkt</p>
-        <div class="alert-row"><div><small>Preis</small><b>129,90 €</b></div><div><small>Bewertung</small><b class="ok">fair</b></div><div><small>Typ</small><b>Drop</b></div></div>
-        <div class="alert-btns"><span>Zum Produkt</span><span>Preisvergleich</span><span>Weitere Händler</span><span>Quellen / Details</span></div>
-      </article>
-    </div>
-    <div class="radar-foot">
-      <div class="radar-caps">
-        <p class="cap c1"><b><span data-stat-text="radar-shops">153 Shops</span></b> aus <span data-stat-text="radar-countries">DE, AT, CH, NL, BE und FR</span>. Dazu <b><span data-stat-text="radar-signals">28 Signalquellen</span></b>.</p>
-        <p class="cap c2">Jeder Alert mit <b>Preis und Direktlink</b>. Dazu eine Bewertung, sofern eine verifizierte UVP vorliegt.</p>
-        <p class="cap c3">Premium sieht ihn <b>sofort</b>. Alle anderen <b>15 Minuten später</b> in #drop-alerts. Gratis.</p>
-      </div>
-      <div class="timeline" aria-label="Zeitlicher Ablauf">
-        <div class="tl-bar"><i></i></div>
-        <div class="tl-steps"><div class="tl-step tl-a"><b>Premium</b><span>sofort</span></div><div class="tl-step tl-b"><b>Alle Verifizierten</b><span>+15 Min · kostenlos</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============ DROP RADAR · DISCORD-SZENE ============ -->
-<section class="scene-band" id="radar-discord" aria-label="Drop-Radar im Discord">
-  <div class="wrap scene-grid">
-    <div class="scene-copy rv">
-      <p class="eyebrow cy">So sieht's im Discord aus</p>
-      <h3 class="h-md">Alert rein.<br><span class="silver">Ping nur, wenn du willst.</span></h3>
-      <p class="lead">Gepingt wird nur, wer die passende Interessenrolle gewählt hat, zum Beispiel Pokémon. Nie @everyone.</p>
-      <p class="fine">Nachgebaute Darstellung mit fiktivem Produkt, Shop und Preis. Premium bekommt denselben Alert sofort in #mitglieder-alerts.</p>
-    </div>
-    <figure class="dc rv" data-scene="drop" style="--dch:380px" aria-label="Beispiel: Drop-Alert im Kanal drop-alerts (nachgebaut)">
-      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>drop-alerts<span class="dc-ex">Beispiel</span></div>
-      <div class="dc-body">
-        <div class="dc-msg st" data-t="500">
-          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-          <div class="dc-c">
-            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <p><span class="dc-ment">@🔔 Free-Alert · Pokémon</span></p>
-            <div class="dc-embed" style="--ec:#30d158">
-              <div class="dc-tags"><span>🟢 Bestätigt</span><span class="n">NEU</span></div>
-              <h4>Beispiel-Set · Booster-Display</h4>
-              <p>beispiel-shop.de · fiktives Produkt</p>
-              <div class="row"><div><small>Preis</small><b>129,90 €</b></div><div><small>Bewertung</small><b style="color:#7ef0a0">fair</b></div><div><small>Typ</small><b>Drop</b></div></div>
-            </div>
-            <div class="dc-btns st" data-t="1100"><span class="dc-btn">Zum Produkt</span><span class="dc-btn">Preisvergleich</span><span class="dc-btn">Quellen / Details</span></div>
-            <div class="dc-react st" data-t="1700"><span>🔥 <i data-t="1750" data-count="14" data-dur="1800">0</i></span><span class="me">👀 <i data-t="1900" data-count="9" data-dur="1800">0</i></span><span>⚡ <i data-t="2100" data-count="6" data-dur="1600">0</i></span></div>
-          </div>
-        </div>
-      </div>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ NUMBERS ============ -->
-<section class="numbers" id="zahlen">
-  <div class="wrap">
-    <div class="num-panel" id="zahlen-panel">
-      <div class="num-panel-top">
-        <p class="eyebrow rv">Hinter den Kulissen</p>
-        <p class="num-live" id="zahlen-live" hidden>
-          <span class="num-live-dot" aria-hidden="true"></span>
-          <span class="num-live-label">Live</span>
-          <span class="num-live-ago" id="zahlen-ago"></span>
-        </p>
-      </div>
-      <h2 class="h-lg rv">Echte Zahlen.<br><span class="muted">Nichts aufgerundet.</span></h2>
-      <div class="num-grid">
-        <div class="num rv"><b><span class="cnt" data-stat-count="drops" data-to="727">727</span></b><p>neue Shop-Drops erkannt<br><small data-stat-note="drops">seit Start der Aufzeichnung · 12.11.2026, 01:22 Uhr (Europe/Berlin)</small></p></div>
-        <div class="num rv"><b><span class="cnt" data-stat-count="premium-median" data-to="15">15</span><em>s</em></b><p>Median von Erkennung bis Premium-Alert<br><small data-stat-note="premium-median">n = 796 · Median 14,5 s · interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung</small></p></div>
-        <div class="num rv"><b><span class="cnt" data-stat-count="free-delay" data-to="15">15</span><em>Min</em></b><p>später kommen die kostenlosen Alerts<br><small data-stat-note="free-delay">gemessen: Median 15,1 Min · keiner vor Ablauf der 15 Minuten</small></p></div>
-        <div class="num rv"><b><span class="cnt" data-stat-count="shops" data-to="153">153</span><em data-stat-em="signals">+28</em></b><p>Shops plus Signalquellen, alle live<br><small data-stat-note="shops">118 DE · 11 AT · 8 CH · 8 NL · 7 BE · 1 FR</small></p></div>
-        <div class="num num-wide rv"><b><span class="cnt" data-stat-count="restocks" data-to="54">54</span><em> Restocks</em> · <span class="cnt" data-stat-count="backdrops" data-to="26">26</span><em> Backdrops</em></b><p>seit Start der Aufzeichnung</p></div>
-      </div>
-      <p class="fine rv">Zählung seit 12.11.2026, 01:22 Uhr (Europe/Berlin), ab dem Zeitpunkt, an dem der Bot Ereignisse protokolliert. Keine Schätzwerte. Alerts sind Hinweise, keine Kauf- oder Verfügbarkeitsgarantie. PullTopia kauft nichts, reserviert nichts und umgeht keine Warteschlangen oder Bot-Schutz. Die Shops sind keine Partner von PullTopia.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ POKÉMON CENTER ============ -->
-<section class="pc" id="fruehwarnung">
-  <div class="wrap">
-    <p class="eyebrow rv">Pokémon-Center-Frühwarnung</p>
-    <h2 class="h-lg rv">Drei Farben.<br><span class="silver">Volle Klarheit.</span></h2>
-    <p class="lead rv">Jeder Hinweis bekommt eine Stufe. So siehst du auf einen Blick, wie belastbar er ist.</p>
-    <div class="stages">
-      <div class="stage st-y rv"><span class="dot"></span><h3>Frühwarnung</h3><p>Ein erster Hinweis.</p><span class="chip">Beispiel</span></div>
-      <div class="stage st-o rv"><span class="dot"></span><h3>Mehrfach gemeldet</h3><p>Mindestens zwei unabhängige, vertrauenswürdige Quellen.</p><span class="chip">Beispiel</span></div>
-      <div class="stage st-g rv"><span class="dot"></span><h3>Bestätigt</h3><p>Nur mit offizieller Quelle, Shop-Daten oder offizieller Ankündigung.</p><span class="chip">Beispiel</span></div>
-    </div>
-    <p class="fine rv">Abo separat über „Pokémon-Center-Warteschlangen“ in #start-hier. Pings gibt es nur per freiwilliger Interessenrolle, nie für alle. Der Warteschlangen-Alarm ist <b>in Arbeit</b> und bisher nur in Simulationen getestet.</p>
-  </div>
-</section>
-
-<!-- ============ NEWS ============ -->
-<section class="news" id="news">
-  <div class="wrap">
-    <p class="eyebrow rv">News-Radar</p>
-    <h2 class="h-xl rv">Rund um die Uhr.<br><span class="neon">Vollautomatisch.</span></h2>
-    <p class="lead rv">Sechs News-Kanäle. Jede Meldung klar gekennzeichnet, damit ein Gerücht nie wie ein Fakt aussieht.</p>
-  </div>
-  <div class="marquee rv" aria-hidden="true">
-    <div class="mq-track">
-      <span>#tcg-news-allgemein</span><span>#pokemon-news</span><span>#yugioh-news</span><span>#onepiece-news</span><span>#magic-news</span><span>#weitere-tcg-news</span>
-      <span>#tcg-news-allgemein</span><span>#pokemon-news</span><span>#yugioh-news</span><span>#onepiece-news</span><span>#magic-news</span><span>#weitere-tcg-news</span>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="legend">
-      <div class="lg-item rv"><span class="ld g"></span><b>Offiziell</b><p>Aus offizieller Quelle.</p></div>
-      <div class="lg-item rv"><span class="ld o"></span><b>Gerücht / Leak</b><p>Unbestätigt. Und genau so markiert.</p></div>
-      <div class="lg-item rv"><span class="ld b"></span><b>Analyse / Community</b><p>Einordnung und Stimmen aus der Szene.</p></div>
-    </div>
-    <p class="fine rv">Pings nur per Opt-in-Interessenrolle und mit Limits. Kein @everyone.</p>
-  </div>
-</section>
-
-<!-- ============ BENTO: FREE TOOLS ============ -->
-<section class="bento-sec" id="community">
-  <div class="wrap">
-    <p class="eyebrow rv">Community</p>
-    <h2 class="h-lg rv">Alles drin.<br><span class="muted">Und das meiste davon kostenlos.</span></h2>
-    <div class="bento">
-
-      <article class="tile t-portal rv">
-        <p class="t-eyebrow">Button-Portal</p>
-        <h3>Klick statt Befehl.</h3>
-        <p>Ankommen, verifizieren, Interessen wählen. Alles über Buttons. Antworten sieht nur du.</p>
-        <div class="dbtns" aria-hidden="true">
-          <span class="db db-main">Portal betreten</span><span class="db">Entdecken</span><span class="db">Interessen &amp; Pings</span><span class="db">Regeln</span>
-          <span class="db db-ok">Mein TCG-Universum betreten</span>
-        </div>
-      </article>
-
-      <article class="tile t-amazon rv">
-        <p class="t-eyebrow">Kostenlos · Opt-in</p>
-        <h3>Einladung möglich?<br>Ping.</h3>
-        <p>Abonniere „Amazon-Einladungen“ in #start-hier und bekomm einen Ping, sobald Amazon.de die Einladung für ein gefragtes TCG-Produkt anbietet.</p>
-        <p class="t-fine">Ein Hinweis, kein Anspruch auf Einladung oder Produkt. Kein Auto-Anfordern. Keine Verbindung zu Amazon.</p>
-      </article>
-
-      <article class="tile t-voice rv">
-        <p class="t-eyebrow">Voice Nexus</p>
-        <h3>Ein Klick.<br>Dein eigener Talk.</h3>
-        <p>Nexus Lounge 1–3, TCG Gaming, Creator Lounge. Über „Eigenen Talk erstellen“ bekommst du sofort deinen privaten Raum.</p>
-        <div class="pills" aria-label="Bedienpanel"><span>Umbenennen</span><span>Öffentlich / Privat</span><span>Einladen</span><span>Entfernen</span><span>Limit</span><span>Besitz übertragen</span><span>Schließen</span></div>
-        <p class="t-fine">Leere Räume verschwinden automatisch.</p>
-      </article>
-
-      <article class="tile t-rank rv">
-        <p class="t-eyebrow">Live-Sammler-Rangliste</p>
-        <h3>Sie aktualisiert sich selbst.</h3>
-        <ol class="board" aria-label="Beispiel-Rangliste mit fiktiven Namen">
-          <li><span class="pos p1">1</span><span class="nm">Sternenfuchs</span><span class="pt">Beispiel</span></li>
-          <li><span class="pos p2">2</span><span class="nm">Kristallnova</span><span class="pt">Beispiel</span></li>
-          <li><span class="pos p3">3</span><span class="nm">Nebelpilot</span><span class="pt">Beispiel</span></li>
-        </ol>
-        <p class="t-fine">Fiktive Namen. Punkte aus Cardverse-Boostern und Tausch, rein virtuell, ohne Echtgeldwert.</p>
-      </article>
-
-      <article class="tile t-safe rv">
-        <p class="t-eyebrow">Sicherheit</p>
-        <h3>Ruhig. Sauber. Sicher.</h3>
-        <ul class="checks">
-          <li>Verifizierung per Klick</li>
-          <li>Automatische Moderation gegen Spam, Massen-Erwähnungen und fremde Einladungslinks</li>
-          <li>Slowmode in den großen Chats</li>
-          <li>@everyone und @here für Mitglieder gesperrt</li>
-        </ul>
-        <p class="t-fine">Sicherheits-Upgrade vom 14.11.2026.</p>
-      </article>
-
-      <article class="tile t-key rv">
-        <p class="t-eyebrow">Key Vault</p>
-        <h3>Dein Key.<br>Nur für dich.</h3>
-        <p>In #key-redeem per Button einen persönlichen PullTopia-Key einlösen, privat. Mögliche Belohnungen: Rollen, befristete Zugänge, Premium-Test, Punkte oder Karten.</p>
-        <p class="t-fine">Nexus Vanguard: der spezielle Testzugang mit eigenem Labor. Testdaten landen nie in echten Ranglisten.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ CARDVERSE ============ -->
-<section class="cardverse" id="cardverse">
-  <div class="wrap">
-    <p class="eyebrow rv">Cardverse First Edition</p>
-    <h2 class="h-lg rv"><span class="silver">50 Karten.</span><br><span class="gold">Eine gibt es nur einmal.</span></h2>
-    <p class="lead rv">Das virtuelle Sammelspiel von PullTopia. Booster öffnen, Album füllen, tauschen, aufsteigen. Und irgendwo wartet die Geheimkarte: 1 von 1. Verdeckt, bis jemand sie zieht.</p>
-  </div>
-  <div class="spot rv">
-    <div class="spot-card tilt secret" id="aeth" role="button" tabindex="0" aria-label="Verdeckte Cardverse-Geheimkarte, 1 von 1, im Nebel. Antippen für einen kurzen Blick auf den Umriss.">
-      <img class="sc-base" src="../assets/img/card-secret.webp" width="540" height="756" alt="" loading="lazy"><img class="sc-sil" src="../assets/img/card-secret-sil.webp" width="540" height="756" alt="" loading="lazy"><span class="sc-fog sc-f1" aria-hidden="true"></span><span class="sc-fog sc-f2" aria-hidden="true"></span><span class="sc-fog sc-f3" aria-hidden="true"></span><span class="sc-mark" aria-hidden="true"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"></span><span class="sc-q" aria-hidden="true">1 / 1 · ???</span><span class="sc-frame" aria-hidden="true"></span>
-    </div>
-    <div class="spot-meta">
-      <span class="badge-1of1">1 / 1</span>
-      <h3>Die Geheimkarte</h3>
-      <p>Mythic · #051/050. Genau ein Exemplar im gesamten Cardverse. Wie sie aussieht, bleibt ein Geheimnis.</p>
-      <p class="secret-cta silver">Nur eine existiert. Finde sie im Nexus.</p>
-      <p class="secret-hint">Antippen oder darüberfahren: Der Nebel reißt kurz auf. Mehr als den Umriss verrät er nie.</p>
-    </div>
-  </div>
-  <div class="reel" aria-label="Auswahl an Cardverse-Karten">
-    <div class="reel-track">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-033.webp" width="400" height="560" alt="Vulkanphönix" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-046.webp" width="400" height="560" alt="Ätherdrache" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-016.webp" width="400" height="560" alt="Lunafuchs" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-047.webp" width="400" height="560" alt="Mondleviathan" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/booster.webp" width="420" height="588" alt="Cardverse First Edition Booster" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-045.webp" width="400" height="560" alt="Kosmischer Wächter" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-028.webp" width="400" height="560" alt="Nexusfalke" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-050.webp" width="400" height="560" alt="Schöpfungstitan" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-039.webp" width="400" height="560" alt="Ätherfuchs" loading="lazy">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="../assets/img/card-023.webp" width="400" height="560" alt="Ozeanwyrm" loading="lazy">
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="badges rv" aria-label="Erfolgsstufen">
-      <span class="bd bz">Bronze</span><span class="bd sv">Silber</span><span class="bd gd">Gold</span><span class="bd hl">Holografisch</span>
-    </div>
-    <p class="fine center rv">Erfolge von Bronze bis Holografisch. Alles virtuell, ohne Echtgeldwert, kein Pay-to-win.</p>
-  </div>
-  <div class="scene-band tight">
-    <div class="wrap scene-grid rev">
-      <div class="scene-copy rv">
-        <p class="eyebrow">Booster Opening in #minigames</p>
-        <h3 class="h-md">Ein Klick.<br><span class="neon">Ein Pull. Nur für dich.</span></h3>
-        <p class="lead">„Booster öffnen“ drücken und deine Karte erscheint privat direkt bei dir, ohne Scrollen. Jeder Booster enthält eine Karte. 5 Booster pro Tag kostenlos, mit Mitgliedschaft 10.</p>
-        <p class="fine">Virtuelle Cardverse-Karten, kein Geldwert. Das Limit setzt sich um Mitternacht (Europe/Berlin) zurück. Darstellung nachgebaut, Werte als Beispiel.</p>
-      </div>
-      <figure class="dc rv" data-scene="booster" style="--dch:430px" aria-label="Beispiel: Booster öffnen im Discord (nachgebaut)">
-        <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>minigames<span class="dc-ex">Beispiel</span></div>
-        <div class="dc-body">
-          <div class="dc-msg">
-            <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-            <div class="dc-c">
-              <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-              <div class="dc-embed" style="--ec:#9b6bff"><h4>✦ Minigames · Cardverse Booster</h4><p>Free: 5 Öffnungen/Tag · Unterstützer: 10/Tag</p></div>
-              <div class="dc-btns"><span class="dc-btn p" data-t="900" data-k="press">Booster öffnen</span><span class="dc-btn">Rangliste</span><span class="dc-btn g">Mein Album</span></div>
-            </div>
-          </div>
-          <div class="dc-msg st" data-t="1300">
-            <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-            <div class="dc-c">
-              <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-              <div class="bo-row bo1" data-t="6400" data-k="off">
-                <div class="bo-s" data-t="1400" data-k="shake"><div class="bo" data-t="2500" data-k="open"><img class="pk" src="../assets/img/booster.webp" width="420" height="588" alt="" loading="lazy"><img class="cd" src="../assets/img/card-016.webp" width="400" height="560" alt="Cardverse-Karte Lunafuchs" loading="lazy"></div></div>
-                <div class="dc-embed st" data-t="3000" style="--ec:#a1a1a6"><h4>✦ Booster-Zug: Lunafuchs</h4><p>Nr. #016 · Seltenheit: Normal · Besitz: ×1</p><p>+5 Punkte · Heute noch 4/5</p></div>
-              </div>
-              <div class="bo-row bo2" data-t="6400">
-                <div class="bo-s" data-t="6450" data-k="shake"><div class="bo" data-t="7500" data-k="open"><img class="pk" src="../assets/img/booster.webp" width="420" height="588" alt="" loading="lazy"><img class="cd" src="../assets/img/card-033.webp" width="400" height="560" alt="Cardverse-Karte Vulkanphönix" loading="lazy"></div></div>
-                <div class="dc-embed st" data-t="8000" style="--ec:#2ee6ff"><h4>✦ Booster-Zug: Vulkanphönix</h4><p>Nr. #033 · Seltenheit: Selten · Besitz: ×1</p><p>+15 Punkte · Heute noch 3/5</p></div>
-              </div>
-              <div class="dc-btns"><span class="dc-btn p" data-t="5600" data-k="press">Noch einen Booster öffnen</span><span class="dc-btn">Mein Album</span></div>
-              <p class="dc-eph">Nur du kannst das sehen</p>
-            </div>
-          </div>
-        </div>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TAUSCH ============ -->
-<section class="tausch" id="tausch" data-scrub>
-  <div class="sticky tausch-sticky">
-    <div class="wrap">
-      <p class="eyebrow">Tauschbörse mit TradeMatch</p>
-      <h2 class="h-lg">Die passende Karte<br><span class="neon">findet dich.</span></h2>
-    </div>
-    <div class="match">
-      <div class="m-side m-l">
-        <p class="m-who">Du</p>
-        <div class="m-card"><div class="pcard t-water" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Gezeiten-Seeschlange), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-water.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
-        <p class="m-tag"><b>Biete</b> Turtok-ex · 009/165</p>
-        <p class="m-tag want"><b>Suche</b> Glurak-ex · 006/165</p>
-      </div>
-      <div class="m-mid">
-        <svg class="m-x" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true">
-          <defs><marker id="ah1" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2ee6ff"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff5fd2"/></marker></defs>
-          <path class="mx1" d="M4 20 C70 20 130 100 192 100" pathLength="1" marker-end="url(#ah1)"/>
-          <path class="mx2" d="M196 20 C130 20 70 100 8 100" pathLength="1" marker-end="url(#ah2)"/>
-        </svg>
-        <span class="crit k1">Set</span><span class="crit k2">Nummer</span><span class="crit k3">Variante</span><span class="crit k4">Sprache</span><span class="crit k5">Zustand</span>
-        <span class="m-ok">Gegenseitiger Match</span>
-      </div>
-      <div class="m-side m-r">
-        <p class="m-who">Tauschpartner <small>(Beispiel)</small></p>
-        <div class="m-card"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
-        <p class="m-tag"><b>Biete</b> Glurak-ex · 006/165</p>
-        <p class="m-tag want"><b>Suche</b> Turtok-ex · 009/165</p>
-      </div>
-    </div>
-    <div class="wrap">
-      <p class="lead center">Dein Angebot passt zum Gesuch des anderen und umgekehrt? Dann meldet TradeMatch einen gegenseitigen Match, geprüft nach Set, Nummer, Variante, Sprache und Zustand. Ein privater Tauschraum öffnet sich erst, wenn <b>beide</b> zustimmen.</p>
-      <p class="fine center">Für echte Sammelkarten. Der Cardverse-Tausch läuft strikt getrennt und virtuell. Keine Preis-, Fairness- oder Sicherheitsgarantie. Beispiel mit echten Kartennamen im eigenen PullTopia-Kartendesign; die Motive sind eigene PullTopia-Kreaturen und keine Darstellung der Pokémon.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============ TAUSCH · DISCORD-SZENE ============ -->
-<section class="scene-band" id="tausch-discord" aria-label="Tauschbörse im Discord">
-  <div class="wrap scene-grid rev">
-    <div class="scene-copy rv">
-      <p class="eyebrow">#karten-tauschboerse</p>
-      <h3 class="h-md">Match gefunden.<br><span class="neon">Beide sagen Ja.</span></h3>
-      <p class="lead">Du bietest Turtok-ex und suchst Glurak-ex, jemand anderes genau umgekehrt. TradeMatch bringt euch zusammen. Zeigt ihr beide Interesse, öffnet sich euer privater Tauschraum.</p>
-      <p class="fine">Nachgebaute Darstellung. Match-Nummer, Partner und Ablauf sind Beispiele, keine echten Mitglieder oder Angebote. Kein Preis-, Fairness- oder Sicherheitsversprechen.</p>
-    </div>
-    <figure class="dc rv" data-scene="trade" style="--dch:470px" aria-label="Beispiel: gegenseitiger TradeMatch in der Tauschbörse (nachgebaut)">
-      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>karten-tauschboerse<span class="dc-ex">Beispiel</span></div>
-      <div class="dc-body">
-        <div class="dc-msg">
-          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-          <div class="dc-c">
-            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-btns"><span class="dc-btn p">➕ Angebot erstellen</span><span class="dc-btn p">🔎 Gesuch erstellen</span><span class="dc-btn g" data-t="700" data-k="press">🤝 Meine Matches</span></div>
-          </div>
-        </div>
-        <div class="dc-msg st" data-t="1200">
-          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-          <div class="dc-c">
-            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-embed" style="--ec:#2ee6ff">
-              <h4>TradeMatch #7 · 🔁 Gegenseitiger Match</h4>
-              <p>Partner: <span class="dc-ment">@Tauschpartner</span> <small style="color:#949ba4">(Beispiel)</small></p>
-              <p><span class="gone" data-t="2900">Du: ⏳ offen</span><span class="stg-i" data-t="2900">Du: ✅ Interesse</span> · Partner: ✅ Interesse</p>
-              <div class="tm-swap">
-                <div class="tm-col"><small>Du könntest geben</small><div class="pcard t-water mini" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Gezeiten-Seeschlange), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-water.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><p>Turtok-ex · 151 009/165<br>Deutsch · Near Mint</p></div>
-                <div class="tm-arrows" aria-hidden="true">⇄</div>
-                <div class="tm-col"><small>Partner könnte geben</small><div class="pcard t-fire mini" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><p>Glurak-ex · 151 006/165<br>Deutsch · Near Mint</p></div>
-              </div>
-            </div>
-            <div class="dc-btns"><span class="dc-btn">👁️ Match ansehen</span><span class="dc-btn g" data-t="2500" data-k="press">🤝 Interesse zeigen</span><span class="dc-btn dis-to-p" data-t="3400">🚪 Tauschraum öffnen</span></div>
-            <p class="dc-ok st" data-t="3600">✅ Beide haben zugestimmt. Euer privater Tauschraum ist bereit.</p>
-            <p class="dc-eph">Nur du kannst das sehen</p>
-          </div>
-        </div>
-      </div>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ POKÉMON-ARCHIV ============ -->
-<section class="archive" id="archiv">
-  <div class="wrap scene-grid">
-    <div class="scene-copy">
-      <p class="eyebrow cy rv">Pokémon-Archiv · #pokemon-archiv</p>
-      <h2 class="h-lg rv">Deine Sammlung.<br><span class="neon">Immer dabei.</span></h2>
-      <p class="lead rv">Karte suchen, mit einem Klick zur Sammlung hinzufügen und zusehen, wie dein Set-Fortschritt wächst. Oder ganze Sets durchstöbern, Seite für Seite. Dazu Wunschliste. Alles privat, nur du siehst deine Ansichten.</p>
-      <div class="chips rv"><span><b>3</b> Ären</span><span><b>31</b> Sets</span><span><b>5.239</b> Karten</span><span>Stand 16.11.2026</span></div>
-      <p class="lead rv" style="font-size:clamp(17px,1.6vw,20px)"><b>Funktioniert mit deinen echten Pokémon-Karten.</b></p>
-      <div class="real-cards rv"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass" role="img" aria-label="Bisaflor-ex · 151 · 003/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Rankenhirsch), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-grass.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Bisaflor-ex</div><div class="pc-set">151 · 003/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water" role="img" aria-label="Turtok-ex · 151 · 009/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Gezeiten-Seeschlange), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-water.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Turtok-ex</div><div class="pc-set">151 · 009/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-elec" role="img" aria-label="Pikachu-ex · Stürmische Funken · 057/191 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Sturmfalke), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Elektro</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-elec.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Pikachu-ex</div><div class="pc-set">Stürmische Funken · 057/191</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div>
-      <p class="fine rv">Echte Kartennamen, Sets und Nummern im eigenen PullTopia-Kartendesign. Die Motive sind eigene PullTopia-Kreaturen (Glut-Phönix, Rankenhirsch, Gezeiten-Seeschlange, Sturmfalke) und keine Darstellung des jeweiligen Pokémon. Keine offiziellen Kartenbilder. Preise nur als Cardmarket-Trend und Schätzung; hier ist der Wert ein Beispiel.</p>
-    </div>
-    <figure class="dc rv" data-scene="archive" style="--dch:520px" aria-label="Beispiel: Karte im Pokémon-Archiv suchen und zur Sammlung hinzufügen (nachgebaut)">
-      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>📚│pokemon-archiv<span class="dc-ex">Beispiel</span></div>
-      <div class="dc-body">
-        <div class="dc-msg">
-          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-          <div class="dc-c">
-            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-embed" style="--ec:#2ee6ff"><h4>📚 Pokémon-Archiv</h4><p>31 Sets · 5.239 Karten · Stand 16.11.2026</p></div>
-            <div class="dc-btns"><span class="dc-btn p" data-t="700" data-k="press">Karte suchen</span><span class="dc-btn">Meine Sammlung</span><span class="dc-btn">Wunschliste</span><span class="dc-btn">Set-Fortschritt</span><span class="dc-btn">📚 Alle Sets</span></div>
-          </div>
-        </div>
-        <div class="gone" data-t="3700"><div class="dc-modal st" data-t="1000"><small>Karte suchen</small><div class="dc-field"><span class="ty" data-t="1300" data-type="Glurak-ex 151"></span></div></div></div>
-        <div class="dc-msg st" data-t="3700">
-          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-          <div class="dc-c">
-            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-embed" style="--ec:#ff7a1a"><div class="dc-res"><div class="pcard t-fire" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div><h4>Glurak-ex</h4><p>151 · 006/165 · Doppelt selten</p><p style="margin-top:6px"><small style="color:#949ba4;font-weight:600">Cardmarket-Trend · Schätzung</small><br><b style="color:#fff">12,34 €</b> <span class="dc-ex" style="margin-left:4px;font-size:9.5px;padding:1px 6px">Beispiel</span></p></div></div></div>
-            <div class="dc-btns"><span class="dc-btn p" data-t="5000" data-k="press">Zur Sammlung hinzufügen</span><span class="dc-btn">Auf Wunschliste</span></div>
-            <div class="st" data-t="5400"><p class="dc-ok">✅ Zur Sammlung hinzugefügt</p>
-              <div class="dc-prog"><div class="lb"><span>Set-Fortschritt · 151 (regulär)</span><b><i style="font-style:normal" data-t="5700" data-from="47" data-count="48" data-dur="900">47</i> / 165</b></div><div class="tr"><i style="--w0:28.5%" data-t="5700" data-w="29.1%"></i></div></div>
-            </div>
-            <p class="dc-eph">Nur du kannst das sehen</p>
-          </div>
-        </div>
-      </div>
-    </figure>
-  </div>
-
-  <div class="wrap scene-grid rev explorer-row">
-    <div class="scene-copy rv">
-      <p class="eyebrow cy">Set-Explorer</p>
-      <h3 class="h-md">Sets durchstöbern.<br><span class="neon">Seite für Seite.</span></h3>
-      <p class="lead">„📚 Alle Sets“ antippen, eine Ära wählen, ein Set öffnen und im Explorer durch alle Karten blättern. Jede Karte lässt sich groß öffnen und direkt zur Sammlung oder Wunschliste legen.</p>
-      <p class="fine">Ären, Set-Namen und Kartenzahlen aus unserer Karten-Datenbank (Stand 16.11.2026). Kartenraster nachgebaut im eigenen PullTopia-Design, ohne offizielle Kartenbilder.</p>
-    </div>
-    <figure class="dc rv" data-scene="explorer" style="--dch:560px" aria-label="Beispiel: Sets im Pokémon-Archiv durchstöbern (nachgebaut)">
-      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>📚│pokemon-archiv<span class="dc-ex">Beispiel</span></div>
-      <div class="dc-body">
-        <div class="dc-msg">
-          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-          <div class="dc-c">
-            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="dc-btns"><span class="dc-btn p">Karte suchen</span><span class="dc-btn">Meine Sammlung</span><span class="dc-btn">Set-Fortschritt</span><span class="dc-btn" data-t="600" data-k="press">📚 Alle Sets</span></div>
-          </div>
-        </div>
-        <div class="dc-msg st" data-t="1000">
-          <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-          <div class="dc-c">
-            <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-            <div class="gone" data-t="3000"><div>
-              <div class="dc-embed" style="--ec:#2ee6ff"><h4>📚 Alle Sets</h4><p>Wähle eine Ära (Serie), um die darin enthaltenen Sets zu sehen. Ären in der Datenbank: 3.</p></div>
-              <div class="dc-sel"><span>Ära wählen</span><i>▾</i></div>
-              <ul class="dc-opts st" data-t="1700"><li class="dc-opt"><b>Grund (Base)</b><span>1 Sets · 1999-01-09–1999-01-09</span></li><li class="dc-opt" data-t="2400"><b>Karmesin &amp; Purpur (Scarlet &amp; Violet)</b><span>19 Sets · 2023-03-31–2025-07-17</span></li><li class="dc-opt"><b>Mega-Entwicklung (Mega Evolution)</b><span>11 Sets · 2025-09-25–2026-11-06</span></li></ul>
-            </div></div>
-            <div class="gone" data-t="5200"><div class="stg" data-t="3000">
-              <div class="dc-embed" style="--ec:#2ee6ff"><h4>Sets · Karmesin &amp; Purpur (Scarlet &amp; Violet)</h4><p>Sets dieser Ära: 19. Wähle ein Set oder suche nach Name oder Set-ID.</p></div>
-              <div class="dc-sel"><span>Set wählen</span><i>▾</i></div>
-              <ul class="dc-opts st" data-t="3600"><li class="dc-opt"><b>Karmesin &amp; Purpur (sv01)</b><span>2023-03-31 · regulär 198 · gesamt 258</span></li><li class="dc-opt"><b>Entwicklungen in Paldea (sv02)</b><span>2023-06-09 · regulär 193 · gesamt 279</span></li><li class="dc-opt"><b>Obsidian Flammen (sv03)</b><span>2023-08-11 · regulär 197 · gesamt 230</span></li><li class="dc-opt" data-t="4500"><b>151 (sv03.5)</b><span>2023-09-22 · regulär 165 · gesamt 207 · DB 207/207</span></li></ul>
-            </div></div>
-            <div class="gone" data-t="6900"><div class="stg" data-t="5200">
-              <div class="dc-embed" style="--ec:#2ee6ff"><h4>151</h4><p>Karmesin &amp; Purpur · erschienen 2023-09-22 · regulär 165 · gesamt 207 Karten</p></div>
-              <div class="dc-btns"><span class="dc-btn p" data-t="6300" data-k="press">📚 Explorer</span><span class="dc-btn">⭐ Top-Karten</span><span class="dc-btn">💎 Mein Fortschritt</span><span class="dc-btn">↩ Zurück</span></div>
-            </div></div>
-            <div class="stg" data-t="6900">
-              <div class="dc-embed" style="--ec:#2ee6ff"><h4>Card Explorer · 151</h4>
-                <div class="gone" data-t="9000"><div class="xgrid"><div class="pcard t-grass mini" role="img" aria-label="Bisasam · 151 · 001/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-grass"/></svg></div><div class="pc-name">Bisasam</div><div class="pc-set">151 · 001/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass mini" role="img" aria-label="Bisaknosp · 151 · 002/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-grass"/></svg></div><div class="pc-name">Bisaknosp</div><div class="pc-set">151 · 002/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-grass mini" role="img" aria-label="Bisaflor-ex · 151 · 003/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Rankenhirsch), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Pflanze</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-grass.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Bisaflor-ex</div><div class="pc-set">151 · 003/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-fire mini" role="img" aria-label="Glumanda · 151 · 004/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glumanda</div><div class="pc-set">151 · 004/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div><p class="xpage">Seite 1 / 52</p></div>
-                <div class="stg" data-t="9000"><div class="xgrid"><div class="pcard t-fire mini" role="img" aria-label="Glutexo · 151 · 005/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-fire"/></svg></div><div class="pc-name">Glutexo</div><div class="pc-set">151 · 005/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-fire mini" role="img" aria-label="Glurak-ex · 151 · 006/165 – eigenes PullTopia-Kartendesign mit eigener Kreatur (Glut-Phönix), keine Darstellung des Pokémon, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Feuer</span></div><div class="pc-art"><img class="pc-cr" src="../assets/img/creature-fire.webp" width="480" height="480" alt="" loading="lazy"></div><div class="pc-name">Glurak-ex</div><div class="pc-set">151 · 006/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water mini" role="img" aria-label="Schiggy · 151 · 007/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-water"/></svg></div><div class="pc-name">Schiggy</div><div class="pc-set">151 · 007/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div><div class="pcard t-water mini" role="img" aria-label="Schillok · 151 · 008/165 – eigenes PullTopia-Kartendesign, Beispiel"><div class="pc-top"><img src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy"><span class="pc-type">Wasser</span></div><div class="pc-art"><svg viewBox="0 0 100 80" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#m-water"/></svg></div><div class="pc-name">Schillok</div><div class="pc-set">151 · 008/165</div><div class="pc-foot"><span>PullTopia</span><em>Beispiel</em></div></div></div><p class="xpage">Seite 2 / 52</p></div>
-              </div>
-              <div class="dc-sel"><span>Karte öffnen</span><i>▾</i></div>
-              <div class="dc-btns"><span class="dc-btn">◀</span><span class="dc-btn p" data-t="8600" data-k="press">▶</span><span class="dc-btn">Suchen</span><span class="dc-btn">Filter</span><span class="dc-btn">↩ Zum Set</span></div>
-            </div>
-            <p class="dc-eph">Nur du kannst das sehen</p>
-          </div>
-        </div>
-      </div>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ PREMIUM ============ -->
-<section class="premium" id="premium">
-  <div class="wrap">
-    <p class="eyebrow gold-t rv">PullTopia Premium</p>
-    <h2 class="h-lg rv"><span class="silver">Sofort.</span><br><span class="gold">Statt 15 Minuten später.</span></h2>
-    <p class="lead rv">Ein Paket, drei Laufzeiten, dieselben Leistungen. Premium-Alerts ohne Verzögerung in der Mitglieder-Lounge.</p>
-
-    <!-- GRÜNDERPLÄTZE: Nur die zwei Zahlen hier ändern (frei / gesamt). Der Balken rechnet sich daraus (assets/scenes.js). -->
-    <div class="fc rv" role="group" aria-label="Gründerplätze">
-      <div class="fc-head"><span><span aria-hidden="true">✦</span> Gründerpreis</span><span>noch <b data-fc-free>50</b> von <b data-fc-total>50</b> Plätzen</span></div>
-      <div class="fc-bar" aria-hidden="true"><i style="width:100%"></i></div>
-      <p class="fc-note">Für die ersten 50 zahlenden Mitglieder. Dein Gründerpreis bleibt, solange dein Abo ununterbrochen läuft. Stand: 16.11.2026</p>
-    </div>
-
-    <div class="plans">
-      <article class="plan rv">
-        <h3>Monatlich</h3>
-        <p class="price"><b>4,99 €</b><span>/ Monat</span></p>
-        <p class="keep">Dein Preis bleibt, solange dein Abo läuft.</p>
-        <p class="reg">Regulär <b>6,99 €</b> · gilt erst, wenn alle 50 Gründerplätze vergeben sind</p>
-      </article>
-      <article class="plan rv">
-        <h3>Quartal</h3>
-        <p class="price"><b>12,99 €</b><span>/ 3 Monate</span></p>
-        <p class="keep">Dein Preis bleibt, solange dein Abo läuft.</p>
-        <p class="reg">Regulär <b>17,99 €</b> · gilt erst, wenn alle 50 Gründerplätze vergeben sind</p>
-      </article>
-      <article class="plan plan-hl rv">
-        <span class="plan-tag">Längste Laufzeit</span>
-        <h3>Jährlich</h3>
-        <p class="price"><b>39,99 €</b><span>/ 12 Monate</span></p>
-        <p class="keep">Dein Preis bleibt, solange dein Abo läuft.</p>
-        <p class="reg">Regulär <b>54,99 €</b> · gilt erst, wenn alle 50 Gründerplätze vergeben sind</p>
-      </article>
-    </div>
-
-
-    <div class="scene-band tight">
-      <div class="scene-grid">
-        <div class="scene-copy rv">
-          <p class="eyebrow gold-t">Gebucht in #mitgliedschaften</p>
-          <h3 class="h-md">Button drücken.<br><span class="gold">Premium aktiv.</span></h3>
-          <p class="lead">Laufzeit wählen, sicher über Stripe zahlen, fertig. Deine Premium-Rolle kommt automatisch, und die Alerts landen ab sofort ohne Verzögerung bei dir.</p>
-          <p class="fine">Nachgebaute Darstellung, Ablauf als Beispiel.</p>
-        </div>
-        <figure class="dc rv" data-scene="premium" style="--dch:400px" aria-label="Beispiel: Premium im Discord buchen (nachgebaut)">
-          <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span>mitgliedschaften<span class="dc-ex">Beispiel</span></div>
-          <div class="dc-body">
-            <div class="dc-msg">
-              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-              <div class="dc-c">
-                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-                <div class="dc-embed" style="--ec:#f7c35c"><h4>PullTopia Premium</h4><p>Ein Paket, drei Laufzeiten. 🌟 Gründerpreis</p></div>
-                <div class="dc-btns"><span class="dc-btn p">🌙 Monatlich · 4,99 €</span><span class="dc-btn p">🔮 Quartal · 12,99 €</span><span class="dc-btn g" data-t="800" data-k="press">👑 Jährlich · 39,99 €</span></div>
-              </div>
-            </div>
-            <div class="dc-msg st" data-t="1300">
-              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-              <div class="dc-c">
-                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-                <div class="dc-embed" style="--ec:#f7c35c"><h4>👑 PullTopia Premium · Jährlich · 🌟 Gründerpreis</h4><p>Gründerpreis: bleibt dir erhalten, solange dein Abo ununterbrochen läuft.</p></div>
-                <div class="dc-btns"><span class="dc-btn g" data-t="2600" data-k="press">💳 Zahlungspflichtig weiter (39,99 €)</span><span class="dc-btn">✖️ Abbrechen</span></div>
-                <p class="dc-eph">Nur du kannst das sehen</p>
-              </div>
-            </div>
-            <div class="dc-msg st" data-t="3600">
-              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-              <div class="dc-c">
-                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-                <p style="color:#c4c8ce">Zahlung über Stripe bestätigt. Rolle erhalten: <span class="dc-role">Premium · Jährlich</span></p>
-                <div class="dc-prem pop" data-t="4300">✦ Premium aktiv</div>
-              </div>
-            </div>
-          </div>
-        </figure>
-      </div>
-    </div>
-
-    <div class="compare rv">
-      <div class="cmp-col">
-        <h4>Kostenlos</h4>
-        <ul>
-          <li>Drop-Alerts in #drop-alerts, 15 Minuten nach Premium</li>
-          <li>News-Radar, Frühwarnungen &amp; Amazon-Einladungen</li>
-          <li>Tauschbörse, Cardverse, Voice Nexus</li>
-        </ul>
-      </div>
-      <div class="cmp-col cmp-p">
-        <h4>Premium</h4>
-        <ul>
-          <li>Drop-Alerts <b>sofort</b> in #mitglieder-alerts</li>
-          <li>Zugang zur Mitglieder-Lounge</li>
-          <li>Alles aus Kostenlos</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="buy rv">
-      <a class="btn btn-gold" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">Im Discord buchen</a>
-      <p>Gebucht wird direkt im Discord in <b>#mitgliedschaften</b>, sicher über Stripe. Verlängert sich automatisch, jederzeit zum Ende der Laufzeit kündbar. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
-      <p class="links"><a href="../terms.html#premium">Abo-Bedingungen</a> · <a href="../terms.html#widerruf">Widerrufsbelehrung</a> · <a href="../kuendigen.html">Verträge hier kündigen</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CREATOR NEXUS ============ -->
-<!-- Alle Inhalte belegt im Bot-Code lib/partners/* (template.json, cockpit.js, badge.js, public.js, poller.js, social.js) und ops/docs/CREATOR_NEXUS.md, Stand 16.11.2026. Kein echter Partnername. -->
-<section class="creator cn" id="creator">
-  <div class="cn-glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="cn-head">
-      <p class="eyebrow cn-eye rv">Creator Nexus · für Streamer &amp; Content Creator</p>
-      <h2 class="h-lg rv">Dein eigener Bereich.<br><span class="neon cn-neon">Mitten im Nexus.</span></h2>
-      <div class="cn-badge rv" aria-label="Rolle 🤝 Offizieller Partner"><span class="cn-ring" aria-hidden="true"></span><span class="cn-badge-in"><i aria-hidden="true">🤝</i>Offizieller Partner</span></div>
-      <p class="lead rv">Offizielle PullTopia-Partner bekommen eine eigene Kategorie auf unserem Discord-Server, ein eigenes Abzeichen, Follower mit eigener Creator-Rolle und ein privates Cockpit, aus dem sie ihre Community steuern.</p>
-    </div>
-
-    <figure class="dc cn-dc rv" data-scene="creator" style="--dch:430px" aria-label="Beispiel: Partner-Bereich im Discord mit Creator-Cockpit und Social-Drops (nachgebaut, kein echter Partner)">
-      <div class="dc-bar"><span class="dc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="dc-hash">#</span><span class="gone" data-t="5600">🛠️│creator-cockpit</span><span class="stg-i" data-t="5600">📱│social-drops</span><span class="dc-ex">Beispiel</span></div>
-      <div class="cn-grid">
-        <aside class="cn-side" aria-label="Kanalliste (Beispiel)">
-          <p class="cn-pub"><b>#</b> 🤝│creator-nexus</p>
-          <p class="cn-cat">🤝 · ✦ BEISPIEL-CREATOR · CREATOR</p>
-          <ul class="cn-ch">
-            <li><b>#</b> 📢│ankündigungen</li>
-            <li><b>#</b> 💬│fan-chat</li>
-            <li class="cn-sd" data-t="5600"><b>#</b> 📱│social-drops<em class="cn-new">NEU</em></li>
-            <li><b>🔊</b> 🎙️│talk</li>
-            <li class="act" data-t="5600" data-k="off"><b>#</b> 🛠️│creator-cockpit <span aria-label="privat">🔒</span></li>
-          </ul>
-        </aside>
-        <div class="dc-body cn-main">
-          <div class="gone" data-t="5600"><div class="cn-pane">
-            <div class="dc-msg">
-              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-              <div class="dc-c">
-                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-                <div class="dc-embed" style="--ec:#2dd4bf">
-                  <h4>🛠️ CREATOR COCKPIT · ✦ Beispiel-Creator</h4>
-                  <p>Willkommen in deinem privaten Cockpit! Nur du, der Owner und das Team sehen diesen Kanal.</p>
-                  <p class="cn-small">🔒 Du kannst nur deine eigene Creator-Rolle erwähnen, nie @everyone oder @here.</p>
-                </div>
-                <div class="dc-btns cn-btns">
-                  <span class="dc-btn p">📣 Ankündigung</span><span class="dc-btn p">📊 Umfrage</span><span class="dc-btn g">👥 Übersicht</span>
-                  <span class="dc-btn">✏️ Beschreibung</span><span class="dc-btn">🔗 Social-Links</span><span class="dc-btn">🔔 Benachrichtigungen</span>
-                  <span class="dc-btn p" data-t="900" data-k="press">📱 Neuen Post teilen</span><span class="dc-btn">🎵 TikTok verbinden</span>
-                </div>
-              </div>
-            </div>
-            <div class="gone" data-t="3900"><div class="dc-modal st" data-t="1300"><small>📱 Neuen Post teilen · Link zu deinem Post / Video / Stream</small><div class="dc-field"><span class="ty" data-t="1600" data-type="tiktok.com/@beispiel/video/…"></span></div>
-              <small style="margin-top:10px">Kurzer Text dazu (optional)</small><div class="dc-field"><span class="ty" data-t="2900" data-type="Neues Opening ist online!"></span></div></div></div>
-            <div class="stg" data-t="3900">
-              <div class="dc-embed" style="--ec:#2dd4bf"><h4>Vorschau — noch nicht veröffentlicht</h4><p><b style="color:#fff">Kanal:</b> 📱│social-drops<br><b style="color:#fff">Heute geteilt:</b> 0/10</p></div>
-              <div class="dc-btns"><span class="dc-btn g" data-t="4800" data-k="press">✅ Posten</span><span class="dc-btn" style="background:#da373c">❌ Abbrechen</span></div>
-              <p class="dc-eph">Nur du kannst das sehen</p>
-            </div>
-          </div></div>
-          <div class="stg" data-t="5600"><div class="cn-pane">
-            <div class="dc-msg">
-              <img class="dc-av" src="../assets/img/logo-64.webp" width="38" height="38" alt="" loading="lazy">
-              <div class="dc-c">
-                <p class="dc-h"><b class="bot">PullTopia Nexus</b><span class="dc-app">APP</span></p>
-                <div class="dc-embed cn-drop" style="--ec:#ff2f8f">
-                  <div class="cn-drop-in">
-                    <div>
-                      <p class="cn-author"><span class="cn-mini-av" aria-hidden="true">✦</span>✦ Beispiel-Creator</p>
-                      <h4>🔥 ✦ Beispiel-Creator hat einen neuen TikTok – schau ihn dir jetzt an!</h4>
-                      <p>Neues Opening ist online!</p>
-                      <p class="cn-link">🎵 Auf TikTok öffnen</p>
-                    </div>
-                    <img class="cn-thumb" src="../assets/img/logo-64.webp" width="64" height="64" alt="" loading="lazy">
-                  </div>
-                  <p class="cn-foot">PullTopia Nexus · Social-Drops · von ✦ Beispiel-Creator geteilt · TikTok</p>
-                </div>
-                <div class="dc-btns"><span class="dc-btn cn-tt" data-t="6600" data-k="press">🎵 Auf TikTok ansehen ↗</span></div>
-              </div>
-            </div>
-          </div></div>
-        </div>
-        <aside class="cn-members" aria-label="Mitgliederliste (Beispiel)">
-          <p class="cn-mh">🤝 OFFIZIELLER PARTNER — 1</p>
-          <div class="cn-m cn-partner"><span class="cn-mav" aria-hidden="true">✦</span><b>✦ Beispiel-Creator</b></div>
-          <p class="cn-mh cn-mh2">MITGLIEDER</p>
-          <div class="cn-m cn-ph" aria-hidden="true"><span class="cn-mav"></span><i></i></div>
-          <div class="cn-m cn-ph" aria-hidden="true"><span class="cn-mav"></span><i style="width:52%"></i></div>
-          <div class="cn-m cn-ph" aria-hidden="true"><span class="cn-mav"></span><i style="width:64%"></i></div>
-        </aside>
-      </div>
-    </figure>
-    <p class="fine center cn-fine rv">Nachgebaute Darstellung mit Beispielnamen, kein echter Partner und keine echten Mitglieder. Beschriftungen wie im Bot. Geteilte Links zeigt der Bot ohne fremdes Vorschaubild.</p>
-
-    <div class="cn-bento">
-      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">🏰</span><h3>Eigene Kategorie</h3><p>Dein Bereich auf dem Server: 📢 Ankündigungen, 💬 Fan-Chat, 📱 Social-Drops, 🎙️ Talk und dein privates 🛠️ Cockpit.</p>
-        <div class="bx-ch" aria-hidden="true"><i>📢 ankündigungen</i><i>💬 fan-chat</i><i>📱 social-drops</i><i>🎙️ talk</i><i>🛠️ creator-cockpit 🔒</i></div></article>
-      <article class="bx rv"><span class="bx-ic bx-badge" aria-hidden="true">🤝</span><h3>Partner-Abzeichen</h3><p>Die Rolle „🤝 Offizieller Partner“ mit eigenem Block in der Mitgliederliste. Jeder sieht, wer offizieller Partner ist.</p></article>
-      <article class="bx rv"><span class="bx-ic bx-star" aria-hidden="true">⭐</span><h3>Follower mit Creator-Rolle</h3><p>Fans tippen „⭐ Creator folgen“, bekommen deine Creator-Rolle und schalten deinen Fan-Bereich frei.</p></article>
-      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">🛠️</span><h3>Privates Cockpit</h3><p>Ankündigungen im PullTopia-Stil mit Vorschau und optionaler Rechtschreibprüfung, echte Discord-Umfragen, Beschreibung, Social-Links, Benachrichtigungen. Alles per Button.</p></article>
-      <article class="bx rv"><span class="bx-ic bx-share" aria-hidden="true">📱</span><h3>Neuen Post teilen</h3><p>Links von TikTok, Instagram, Kick, X, YouTube oder Twitch landen als Karte in 📱 social-drops. Bis zu 10 pro Tag, doppelte Links werden erkannt.</p></article>
-      <article class="bx rv"><span class="bx-ic bx-sync" aria-hidden="true">🔁</span><h3>Automatische Drops</h3><p>Neue YouTube-Videos und Bluesky-Posts erscheinen automatisch, geprüft alle 10 Minuten. TikTok über das offizielle Login Kit, sobald TikTok die App freigegeben hat.</p></article>
-      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">🔎</span><h3>Im 🤝│creator-nexus</h3><p>Mitglieder entdecken dich über „🔎 Partner entdecken“: Profil, TCG-Schwerpunkte und Social-Links auf einen Blick.</p></article>
-      <article class="bx bx-w rv"><span class="bx-ic" aria-hidden="true">👥</span><h3>Übersicht &amp; Pings</h3><p>Follower-Zahl und Status deiner Anbindungen im Cockpit. Pings gehen nur an deine eigene Creator-Rolle, nie an @everyone.</p></article>
-    </div>
-
-    <div class="cn-cta rv">
-      <div><h3>Du bist Creator?</h3><p>Partnerschaften vergeben wir persönlich. Schreib uns im Discord, wir melden uns.</p></div>
-      <a class="btn btn-primary cn-btn" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">🤝 Partner werden · Im Discord anfragen</a>
-    </div>
-
-    <div class="cn-tiktok rv" id="tiktok">
-      <div class="cn-tt-head"><span class="cn-tt-ic" aria-hidden="true">🎵</span><div><p class="eyebrow">TikTok-Anbindung für Partner</p><h3>Freiwillig. Nur lesend. Jederzeit trennbar.</h3></div></div>
-      <p>Offizielle PullTopia-Partner (Streamer und Content Creator) erhalten einen eigenen Bereich auf unserem Discord-Server. Wenn ein Partner das möchte, verbindet er im privaten Creator-Cockpit sein TikTok-Konto über das offizielle <b>TikTok Login Kit</b>. PullTopia Nexus zeigt dann seine <b>neu veröffentlichten TikTok-Videos</b> (Titel, Vorschaubild, Link) im Kanal „📱│social-drops“ seines Partnerbereichs.</p>
-      <ul class="cn-tt-list">
-        <li><span>🔑</span><div><b>Berechtigungen</b><br><code>user.info.basic</code> (Anzeigename) und <code>video.list</code> (eigene öffentliche Videos)</div></li>
-        <li><span>👁️</span><div><b>Nur lesend</b><br>PullTopia postet nichts auf TikTok und verändert nichts am Konto</div></li>
-        <li><span>🔌</span><div><b>Trennen jederzeit</b><br>im Cockpit („TikTok trennen“): Zugangsdaten werden gelöscht und bei TikTok widerrufen</div></li>
-      </ul>
-      <p class="en" lang="en"><b>English:</b> PullTopia is a German trading card game community on Discord. Official PullTopia partners (creators) may connect their own TikTok account via TikTok Login Kit; our bot then shows their newly published videos (title, cover, link) in their partner channel on our Discord server. Read-only; disconnect any time.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FINAL CTA ============ -->
-<section class="final" id="join">
-  <div class="final-glow" aria-hidden="true"></div>
-  <img class="final-logo rv" src="../assets/img/logo-400.webp" width="200" height="200" alt="PullTopia" loading="lazy">
-  <h2 class="h-xl rv"><span class="silver">Dein nächster Pull</span><br><span class="neon">beginnt hier.</span></h2>
-  <p class="lead center rv">Kostenlos beitreten, Interessen wählen, loslegen.</p>
-  <div class="rv"><a class="btn btn-primary btn-lg" href="https://discord.gg/4qKfQGuqPB" rel="noopener" target="_blank">PullTopia auf Discord öffnen</a></div>
-</section>
-
 </main>
 
-<footer class="foot">
-  <div class="wrap">
-    <div class="foot-top">
-      <a class="brand" href="#top"><img src="../assets/img/logo-64.webp" width="28" height="28" alt="" loading="lazy"><span>PullTopia</span></a>
-      <nav class="foot-links" aria-label="Rechtliches">
-        <a href="../imprint.html">Impressum</a>
-        <a href="../privacy.html">Datenschutz</a>
-        <a href="../terms.html">AGB / Nutzungsbedingungen</a>
-        <a href="../terms.html#premium">Abo-Bedingungen</a>
-        <a href="../terms.html#widerruf">Widerruf</a>
-        <a href="../kuendigen.html"><b>Verträge hier kündigen</b></a>
-      </nav>
-    </div>
-    <p class="disc">PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert. Wir sind nicht mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Amazon oder den genannten Shops verbunden. Pokémon, One Piece, Yu-Gi-Oh!, Magic: The Gathering und alle weiteren Marken gehören ihren jeweiligen Inhabern. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Echte Kartennamen, Sets und Nummern werden nur zur Beschreibung genannt und im eigenen PullTopia-Kartendesign ohne offizielle Kartenbilder, Figuren oder Logos dargestellt. Die Motive auf diesen Beispielkarten sind eigene PullTopia-Kreaturen und keine Darstellung des jeweiligen Pokémon. Alle übrigen Kartenmotive sind eigene Cardverse-Motive von PullTopia.</p>
-    <p class="disc">Testseite (3D-Vorschau). 3D: three.js (MIT), Animation: GSAP. Alle Discord-Ansichten sind nachgebaut und als Beispiel gekennzeichnet.</p>
-    <p class="copy">© 2026 PullTopia</p>
-  </div>
+<footer class="ft">
+  <nav aria-label="Rechtliches"><a href="../imprint.html">Impressum</a><a href="../privacy.html">Datenschutz</a><a href="../terms.html">AGB</a><a href="../terms.html#premium">Abo-Bedingungen</a><a href="../terms.html#widerruf">Widerruf</a><a href="../kuendigen.html"><b>Verträge hier kündigen</b></a></nav>
+  <p>Testseite (3D-Vorschau). Alle Discord-Ansichten sind nachgebaut und Beispiele. PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert, nicht verbunden mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Amazon oder den genannten Shops. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Kartenmotive sind eigene PullTopia-Kreaturen. 3D: three.js (MIT) · Animation: GSAP. © 2026 PullTopia</p>
 </footer>
 
-<script src="live.js" defer></script>
 <script src="../assets/scenes.js" defer></script>
 <script src="vendor/gsap.min.js" defer></script>
 <script src="vendor/ScrollTrigger.min.js" defer></script>
