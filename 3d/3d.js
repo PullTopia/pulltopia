@@ -13,70 +13,44 @@ const TAU = Math.PI * 2;
 
 const loadImg = (src) => new Promise(res => { const i = new Image(); i.decoding = "async"; i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
 
-/* ---------------- Live-Zahlen (gleiche Logik wie Live-Seite) ---------------- */
+/* ---------------- Live-Werte für die Story-Texte (gleiche Quelle wie live; die Zahlen-Sektion selbst macht live.js) ---------------- */
 const fmt = new Intl.NumberFormat("de-DE");
-const STATS_URLS = ["https://raw.githubusercontent.com/PullTopia/pulltopia/live-stats/stats.json", new URL("../stats.json", location.href).href];
-const STATS_LS = "pt-site-stats-v1";
-const COUNTRY_ORDER = ["DE", "AT", "CH", "NL", "BE"];
-const validStats = (s) => {
-  if (!s || s.version !== 1 || !s.metrics) return null;
-  const m = s.metrics;
-  if (["dropsDetected", "restocksDetected", "backdropsDetected", "shopsLive", "signalsLive", "freeDelayMin"].some(k => !Number.isFinite(m[k]))) return null;
-  return s;
-};
-const countryLine = (by) => {
-  if (!by || typeof by !== "object") return "";
-  const keys = [...COUNTRY_ORDER.filter(c => by[c] > 0), ...Object.keys(by).filter(c => !COUNTRY_ORDER.includes(c) && by[c] > 0).sort()];
-  return keys.map(c => fmt.format(by[c]) + " " + c).join(" · ");
-};
-const agoText = (iso) => {
-  const ts = Date.parse(iso); if (!Number.isFinite(ts)) return "";
-  const min = Math.max(0, Math.round((Date.now() - ts) / 60000));
-  if (min < 1) return "gerade eben"; if (min < 60) return "vor " + min + " Min";
-  const h = Math.round(min / 60); if (h < 24) return "vor " + h + " Std.";
-  const days = Math.round(h / 24); return "vor " + days + " Tag" + (days === 1 ? "" : "en");
-};
 const $ = (s) => d.querySelector(s), $$ = (s) => [...d.querySelectorAll(s)];
-const setCnt = (name, val) => { const el = $('[data-stat-count="' + name + '"]'); if (el && Number.isFinite(val)) { el.dataset.to = String(val); el.textContent = fmt.format(Math.round(val)); } };
-const setTxt = (sel, s) => $$(sel).forEach(el => { el.textContent = s; });
-function applyStats(s, live) {
-  const m = s.metrics;
-  setCnt("drops", m.dropsDetected); setCnt("free-delay", m.freeDelayMin); setCnt("shops", m.shopsLive);
-  setCnt("restocks", m.restocksDetected); setCnt("backdrops", m.backdropsDetected);
-  if (Number.isFinite(m.premiumMedianSec)) { setCnt("premium-median", Math.round(m.premiumMedianSec)); setTxt('[data-stat-text="premium"]', fmt.format(m.premiumMedianSec) + " s"); }
-  setTxt('[data-stat-text="shops"]', fmt.format(m.shopsLive) + " Shops");
-  setTxt('[data-stat-text="signals"]', fmt.format(m.signalsLive) + " Signalquellen");
-  const sig = $('[data-stat-em="signals"]'); if (sig) sig.textContent = "+" + fmt.format(m.signalsLive);
-  const n1 = $('[data-stat-note="drops"]'); if (n1 && s.countingSinceLabel) n1.textContent = "seit Start der Aufzeichnung · " + s.countingSinceLabel + " (Europe/Berlin)";
-  const n2 = $('[data-stat-note="premium-median"]');
-  if (n2 && Number.isFinite(m.premiumMedianSec) && Number.isFinite(m.premiumMedianN)) n2.textContent = "n = " + fmt.format(m.premiumMedianN) + " · Median " + fmt.format(m.premiumMedianSec) + " s · interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung";
-  const n3 = $('[data-stat-note="free-delay"]');
-  if (n3 && Number.isFinite(m.freeMedianMin)) n3.textContent = "gemessen: Median " + fmt.format(m.freeMedianMin) + " Min · " + (m.freeEarly === 0 ? "keiner vor Ablauf der " + m.freeDelayMin + " Minuten" : fmt.format(m.freeEarly) + " vor Ablauf der " + m.freeDelayMin + " Minuten");
-  const n4 = $('[data-stat-note="shops"]'); const cl = countryLine(m.shopsByCountry); if (n4 && cl) n4.textContent = cl;
-  const badge = $("#zahlen-live"), ago = $("#zahlen-ago");
-  const fresh = Number.isFinite(Date.parse(s.generatedAt)) && (Date.now() - Date.parse(s.generatedAt) < 2 * 3600000);
-  if (badge) { const show = !!(live && fresh); badge.hidden = !show; if (show && ago) ago.textContent = agoText(s.generatedAt); }
-}
-const fetchOne = (url, ms) => { const ac = new AbortController(); const t = setTimeout(() => ac.abort(), ms); return fetch(url, { cache: "no-store", signal: ac.signal, headers: { Accept: "application/json" } }).then(r => { if (!r.ok) throw new Error("http " + r.status); return r.json(); }).finally(() => clearTimeout(t)); };
-const statsReady = (async () => {
+const STATS_URLS = ["https://raw.githubusercontent.com/PullTopia/pulltopia/live-stats/stats.json", new URL("../stats.json", location.href).href];
+const setX3 = (k, s) => $$('[data-x3-stat="' + k + '"]').forEach(el => { el.textContent = s; });
+const applyX3 = (s) => {
+  const m = s && s.version === 1 && s.metrics; if (!m) return false;
+  if (Number.isFinite(m.shopsLive)) setX3("shops", fmt.format(m.shopsLive) + " Shops");
+  if (Number.isFinite(m.signalsLive)) setX3("signals", fmt.format(m.signalsLive) + " Signalquellen");
+  if (Number.isFinite(m.premiumMedianSec)) setX3("premium", fmt.format(m.premiumMedianSec) + " s");
+  return true;
+};
+(async () => {
   for (const url of STATS_URLS) {
-    try { const s = validStats(await fetchOne(url, 2500)); if (!s) continue; applyStats(s, true); try { localStorage.setItem(STATS_LS, JSON.stringify(s)); } catch (e) {} return; } catch (e) {}
+    try { const ac = new AbortController(); const t = setTimeout(() => ac.abort(), 2500);
+      const r = await fetch(url, { cache: "no-store", signal: ac.signal }); clearTimeout(t);
+      if (r.ok && applyX3(await r.json())) return; } catch (e) {}
   }
-  try { const s = validStats(JSON.parse(localStorage.getItem(STATS_LS) || "")); if (s) applyStats(s, false); } catch (e) {}
+  try { applyX3(JSON.parse(localStorage.getItem("pt-site-stats-v1") || "")); } catch (e) {}
 })();
-const cio = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return; cio.unobserve(e.target);
-  const el = e.target;
-  const run = () => {
-    const to = +el.dataset.to; if (!Number.isFinite(to)) return;
-    if (reduce) { el.textContent = fmt.format(Math.round(to)); return; }
-    const t0 = performance.now(), dur = 1400 + Math.min(to, 600);
-    const step = t => { const p = clamp((t - t0) / dur), q = 1 - Math.pow(1 - p, 4); el.textContent = fmt.format(Math.round(to * q)); if (p < 1) requestAnimationFrame(step); };
-    el.textContent = "0"; requestAnimationFrame(step);
-  };
-  Promise.race([statsReady, new Promise(r => setTimeout(r, 2500))]).then(run, run);
-}), { threshold: .6 });
-$$(".cnt").forEach(el => cio.observe(el));
+
+/* ---------------- 3D-Scroll für die übernommenen Live-Abschnitte ---------------- */
+function liveTilt() {
+  if (reduce || !window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const sel = [".scene-band .dc", ".numbers .num", ".stages .stage", ".legend .lg-item", ".bento .tile", ".spot", ".archive .dc", ".plans .plan", ".fc", ".compare .cmp-col", ".cn-dc", ".cn-bento > *", ".final-logo"];
+  const yawSel = [".scene-band .dc", ".archive .dc", ".cn-dc", ".spot"];
+  let k = 0;
+  sel.forEach(q => $$(q).forEach(el => {
+    if (el.closest(".x3-story") || el.closest(".sticky")) return;
+    el.classList.add("x3-tilt");
+    if (yawSel.includes(q)) { el.classList.add("x3-y"); el.style.setProperty("--x3dir", (k++ % 2) ? -1 : 1); }
+    if (el.parentElement) el.parentElement.classList.add("x3-persp");
+    el.style.setProperty("--x3r", 0);
+    ScrollTrigger.create({ trigger: el, start: "top bottom", end: "top 55%", onUpdate: s => el.style.setProperty("--x3r", s.progress.toFixed(3)), onLeave: () => el.style.setProperty("--x3r", 1), onEnterBack: s => el.style.setProperty("--x3r", s.progress.toFixed(3)) });
+  }));
+  ScrollTrigger.refresh();
+}
 
 /* ---------------- Bildschirme (Canvas) ---------------- */
 const mkCanvas = (w, h) => { const c = d.createElement("canvas"); c.width = w; c.height = h; return c; };
@@ -100,11 +74,11 @@ async function buildScreens() {
 
 /* ---------------- Static fallback ---------------- */
 function goStatic(assets) {
-  root.classList.add("static", "loaded");
+  root.classList.add("x3-static", "x3-loaded");
   if (!assets) return;
   $$("[data-fig]").forEach(fig => {
     const i = +fig.dataset.fig; const cv = assets.screens[i]; if (!cv) return;
-    const wrap = d.createElement("div"); wrap.className = "sphone";
+    const wrap = d.createElement("div"); wrap.className = "x3-phone";
     const img = new Image(); img.alt = "Nachgebaute Discord-Ansicht (Beispiel)"; img.width = SW; img.height = SH;
     try { img.src = cv.toDataURL("image/webp", .86); } catch (e) {}
     wrap.appendChild(img); fig.appendChild(wrap);
@@ -137,7 +111,7 @@ function radialTex(size = 256, stops = [[0, "rgba(255,255,255,1)"], [1, "rgba(25
 }
 
 async function start3D(assets) {
-  const canvas = $("#gl"), stage = $("#stage");
+  const canvas = $("#gl"), stage = $("#x3stage");
   const isMobile = () => stage.clientWidth < 761 || stage.clientWidth / stage.clientHeight < .8;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
   const DPR = Math.min(window.devicePixelRatio || 1, isMobile() ? 2 : 1.75);
@@ -293,8 +267,8 @@ async function start3D(assets) {
   }
 
   /* panels + UI */
-  const panels = $$(".panel").map(el => ({ el, a: +el.dataset.a, b: +el.dataset.b, side: el.classList.contains("side-l") ? -1 : el.classList.contains("side-r") ? 1 : 0, last: -1 }));
-  const panelsBox = $(".panels"), sw = $("#swatches"), hint = $("#hint");
+  const panels = $$(".x3-panel").map(el => ({ el, a: +el.dataset.a, b: +el.dataset.b, side: el.classList.contains("x3-l") ? -1 : el.classList.contains("x3-r") ? 1 : 0, last: -1 }));
+  const panelsBox = $(".x3-panels"), sw = $("#swatches"), hint = $("#hint");
   function updatePanels(p) {
     let any = false;
     panels.forEach(o => {
@@ -317,14 +291,14 @@ async function start3D(assets) {
   const names = { "#2ee6ff": "Cyan", "#9b6bff": "Violett", "#f7c35c": "Gold", "#ff5fd2": "Pink" };
   sw.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
     sw.querySelectorAll("button").forEach(o => o.setAttribute("aria-checked", String(o === b)));
-    accentTarget.set(b.dataset.c); root.style.setProperty("--acc", b.dataset.c); $("#sw-name").textContent = names[b.dataset.c] || "";
+    accentTarget.set(b.dataset.c); root.style.setProperty("--x3acc", b.dataset.c); $("#sw-name").textContent = names[b.dataset.c] || "";
     pulse = 1;
   }));
   let pulse = 0;
 
   /* scroll progress via GSAP ScrollTrigger (fallback: manual) */
   let target = 0, prog = 0;
-  const storyEl = $("#story");
+  const storyEl = $(".x3-story");
   const manual = () => { const r = storyEl.getBoundingClientRect(); const len = storyEl.offsetHeight - stage.clientHeight; target = clamp(-r.top / Math.max(1, len)); };
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
@@ -339,7 +313,7 @@ async function start3D(assets) {
 
   const clock = new THREE.Clock(); let t0 = null, frames = 0, fpsT = 0;
   window.__pt3d = { fps: 0, progress: () => prog };
-  root.classList.add("loaded");
+  root.classList.add("x3-loaded");
   const tmpC = new THREE.Color();
 
   function frame() {
@@ -359,8 +333,8 @@ async function start3D(assets) {
     const out = smooth(.09, .175, p);
     coin.visible = out < .999;
     if (coin.visible) {
-      coin.position.set(0, (mobile ? .55 : .35) + out * 3.6 + Math.sin(time * 1.1) * .04, lerp(-7, 0, appear) - out * 1.2);
-      const cs = (mobile ? .82 : 1) * (.55 + .45 * appear) * (1 + p * .8);
+      coin.position.set(0, (mobile ? .9 : .45) + out * 3.6 + Math.sin(time * 1.1) * .04, lerp(-7, 0, appear) - out * 1.2);
+      const cs = (mobile ? .74 : .92) * (.55 + .45 * appear) * (1 + p * .8);
       coin.scale.setScalar(cs);
       coin.rotation.set(Math.sin(time * .6) * .08 - out * .6, (1 - appear) * -2.4 + Math.sin(time * .5) * .22 + p * 4 + out * Math.PI, 0);
       const op = appear * (1 - out);
@@ -418,6 +392,7 @@ async function start3D(assets) {
 (async () => {
   let assets = null;
   try { assets = await buildScreens(); } catch (e) { console.warn("screens", e); }
+  liveTilt();
   if (forceStatic || reduce || !webglOK() || !assets) { goStatic(assets); return; }
   try { await start3D(assets); }
   catch (e) { console.warn("3D nicht verfügbar, statische Ansicht", e); goStatic(assets); }
