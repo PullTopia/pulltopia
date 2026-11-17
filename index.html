@@ -145,7 +145,7 @@
     </div>
     <div class="radar-foot">
       <div class="radar-caps">
-        <p class="cap c1"><b>97 Shops</b> aus DE, AT, CH, NL und BE. Dazu <b>23 Signalquellen</b>.</p>
+        <p class="cap c1"><b><span data-stat-text="radar-shops">153 Shops</span></b> aus <span data-stat-text="radar-countries">DE, AT, CH, NL, BE und FR</span>. Dazu <b><span data-stat-text="radar-signals">28 Signalquellen</span></b>.</p>
         <p class="cap c2">Jeder Alert mit <b>Preis und Direktlink</b>. Dazu eine Bewertung, sofern eine verifizierte UVP vorliegt.</p>
         <p class="cap c3">Premium sieht ihn <b>sofort</b>. Alle anderen <b>15 Minuten später</b> in #drop-alerts. Gratis.</p>
       </div>
@@ -193,16 +193,25 @@
 <!-- ============ NUMBERS ============ -->
 <section class="numbers" id="zahlen">
   <div class="wrap">
-    <p class="eyebrow rv">Hinter den Kulissen</p>
-    <h2 class="h-lg rv">Echte Zahlen.<br><span class="muted">Nichts aufgerundet.</span></h2>
-    <div class="num-grid">
-      <div class="num rv"><b><span class="cnt" data-to="604">604</span></b><p>neue Shop-Drops erkannt<br><small>12.11.2026, 01:22 bis 14.11.2026, 17:15 Uhr · rund 2,7 Tage</small></p></div>
-      <div class="num rv"><b><span class="cnt" data-to="22">22</span><em>s</em></b><p>Median von Erkennung bis Premium-Alert<br><small>n = 600 · interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung</small></p></div>
-      <div class="num rv"><b><span class="cnt" data-to="15">15</span><em>Min</em></b><p>später kommen die kostenlosen Alerts<br><small>gemessen: Median 15,2 Min · keiner vor Ablauf der 15 Minuten</small></p></div>
-      <div class="num rv"><b><span class="cnt" data-to="97">97</span><em>+23</em></b><p>Shops plus Signalquellen, alle live<br><small>74 DE · 8 AT · 3 CH · 7 NL · 5 BE</small></p></div>
-      <div class="num num-wide rv"><b><span class="cnt" data-to="22">22</span><em> Restocks</em> · <span class="cnt" data-to="8">8</span><em> Backdrops</em></b><p>im selben Zeitraum</p></div>
+    <div class="num-panel" id="zahlen-panel">
+      <div class="num-panel-top">
+        <p class="eyebrow rv">Hinter den Kulissen</p>
+        <p class="num-live" id="zahlen-live" hidden>
+          <span class="num-live-dot" aria-hidden="true"></span>
+          <span class="num-live-label">Live</span>
+          <span class="num-live-ago" id="zahlen-ago"></span>
+        </p>
+      </div>
+      <h2 class="h-lg rv">Echte Zahlen.<br><span class="muted">Nichts aufgerundet.</span></h2>
+      <div class="num-grid">
+        <div class="num rv"><b><span class="cnt" data-stat-count="drops" data-to="727">727</span></b><p>neue Shop-Drops erkannt<br><small data-stat-note="drops">seit Start der Aufzeichnung · 12.11.2026, 01:22 Uhr (Europe/Berlin)</small></p></div>
+        <div class="num rv"><b><span class="cnt" data-stat-count="premium-median" data-to="15">15</span><em>s</em></b><p>Median von Erkennung bis Premium-Alert<br><small data-stat-note="premium-median">n = 796 · Median 14,5 s · interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung</small></p></div>
+        <div class="num rv"><b><span class="cnt" data-stat-count="free-delay" data-to="15">15</span><em>Min</em></b><p>später kommen die kostenlosen Alerts<br><small data-stat-note="free-delay">gemessen: Median 15,1 Min · keiner vor Ablauf der 15 Minuten</small></p></div>
+        <div class="num rv"><b><span class="cnt" data-stat-count="shops" data-to="153">153</span><em data-stat-em="signals">+28</em></b><p>Shops plus Signalquellen, alle live<br><small data-stat-note="shops">118 DE · 11 AT · 8 CH · 8 NL · 7 BE · 1 FR</small></p></div>
+        <div class="num num-wide rv"><b><span class="cnt" data-stat-count="restocks" data-to="54">54</span><em> Restocks</em> · <span class="cnt" data-stat-count="backdrops" data-to="26">26</span><em> Backdrops</em></b><p>seit Start der Aufzeichnung</p></div>
+      </div>
+      <p class="fine rv">Zählung seit 12.11.2026, 01:22 Uhr (Europe/Berlin), ab dem Zeitpunkt, an dem der Bot Ereignisse protokolliert. Keine Schätzwerte. Alerts sind Hinweise, keine Kauf- oder Verfügbarkeitsgarantie. PullTopia kauft nichts, reserviert nichts und umgeht keine Warteschlangen oder Bot-Schutz. Die Shops sind keine Partner von PullTopia.</p>
     </div>
-    <p class="fine rv">Stand: 14.11.2026. Alerts sind Hinweise, keine Kauf- oder Verfügbarkeitsgarantie. PullTopia kauft nichts, reserviert nichts und umgeht keine Warteschlangen oder Bot-Schutz. Die Shops sind keine Partner von PullTopia.</p>
   </div>
 </section>
 

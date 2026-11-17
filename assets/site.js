@@ -26,14 +26,125 @@
     io.observe(el);
   });
 
-  /* count up */
+  /* live stats + count up */
   const fmt = new Intl.NumberFormat("de-DE");
+  const STATS_URLS = [
+    "https://raw.githubusercontent.com/PullTopia/pulltopia/live-stats/stats.json",
+    new URL("stats.json", location.href).href
+  ];
+  const STATS_LS = "pt-site-stats-v1";
+  const COUNTRY_ORDER = ["DE", "AT", "CH", "NL", "BE"];
+  const validStats = (s) => {
+    if (!s || s.version !== 1 || !s.metrics) return null;
+    const m = s.metrics, need = ["dropsDetected", "restocksDetected", "backdropsDetected", "shopsLive", "signalsLive", "freeDelayMin"];
+    if (need.some(k => !Number.isFinite(m[k]))) return null;
+    return s;
+  };
+  const countryKeys = (by) => {
+    if (!by || typeof by !== "object") return [];
+    return [...COUNTRY_ORDER.filter(c => by[c] > 0), ...Object.keys(by).filter(c => !COUNTRY_ORDER.includes(c) && by[c] > 0).sort()];
+  };
+  const countryLine = (by) => countryKeys(by).map(c => fmt.format(by[c]) + " " + c).join(" · ");
+  const countryList = (by) => {
+    const keys = countryKeys(by);
+    if (!keys.length) return "";
+    if (keys.length === 1) return keys[0];
+    if (keys.length === 2) return keys[0] + " und " + keys[1];
+    return keys.slice(0, -1).join(", ") + " und " + keys[keys.length - 1];
+  };
+  const agoText = (iso) => {
+    const ts = Date.parse(iso);
+    if (!Number.isFinite(ts)) return "";
+    const min = Math.max(0, Math.round((Date.now() - ts) / 60000));
+    if (min < 1) return "gerade eben";
+    if (min < 60) return "vor " + min + " Min";
+    const h = Math.round(min / 60);
+    if (h < 24) return "vor " + h + " Std.";
+    const days = Math.round(h / 24);
+    return "vor " + days + " Tag" + (days === 1 ? "" : "en");
+  };
+  const setCnt = (name, val) => {
+    const el = d.querySelector('[data-stat-count="' + name + '"]');
+    if (el && Number.isFinite(val)) { el.dataset.to = String(val); el.textContent = fmt.format(Math.round(val)); }
+  };
+  const applyStats = (s, live) => {
+    const m = s.metrics;
+    setCnt("drops", m.dropsDetected);
+    if (Number.isFinite(m.premiumMedianSec)) setCnt("premium-median", Math.round(m.premiumMedianSec));
+    setCnt("free-delay", m.freeDelayMin);
+    setCnt("shops", m.shopsLive);
+    setCnt("restocks", m.restocksDetected);
+    setCnt("backdrops", m.backdropsDetected);
+    const sig = d.querySelector('[data-stat-em="signals"]');
+    if (sig && Number.isFinite(m.signalsLive)) sig.textContent = "+" + fmt.format(m.signalsLive);
+    const dropsNote = d.querySelector('[data-stat-note="drops"]');
+    if (dropsNote && s.countingSinceLabel) dropsNote.textContent = "seit Start der Aufzeichnung · " + s.countingSinceLabel + " (Europe/Berlin)";
+    const premNote = d.querySelector('[data-stat-note="premium-median"]');
+    if (premNote && Number.isFinite(m.premiumMedianSec) && Number.isFinite(m.premiumMedianN)) {
+      premNote.textContent = "n = " + fmt.format(m.premiumMedianN) + " · Median " + fmt.format(m.premiumMedianSec) + " s · interne Verarbeitungszeit, nicht ab Shop-Veröffentlichung";
+    }
+    const freeNote = d.querySelector('[data-stat-note="free-delay"]');
+    if (freeNote && Number.isFinite(m.freeMedianMin)) {
+      const early = m.freeEarly === 0
+        ? "keiner vor Ablauf der " + m.freeDelayMin + " Minuten"
+        : fmt.format(m.freeEarly) + " vor Ablauf der " + m.freeDelayMin + " Minuten";
+      freeNote.textContent = "gemessen: Median " + fmt.format(m.freeMedianMin) + " Min · " + early;
+    }
+    const shopNote = d.querySelector('[data-stat-note="shops"]');
+    const cl = countryLine(m.shopsByCountry);
+    if (shopNote && cl) shopNote.textContent = cl;
+    const radarShops = d.querySelector('[data-stat-text="radar-shops"]');
+    if (radarShops && Number.isFinite(m.shopsLive)) radarShops.textContent = fmt.format(m.shopsLive) + " Shops";
+    const radarSig = d.querySelector('[data-stat-text="radar-signals"]');
+    if (radarSig && Number.isFinite(m.signalsLive)) radarSig.textContent = fmt.format(m.signalsLive) + " Signalquellen";
+    const radarCo = d.querySelector('[data-stat-text="radar-countries"]');
+    const list = countryList(m.shopsByCountry);
+    if (radarCo && list) radarCo.textContent = list;
+    const badge = d.getElementById("zahlen-live");
+    const ago = d.getElementById("zahlen-ago");
+    const fresh = Number.isFinite(Date.parse(s.generatedAt)) && (Date.now() - Date.parse(s.generatedAt) < 2 * 3600000);
+    if (badge) {
+      const show = !!(live && fresh);
+      badge.hidden = !show;
+      if (show && ago) ago.textContent = agoText(s.generatedAt);
+    }
+  };
+  const fetchOne = (url, ms) => {
+    const ac = new AbortController();
+    const tmr = setTimeout(() => ac.abort(), ms);
+    return fetch(url, { cache: "no-store", signal: ac.signal, headers: { Accept: "application/json" } })
+      .then(r => { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .finally(() => clearTimeout(tmr));
+  };
+  const loadLiveStats = () => (async () => {
+    for (const url of STATS_URLS) {
+      try {
+        const s = validStats(await fetchOne(url, 2500));
+        if (!s) continue;
+        applyStats(s, true);
+        try { localStorage.setItem(STATS_LS, JSON.stringify(s)); } catch (e) {}
+        return;
+      } catch (e) {}
+    }
+    try {
+      const s = validStats(JSON.parse(localStorage.getItem(STATS_LS) || ""));
+      if (s) { applyStats(s, false); return; }
+    } catch (e) {}
+  })();
+  const statsReady = loadLiveStats();
+
   const cio = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return; cio.unobserve(e.target);
-    const el = e.target, to = +el.dataset.to; if (reduce) return;
-    const t0 = performance.now(), dur = 1400 + Math.min(to, 600);
-    const step = t => { const p = clamp((t - t0) / dur), q = 1 - Math.pow(1 - p, 4); el.textContent = fmt.format(Math.round(to * q)); if (p < 1) requestAnimationFrame(step); };
-    el.textContent = "0"; requestAnimationFrame(step);
+    const el = e.target;
+    const run = () => {
+      const to = +el.dataset.to;
+      if (!Number.isFinite(to)) return;
+      if (reduce) { el.textContent = fmt.format(Math.round(to)); return; }
+      const t0 = performance.now(), dur = 1400 + Math.min(to, 600);
+      const step = t => { const p = clamp((t - t0) / dur), q = 1 - Math.pow(1 - p, 4); el.textContent = fmt.format(Math.round(to * q)); if (p < 1) requestAnimationFrame(step); };
+      el.textContent = "0"; requestAnimationFrame(step);
+    };
+    Promise.race([statsReady, new Promise(r => setTimeout(r, 2500))]).then(run, run);
   }), { threshold: .6 });
   d.querySelectorAll(".cnt").forEach(el => cio.observe(el));
 

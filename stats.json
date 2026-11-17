@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-17T09:35:23.817Z",
+  "timezone": "Europe/Berlin",
+  "countingSince": "2026-11-12T00:22:54.538Z",
+  "countingSinceLabel": "12.11.2026, 01:22 Uhr",
+  "metrics": {
+    "dropsDetected": 727,
+    "restocksDetected": 54,
+    "backdropsDetected": 26,
+    "premiumMedianSec": 14.5,
+    "premiumMedianN": 796,
+    "freeDelayMin": 15,
+    "freeMedianMin": 15.1,
+    "freeMedianN": 793,
+    "freeEarly": 0,
+    "shopsLive": 153,
+    "signalsLive": 28,
+    "shopsByCountry": {
+      "DE": 118,
+      "AT": 11,
+      "CH": 8,
+      "NL": 8,
+      "BE": 7,
+      "FR": 1
+    },
+    "shopsProbe": 1,
+    "newsSourcesEnabled": 40,
+    "newsPublished": 75
+  }
+}
