@@ -9,8 +9,10 @@
 
   /* Ladebildschirm */
   var bar=$("#ldbar"),pct=$("#ldpct"),msg=$("#ldmsg"),shown=0,target=0,t0=performance.now(),finished=false,doneCb=[];
-  function tick(){
-    shown+=(target-shown)*.12; if(target-shown<.4)shown=target;
+  var last=performance.now();
+  function tick(now){
+    var dt=Math.min(.25,((now||performance.now())-last)/1000);last=now||performance.now();
+    shown+=(target-shown)*(1-Math.exp(-dt*(finished?14:7))); if(target-shown<.6)shown=target;
     bar.style.width=shown.toFixed(1)+"%"; pct.textContent=Math.round(shown)+"%";
     if(finished&&shown>=99.5){ root.classList.add("ld-done"); setTimeout(function(){root.classList.add("ready");doneCb.forEach(function(f){f()})},250); return; }
     requestAnimationFrame(tick);
