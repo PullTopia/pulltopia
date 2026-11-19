@@ -123,9 +123,38 @@
     groups.forEach(function(g){whenShown(g.ct,function(){var st=performance.now();
       (function step(now){var k=clamp((now-st)/1200,0,1),e=1-Math.pow(1-k,3);g.els.forEach(function(el){el.textContent=k<1?cuTxt(el._f,e):el._f});
         if(k<1)requestAnimationFrame(step);else g.els.forEach(function(el){el._cu=0})})(st)})})}
-  var crits=$$(".crit");
-  if(crits.length){if(!anim)crits.forEach(function(c){c.classList.add("on")});
-    else whenShown(crits[0].closest(".ct"),function(){crits.forEach(function(c,i){setTimeout(function(){c.classList.add("on")},150+i*190)})})}
+  /* TradeMatch: von jedem Chip zeichnet sich eine Linie zu beiden Karten, dann wird der Chip grün; am Ende leuchtet MATCH grün */
+  var crits=$$(".crit"),tmw=$(".tmw"),svg=$(".tm-lines");
+  if(crits.length&&tmw&&svg){
+    var NS="http://www.w3.org/2000/svg",cardsT=$$(".tmw .tcard"),mid=$(".tmw .tm-mid"),lines=[],done=false;
+    svg.innerHTML='<defs><linearGradient id="tmgc" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2ee6ff"/><stop offset="1" stop-color="#9b6bff"/></linearGradient></defs>';
+    crits.forEach(function(c,i){var g=[];for(var j=0;j<2;j++){var p=d.createElementNS(NS,"path");svg.appendChild(p);g.push(p)}lines.push(g)});
+    var dots=[0,1].map(function(){var c=d.createElementNS(NS,"circle");c.setAttribute("r","2.4");c.style.opacity="0";svg.appendChild(c);return c});
+    function geo(){var wr=tmw.getBoundingClientRect(),s=wr.width/(tmw.offsetWidth||1)||1;
+      function loc(el){var r=el.getBoundingClientRect();return{l:(r.left-wr.left)/s,t:(r.top-wr.top)/s,w:r.width/s,h:r.height/s}}
+      var box=crits[0].parentNode;box.classList.remove("wrap");if(box.scrollWidth>box.clientWidth+1)box.classList.add("wrap");
+      var cs=cardsT.map(loc),top0=loc(crits[0]).t;
+      crits.forEach(function(c,i){var r=loc(c),sx=r.l+r.w/2,sy=r.t;
+        // Chips in einer zweiten Reihe bekommen keine Linie, damit nichts über Text läuft
+        lines[i].forEach(function(p){p.style.display=r.t>top0+4?"none":""});
+        lines[i].forEach(function(p,j){var k=cs[j],ex=k.l+k.w*(.2+.15*i),ey=k.t+k.h,dy=sy-ey;
+          // Bei wenig Platz kurze, fast gerade Linie; sonst sanft gebogen
+          p.setAttribute("d",dy<14?"M"+sx+" "+sy+"L"+ex+" "+ey:"M"+sx+" "+sy+"C"+sx+" "+(sy-dy*.7)+" "+ex+" "+(ey+dy*.7)+" "+ex+" "+ey);
+          var L=p.getTotalLength();p._L=L;p.style.strokeDasharray=L;if(p._k===undefined)p._k=0;p.style.strokeDashoffset=L*(1-p._k)})})}
+    function pulse(){cardsT.forEach(function(c){c.classList.remove("pulse");void c.offsetWidth;c.classList.add("pulse")})}
+    function finish(){done=true;crits.forEach(function(c,i){c.classList.add("on","ok");lines[i].forEach(function(p){p._k=1;p.classList.add("ok")})});mid.classList.add("ok");geo();dots.forEach(function(x){x.style.opacity="0"})}
+    geo();addEventListener("resize",geo);
+    if(d.fonts&&d.fonts.ready)d.fonts.ready.then(geo);
+    if(!anim)finish();
+    else whenShown(tmw.closest(".ct"),function(){geo();var st=performance.now(),D=620,GAP=250;
+      (function step(now){var all=true;
+        crits.forEach(function(c,i){var k=clamp((now-st-i*GAP)/D,0,1),e=1-Math.pow(1-k,2);
+          if(k>0)c.classList.add("on");if(k<1)all=false;
+          lines[i].forEach(function(p,j){p._k=e;p.style.strokeDashoffset=p._L*(1-e);
+            if(k>0&&k<1){var pt=p.getPointAtLength(p._L*e);dots[j].setAttribute("cx",pt.x);dots[j].setAttribute("cy",pt.y);dots[j].style.opacity="1"}});
+          if(k>=1&&!c.classList.contains("ok")){c.classList.add("ok");lines[i].forEach(function(p){p.classList.add("ok")});pulse();if(i===crits.length-1)dots.forEach(function(x){x.style.opacity="0"})}});
+        if(!all)requestAnimationFrame(step);else setTimeout(function(){mid.classList.add("ok");done=true},200)})(st)})
+  }
   function set(k,v){$$('[data-s="'+k+'"]').forEach(function(el){if(el._cu)el._f=v;else el.textContent=v})}
   function ago(iso){var ts=Date.parse(iso);if(!isFinite(ts))return"";var m=Math.max(0,Math.round((Date.now()-ts)/6e4));if(m<1)return"gerade eben";if(m<60)return"vor "+m+" Min";var h=Math.round(m/60);if(h<24)return"vor "+h+" Std.";var dd=Math.round(h/24);return"vor "+dd+" Tag"+(dd===1?"":"en")}
   function apply(s,live){
