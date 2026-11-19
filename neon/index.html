@@ -10,7 +10,7 @@
 <link rel="icon" href="../assets/img/favicon.png">
 <link rel="preload" href="fonts/cinzel-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="neon.css?v=2">
+<link rel="stylesheet" href="neon.css?v=4">
 <script>document.documentElement.className="js";setTimeout(function(){document.documentElement.classList.add("ld-done","ready")},9000)</script>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head>
@@ -35,7 +35,7 @@
 <header class="nv">
   <a class="brand" href="#top" aria-label="PullTopia, nach oben"><img src="../assets/img/logo-64.webp" width="28" height="28" alt=""><span>PullTopia</span></a>
   <nav class="nv-links" aria-label="Abschnitte">
-    <a href="#drops">Drops</a><a href="#news">News</a><a href="#tausch">Tausch</a><a href="#cardverse">Cardverse</a><a href="#zahlen">Zahlen</a><a href="#premium">Premium</a>
+    <a href="#drops">Drops</a><a href="#news">News</a><a href="#tausch">Tausch</a><a href="#cardverse">Cardverse</a><a href="#creator">Creator</a><a href="#zahlen">Zahlen</a><a href="#premium">Premium</a>
   </nav>
   <a class="nv-cta" href="https://discord.gg/4qKfQGuqPB" target="_blank" rel="noopener">Beitreten</a>
 </header>
@@ -155,12 +155,25 @@
 </section>
 
 <!-- Creator -->
-<section class="sc L" id="creator" data-sec style="--len:170">
+<section class="sc C flow creators" id="creator" data-sec>
   <div class="stk"><div class="ct">
-    <p class="ey">Creator Nexus</p>
-    <h2>Dein eigener Bereich.<br><span class="ac">Mitten im Nexus.</span></h2>
-    <p class="tx">Offizielle Partner bekommen eine eigene Kategorie, ein Abzeichen, eine Creator-Rolle für ihre Follower und ein privates Cockpit.</p>
-    <p class="fn">Partnerschaften vergeben wir persönlich. Partner verwalten nur ihre eigenen Inhalte.</p>
+    <p class="ey">Creator Nexus · für Streamer &amp; Content Creator</p>
+    <h2>Deine Community.<br><span class="ac">Dein Platz im Nexus.</span></h2>
+    <p class="tx">Dein eigener Partnerbereich. Mit Abzeichen, Followern und privatem Cockpit.</p>
+    <div class="creator-demo" aria-label="Nachgebaute Discord-Ansicht, kein echter Partner">
+      <aside><b>BEISPIEL-CREATOR</b><span># ankündigungen</span><span># fan-chat</span><span># social-drops</span><span>♫ talk</span><strong># creator-cockpit 🔒</strong></aside>
+      <div class="creator-chat"><p class="demo-label">Beispiel · kein echter Partner</p><h3>Dein privates Cockpit.</h3><p>Nur du, der Owner und das Team sehen diesen Kanal.</p><div class="demo-buttons"><span>Ankündigung</span><span>Umfrage</span><span>Social-Links</span><span>Neuen Post teilen</span></div><small>Pings nur an deine eigene Creator-Rolle. Nie @everyone.</small></div>
+    </div>
+    <ul class="creator-perks">
+      <li><span>01</span><h3>Dein eigener Bereich.</h3><p>Ankündigungen, Fan-Chat, Social-Drops, Talk und dein privates Cockpit.</p></li>
+      <li><span>02</span><h3>Als Partner erkennbar.</h3><p>„🤝 Offizieller Partner“ mit eigenem Block in der Mitgliederliste.</p></li>
+      <li><span>03</span><h3>Fans werden Follower.</h3><p>Per „⭐ Creator folgen“ bekommen Fans deine Creator-Rolle und schalten deinen Fan-Bereich frei.</p></li>
+      <li><span>04</span><h3>Alles per Button.</h3><p>Ankündigungen mit Vorschau, Discord-Umfragen, Beschreibung, Links und Benachrichtigungen.</p></li>
+      <li><span>05</span><h3>Dein Content. Geteilt.</h3><p>Links von TikTok, Instagram, Kick, X, YouTube oder Twitch als Karte in deinen Social-Drops. Bis zu 10 pro Tag.</p></li>
+      <li><span>06</span><h3>Im Nexus entdeckt.</h3><p>Mitglieder finden dein Profil, deine TCG-Schwerpunkte und Social-Links über „Partner entdecken“.</p></li>
+    </ul>
+    <p class="fn">Partnerschaften vergeben wir persönlich. Partner verwalten nur ihre eigenen Inhalte. Nachgebaute Discord-Ansicht mit Beispielnamen, kein echter Partner und keine echten Mitglieder.</p>
+    <div class="btns"><a class="btn p" href="https://discord.gg/4qKfQGuqPB" target="_blank" rel="noopener">Als Partner im Discord anfragen</a></div>
   </div></div>
 </section>
 
@@ -190,14 +203,14 @@
     <p class="tx">Ein Paket, drei Laufzeiten, dieselben Leistungen.</p>
     <!-- GRÜNDERPLÄTZE: wie auf der Live-Seite (frei / gesamt) -->
     <div class="founder" data-fc-free="50" data-fc-total="50">
-      <p><b>Gründerpreis</b><span>noch <strong>50</strong> von 50 Plätzen</span></p>
+      <p><b>Gründerpreis</b><span>noch <strong class="fc-free">50</strong> von <span class="fc-total">50</span> Plätzen</span></p>
       <div class="fbar" role="img" aria-label="Noch 50 von 50 Gründerplätzen frei"><i></i></div>
       <small>Für die ersten 50 zahlenden Mitglieder. Bleibt, solange dein Abo ununterbrochen läuft. Stand: 16.11.2026</small>
     </div>
     <ul class="plans">
-      <li><h3>Monatlich</h3><p class="pr">4,99 €</p><p class="per">pro Monat</p><p class="rg">danach regulär 6,99 €</p></li>
-      <li><h3>Quartal</h3><p class="pr">12,99 €</p><p class="per">pro 3 Monate</p><p class="rg">danach regulär 17,99 €</p></li>
-      <li class="best"><h3>Jährlich <em>Längste Laufzeit</em></h3><p class="pr">39,99 €</p><p class="per">pro 12 Monate</p><p class="rg">danach regulär 54,99 €</p></li>
+      <li><h3>Monatlich</h3><p class="pr"><span data-price="4.99">4,99</span> €</p><p class="per">pro Monat</p><p class="rg">danach regulär 6,99 €</p></li>
+      <li><h3>Quartal</h3><p class="pr"><span data-price="12.99">12,99</span> €</p><p class="per">pro 3 Monate</p><p class="rg">danach regulär 17,99 €</p></li>
+      <li class="best"><h3>Jährlich <em>Längste Laufzeit</em></h3><p class="pr"><span data-price="39.99">39,99</span> €</p><p class="per">pro 12 Monate</p><p class="rg">danach regulär 54,99 €</p></li>
     </ul>
     <p class="fn">Die regulären Preise gelten erst, wenn alle 50 Gründerplätze vergeben sind. Sicher über Stripe, zum Laufzeitende kündbar. § 19 UStG. <a href="../terms.html#premium">Abo-Bedingungen</a> · <a href="../kuendigen.html">Kündigen</a></p>
   </div></div>
@@ -217,8 +230,8 @@
   <nav aria-label="Rechtliches"><a href="../imprint.html">Impressum</a><a href="../privacy.html">Datenschutz</a><a href="../terms.html">AGB</a><a href="../terms.html#premium">Abo-Bedingungen</a><a href="../terms.html#widerruf">Widerruf</a><a href="../kuendigen.html">Verträge hier kündigen</a></nav>
   <p>Testseite (Neon-Vorschau), nicht öffentlich. Beispiele (Tauschkarten) sind fiktiv. PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert, nicht verbunden mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Discord, Amazon oder den genannten Shops. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Kartenmotive sind eigene PullTopia-Kreaturen. 3D: three.js (MIT). Schriften: Cinzel (SIL OFL) und Inter, selbst gehostet. © 2026 PullTopia</p>
 </footer>
-<script src="ui.js?v=2"></script>
-<script type="module" src="neon.js?v=2"></script>
+<script src="ui.js?v=4"></script>
+<script type="module" src="neon.js?v=3"></script>
 <script nomodule>document.documentElement.classList.add("no-gl","ld-done","ready")</script>
 </body>
 </html>

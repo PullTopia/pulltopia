@@ -329,7 +329,7 @@ async function start() {
     tausch: { x: 0, y: 0, s: .8, ry: TAU, rx: 0, rz: 0, vis: 0 },
     cardverse: { x: 0, y: 0, s: .8, ry: TAU + Math.PI, rx: 0, rz: 0, vis: 0 },
     community: { x: -.48, y: 0, s: .95, ry: 2 * TAU + .45, rx: -.06, rz: -.04, vis: 1 },
-    creator: { x: .48, y: 0, s: .95, ry: 3 * TAU - .45, rx: .08, rz: .05, vis: 1 },
+    creator: { x: 0, y: 0, s: .8, ry: 3 * TAU - .45, rx: 0, rz: 0, vis: 0 },
     zahlen: { x: 0, y: 0, s: .8, ry: 3 * TAU + Math.PI, rx: 0, rz: 0, vis: 0 },
     premium: { x: 0, y: 0, s: .8, ry: 4 * TAU, rx: 0, rz: 0, vis: 0 },
     join: { x: 0, y: .2, s: .86, ry: 4 * TAU, rx: 0, rz: 0, vis: 1, ring: 1 }
@@ -345,11 +345,12 @@ async function start() {
     o.s = s; o.y = 1 - 2 * cy / Hp; return o;
   };
   const secs = [...d.querySelectorAll("[data-sec]")].filter(s => KD[s.id]);
+  const footEl = d.querySelector(".ft");
   let anchors = [];
   function measure() {
     const vh = innerHeight;
     anchors = secs.map(s => { const top = s.getBoundingClientRect().top + scrollY, h = s.offsetHeight;
-      return s.classList.contains("flow") ? Math.max(0, top + h / 2 - vh / 2) : top + Math.max(0, h - vh) * .3; });
+      return s.classList.contains("flow") ? Math.max(0, top - vh * .35) : top + Math.max(0, h - vh) * .3; });
     anchors[0] = 0;
   }
   const keyAt = (i) => mobile ? mob(secs[i].id, secs[i]) : KD[secs[i].id];
@@ -361,7 +362,9 @@ async function start() {
     const last = i >= anchors.length - 1, u = last ? 0 : clamp((y - anchors[i]) / Math.max(1, anchors[i + 1] - anchors[i]));
     const t = sstep(.25, .75, u);
     for (const k of PK) tgt[k] = lerp(a[k] || 0, b[k] || 0, t);
-    warp = reduce || last ? 0 : Math.sin(Math.PI * clamp((u - .15) / .7)) * (.5 + .5 * Math.abs((a.vis || 0) - (b.vis || 0)));
+    const span = last ? 1 : anchors[i + 1] - anchors[i], win = Math.min(span, innerHeight * 1.1), uw = last ? 0 : clamp(1 - (anchors[i + 1] - y) / win);
+    // Tunnel nur kurz vor dem Übergang, nicht während langer Lese-Abschnitte
+    warp = reduce || last ? 0 : Math.sin(Math.PI * clamp((uw - .15) / .7)) * (!(a.vis || 0) && !(b.vis || 0) ? 0 : .5 + .5 * Math.abs((a.vis || 0) - (b.vis || 0)));
   }
   const cur = {};
 
@@ -413,8 +416,10 @@ async function start() {
     ptr.x = lerp(ptr.x, ptr.tx, 1 - Math.pow(.02, dt)); ptr.y = lerp(ptr.y, ptr.ty, 1 - Math.pow(.02, dt));
     const hh = halfH(), hw = hh * camera.aspect, vis = clamp(cur.vis);
     const sway = reduce ? 0 : Math.sin(time * .45) * (.28 * cur.g + .1) * cin, bob = reduce ? 0 : Math.sin(time * .9) * .07;
-    tiltG.position.set(cur.x * hw, cur.y * hh + bob, -(1 - vis) * 20);
-    const sc = cur.s * (.6 + .4 * vis); tiltG.scale.setScalar(sc);
+    // Am Seitenende schiebt der Footer die Bühne nach oben, damit Karte und Ring beim Schlusstext bleiben
+    const ftTop = footEl ? footEl.getBoundingClientRect().top : 1e9, ftIn = Math.max(0, H() - ftTop), ftF = clamp(ftIn / (footEl ? footEl.offsetHeight || 1 : 1)), lift = ftIn * (2 * hh / H()) * (mobile ? .5 : .72);
+    tiltG.position.set(cur.x * hw, cur.y * hh + bob + lift, -(1 - vis) * 20);
+    const sc = cur.s * (.6 + .4 * vis) * (1 - (mobile ? .55 : .42) * ftF); tiltG.scale.setScalar(sc);
     tiltG.rotation.set(cur.rx + ptr.y * .3, ptr.x * .45, cur.rz);
     card.rotation.y = cur.ry + sway;
     tiltG.visible = vis > .01;
@@ -437,7 +442,7 @@ async function start() {
     camera.fov = 35 + warp * 7; camera.updateProjectionMatrix();
     // Riesenschrift
     const hp = clamp(scrollY / (innerHeight * .9));
-    giant.position.y = cur.y * hh * (GZ / 10) + (mobile ? .1 : .05) + hp * 3;
+    giant.position.y = cur.y * hh * (GZ / 10) + (mobile ? .1 : .05) + hp * 3 + lift * (GZ / 10);
     giantMat.opacity = .62 * clamp(cur.g) * (1 - hp) * (reduce ? 1 : sstep(1.6, 2.6, it));
     giant.visible = giantMat.opacity > .01;
     pU.uTime.value = reduce ? 0 : time; pU.uScroll.value = scrollY / innerHeight * .4; pU.uOp.value = .55 + warp * .45;

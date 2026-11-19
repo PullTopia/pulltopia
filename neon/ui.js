@@ -59,11 +59,11 @@
       var r=s.getBoundingClientRect();
       if(r.bottom<-50||r.top>vh+50)return;
       var range=Math.max(1,r.height-vh),p=clamp(-r.top/range,0,1),e=clamp(1-r.top/vh,0,1);
-      var first=s.id==="top";
-      var op=(first?1:ss(.45,.95,e))*(1-ss(.62,.95,p));
-      var sc=(first?1:.94+.06*ss(.4,1,e))*(1+.05*ss(.62,1,p));
-      var ty=(first?0:(1-ss(.4,1,e))*40)-ss(.62,1,p)*30;
-      if(reduce){op=(first?1:ss(.6,.9,e))*(1-ss(.8,.95,p));sc=1;ty=0}
+      var first=s.id==="top",last=s.id==="join";
+      var op=(first?1:ss(.45,.95,e))*(last?1:(1-ss(.62,.95,p)));
+      var sc=(first?1:.94+.06*ss(.4,1,e))*(last?1:(1+.05*ss(.62,1,p)));
+      var ty=(first?0:(1-ss(.4,1,e))*40)-(last?0:ss(.62,1,p)*30);
+      if(reduce){op=(first?1:ss(.6,.9,e))*(last?1:(1-ss(.8,.95,p)));sc=1;ty=0}
       ct.style.opacity=op.toFixed(3);ct.style.transform="translate3d(0,"+ty.toFixed(1)+"px,0) scale("+sc.toFixed(4)+")";
       ct.style.pointerEvents=op<.2?"none":"";
     });
@@ -84,7 +84,27 @@
   })});
 
   /* Gründerbalken */
-  var fc=$(".founder");if(fc){var fr=+fc.dataset.fcFree,tt=+fc.dataset.fcTotal;if(tt>0)fc.querySelector(".fbar i").style.setProperty("--w",(fr/tt*100)+"%")}
+  /* Gründerbalken + Preise: laufen beim Sichtbarwerden einmal hoch (Endwerte = echte Werte aus dem HTML) */
+  var fc=$(".founder");
+  if(fc){
+    var fr=+fc.dataset.fcFree,tt=+fc.dataset.fcTotal,fbar=fc.querySelector(".fbar"),fi=fbar.querySelector("i"),fnum=fc.querySelector(".fc-free"),ftot=fc.querySelector(".fc-total");
+    var fillPct=tt>0?clamp(fr/tt*100,0,100):0,prices=$$("[data-price]"),fmt2=new Intl.NumberFormat("de-DE",{minimumFractionDigits:2,maximumFractionDigits:2});
+    if(ftot)ftot.textContent=fmt.format(tt);
+    function endState(){fi.style.setProperty("--fw",fillPct+"%");fnum.textContent=fmt.format(fr);prices.forEach(function(p){p.textContent=fmt2.format(+p.dataset.price)});fbar.classList.add("shine")}
+    var played=false;
+    function play(){
+      if(played)return;played=true;
+      if(reduce){endState();return}
+      var st=performance.now(),dur=1000,pdur=900;fnum.textContent="0";
+      (function step(now){var k=clamp((now-st)/dur,0,1),e=1-Math.pow(1-k,3);
+        fi.style.setProperty("--fw",(fillPct*e).toFixed(2)+"%");fnum.textContent=fmt.format(Math.round(fr*e));
+        var kp=clamp((now-st)/pdur,0,1),ep=1-Math.pow(1-kp,3);prices.forEach(function(p){p.textContent=fmt2.format(Math.round(+p.dataset.price*ep*100)/100)});
+        if(k<1)requestAnimationFrame(step);else{endState()}})(st);
+    }
+    if(reduce||!("IntersectionObserver" in window))endState();
+    else{fi.style.setProperty("--fw","0%");fnum.textContent="0";prices.forEach(function(p){p.textContent=fmt2.format(0)});
+      var pio=new IntersectionObserver(function(es){if(es[0].isIntersecting){play();pio.disconnect()}},{threshold:.5});pio.observe(fbar)}
+  }
 
   /* Live-Statistik wie Startseite: Live-Branch → ../stats.json → localStorage → Werte im HTML */
   var URLS=["https://raw.githubusercontent.com/PullTopia/pulltopia/live-stats/stats.json",new URL("../stats.json",location.href).href];
