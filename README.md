@@ -1,5 +1,18 @@
 # PullTopia – öffentliche Website
 
+Statische Website der PullTopia-Discord-Community. Die Live-Startseite (`index.html`) ist seit dem 20.11.2026
+die Neon-v7-Seite (Kino-Szenen, Gründerpreis). Assets liegen weiterhin unter `neon/` (CSS/JS/Videos) und `assets/`.
+Die Testkopie unter `/neon/` bleibt erreichbar (noindex, Banner „Testseite“).
+
+Backup der vorherigen Apple-Stil-Startseite: Ordner `/alt/` (funktionierende Kopie) und Git-Tag `live-v1-backup`
+(Commit `e666eed`). Rollback nur der Startseite:
+
+```
+git checkout live-v1-backup -- index.html && git commit -m "Rollback: vorherige Live-Startseite wiederherstellen" && git push origin main
+```
+
+
+## Hinweise zum bisherigen Aufbau
 Statische Website der PullTopia-Discord-Community (Start, Datenschutz, Nutzungsbedingungen, Impressum) und die
 Bestätigungsseite für die TikTok-Verbindung (`tiktok/callback/`), die den Einmal-Code nur im Browser anzeigt.
 Keine Server-Logik, keine Cookies, kein Tracking.

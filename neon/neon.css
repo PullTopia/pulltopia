@@ -395,3 +395,9 @@ h2,.h-head{font-weight:700;font-size:clamp(40px,5.2vw,72px);line-height:1.05;let
   .fguar b{font-size:17px}.fguar span{font-size:13.5px}
   .sc#premium .fn{font-size:12.5px;padding:10px 14px}
 }
+
+/* Live-Startseite (body.live, ohne Test-Banner): Navigation oben bündig.
+   --hdr auch auf :root, weil ui.js den Wert von documentElement liest. */
+:root:has(body.live),body.live{--hdr:56px}
+body.live .nv{top:0}
+@media(max-width:820px){:root:has(body.live),body.live{--hdr:48px}}

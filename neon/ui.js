@@ -121,8 +121,9 @@
       once(fbar,play,function(){played=true;endState()})}
   }
 
-  /* Live-Statistik wie Startseite: Live-Branch → ../stats.json → localStorage → Werte im HTML */
-  var URLS=["https://raw.githubusercontent.com/PullTopia/pulltopia/live-stats/stats.json",new URL("../stats.json",location.href).href];
+  /* Live-Statistik: Live-Branch → Root-stats.json (funktioniert unter / und /neon/) → localStorage → Werte im HTML */
+  function siteStatsUrl(){var p=location.pathname;if(p.indexOf("/neon")>=0)p=p.replace(/\/neon(\/.*)?$/,"/");else p=p.replace(/\/[^/]*$/,"/");if(p.slice(-1)!=="/")p+="/";return location.origin+p+"stats.json"}
+  var URLS=["https://raw.githubusercontent.com/PullTopia/pulltopia/live-stats/stats.json",siteStatsUrl()];
   var LS="pt-site-stats-v1",ORDER=["DE","AT","CH","NL","BE"];
   function valid(s){if(!s||s.version!==1||!s.metrics)return null;var m=s.metrics,need=["dropsDetected","restocksDetected","backdropsDetected","shopsLive","signalsLive","freeDelayMin"];for(var i=0;i<need.length;i++)if(!isFinite(m[need[i]]))return null;return s}
   function keys(by){if(!by)return[];var a=ORDER.filter(function(c){return by[c]>0});Object.keys(by).filter(function(c){return ORDER.indexOf(c)<0&&by[c]>0}).sort().forEach(function(c){a.push(c)});return a}
@@ -228,9 +229,10 @@
     var frame=fxw.querySelector(".fx-frame"),vi=fxw.querySelector(".fx-intro"),vl=fxw.querySelector(".fx-loop"),cvs=fxw.querySelector(".fx-em");
     if(reduce||!("IntersectionObserver" in window)){fxw.classList.add("static");return}
     var mobv=function(){return innerWidth<=820},loaded=false,started=false,burning=false,inView=false,t0=0;
+    var BASE=window.NEON_BASE||"";
     function setSrc(v,name){var m=mobv()?"-m":"";v.innerHTML="";
-      [["mp4","video/mp4"],["webm","video/webm"]].forEach(function(f){var s=d.createElement("source");s.src="fire/fire-"+name+m+"."+f[0];s.type=f[1];v.appendChild(s)});
-      v.poster="fire/fire-"+(name==="intro"?"start":"end")+m+".jpg";v.preload="auto";v.load()}
+      [["mp4","video/mp4"],["webm","video/webm"]].forEach(function(f){var s=d.createElement("source");s.src=BASE+"fire/fire-"+name+m+"."+f[0];s.type=f[1];v.appendChild(s)});
+      v.poster=BASE+"fire/fire-"+(name==="intro"?"start":"end")+m+".jpg";v.preload="auto";v.load()}
     function load(){if(loaded)return;loaded=true;setSrc(vi,"intro");setSrc(vl,"loop")}
     function burn(){if(burning)return;burning=true;fxw.classList.add("burn");if(inView)pl(vl)}
     function pl(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}
