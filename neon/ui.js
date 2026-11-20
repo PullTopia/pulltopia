@@ -27,7 +27,7 @@
     onReady:function(f){if(root.classList.contains("ready"))f();else doneCb.push(f)}
   };
   PT.progress(8);
-  setTimeout(function(){if(!finished){if(!window.PT_GL)root.classList.add("no-gl");PT.done()}},6500);
+  setTimeout(function(){if(!finished){PT.done()}},6500);
 
   /* Film-Grain */
   try{var c=d.createElement("canvas");c.width=c.height=180;var x=c.getContext("2d"),im=x.createImageData(180,180);

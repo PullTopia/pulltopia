@@ -10,9 +10,8 @@
 <link rel="icon" href="../assets/img/favicon.png">
 <link rel="preload" href="fonts/cinzel-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="neon.css?v=9">
+<link rel="stylesheet" href="neon.css?v=10">
 <script>document.documentElement.className="js";setTimeout(function(){document.documentElement.classList.add("ld-done","ready")},9000)</script>
-<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head>
 <body>
 <div class="ld" id="ld" aria-hidden="true">
@@ -23,12 +22,6 @@
   </div>
 </div>
 
-<canvas id="gl" aria-hidden="true"></canvas>
-<div class="fb" id="fb" aria-hidden="true">
-  <p class="fb-giant">PULLTOPIA</p>
-  <div class="fb-ring"></div>
-  <div class="fb-card"><div class="fb-face"><span class="fb-top">PULLTOPIA NEXUS</span><img src="../assets/img/logo-400.webp" width="400" height="400" alt=""><span class="fb-name">Das gekrönte P</span></div></div>
-</div>
 <div class="grain" aria-hidden="true"></div>
 
 <div class="tb" role="note"><span>Testseite · nicht öffentlich</span><i aria-hidden="true">·</i><a href="../">Zur Live-Seite</a></div>
@@ -43,6 +36,11 @@
 <main>
 <!-- Hero -->
 <section class="sc hero" id="top" data-sec style="--len:170">
+  <div class="bg" data-bg="hero" data-mode="loop" data-em="gold" data-ex=".3,.7,.5,.85" data-n="70" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/hero-a-m.webp"><img class="bg-img" src="scenes/hero-a.webp" width="1280" height="720" alt="" decoding="async"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <h1 class="sr">PullTopia: Dein TCG-Universum auf Discord</h1>
     <p class="h-head">Dein TCG&#8209;Universum.<br><span class="ac">Hellwach.</span></p>
@@ -53,6 +51,11 @@
 
 <!-- Drop-Radar -->
 <section class="sc L" id="drops" data-sec style="--len:170">
+  <div class="bg" data-bg="drops" data-mode="loop" data-em="storm" data-ex=".6,.92,.55,.9" data-n="60" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/drops-a-m.webp"><img class="bg-img" src="scenes/drops-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Drop- &amp; Restock-Radar · Beta</p>
     <h2>Es piept.<br><span class="ac">Bevor du suchst.</span></h2>
@@ -64,6 +67,11 @@
 
 <!-- Frühwarnung -->
 <section class="sc R" id="fruehwarnung" data-sec style="--len:170">
+  <div class="bg" data-bg="drops" data-mode="loop" data-em="storm" data-ex=".08,.4,.55,.9" data-n="60" data-flip aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/drops-a-m.webp"><img class="bg-img" src="scenes/drops-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Pokémon-Center-Frühwarnung</p>
     <h2>Drei Farben.<br><span class="ac">Volle Klarheit.</span></h2>
@@ -78,6 +86,11 @@
 
 <!-- News -->
 <section class="sc L" id="news" data-sec style="--len:170">
+  <div class="bg" data-bg="news" data-mode="loop" data-em="gold" data-ex=".6,.9,.6,.95" data-n="50" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/news-a-m.webp"><img class="bg-img" src="scenes/news-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">News-Radar</p>
     <h2>Rund um die Uhr.<br><span class="ac">Vollautomatisch.</span></h2>
@@ -89,6 +102,11 @@
 
 <!-- TradeMatch -->
 <section class="sc C" id="tausch" data-sec style="--len:170">
+  <div class="bg" data-bg="tausch" data-mode="once" data-em="gold" data-ex=".2,.8,.45,.9" data-n="80" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/tausch-a-m.webp"><img class="bg-img" src="scenes/tausch-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Tauschbörse mit TradeMatch</p>
     <h2>Die passende Karte <span class="ac">findet dich.</span></h2>
@@ -112,6 +130,11 @@
 
 <!-- Cardverse -->
 <section class="sc C" id="cardverse" data-sec style="--len:190">
+  <div class="bg" data-bg="cardverse" data-mode="once" data-em="gold" data-ex=".3,.7,.6,.95" data-n="80" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/cardverse-a-m.webp"><img class="bg-img" src="scenes/cardverse-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Cardverse First Edition</p>
     <h2>50 Karten. <span class="ac">Eine gibt es nur einmal.</span></h2>
@@ -144,6 +167,11 @@
 
 <!-- Community -->
 <section class="sc R" id="community" data-sec style="--len:170">
+  <div class="bg" data-bg="community" data-mode="loop" data-em="fire" data-ex=".1,.45,.6,.85" data-n="70" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/community-a-m.webp"><img class="bg-img" src="scenes/community-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Community</p>
     <h2>Alles drin.<br><span class="ac">Das meiste kostenlos.</span></h2>
@@ -160,6 +188,11 @@
 
 <!-- Creator -->
 <section class="sc C flow creators" id="creator" data-sec>
+  <div class="bg" data-bg="creator" data-mode="loop" data-em="gold" data-ex=".25,.75,.6,1" data-n="45" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/creator-a-m.webp"><img class="bg-img" src="scenes/creator-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Creator Nexus · für Streamer &amp; Content Creator</p>
     <h2>Deine Community.<br><span class="ac">Dein Platz im Nexus.</span></h2>
@@ -183,6 +216,11 @@
 
 <!-- Zahlen -->
 <section class="sc C flow" id="zahlen" data-sec>
+  <div class="bg" data-bg="zahlen" data-mode="loop" data-em="fire" data-ex=".2,.8,.7,1" data-n="50" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/zahlen-a-m.webp"><img class="bg-img" src="scenes/zahlen-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Hinter den Kulissen</p>
     <h2>Echte Zahlen. <span class="ac">Nichts aufgerundet.</span></h2>
@@ -201,6 +239,11 @@
 
 <!-- Premium -->
 <section class="sc C flow" id="premium" data-sec>
+  <div class="bg" data-bg="premium" data-mode="loop" data-em="gold" data-ex=".2,.8,.5,.95" data-n="80" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/premium-a-m.webp"><img class="bg-img" src="scenes/premium-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">PullTopia Premium</p>
     <h2>Sofort. <span class="ac">Statt 15 Minuten später.</span></h2>
@@ -243,6 +286,11 @@
 
 <!-- Join -->
 <section class="sc hero join" id="join" data-sec style="--len:130">
+  <div class="bg" data-bg="hero" data-mode="loop" data-em="gold" data-ex=".3,.7,.5,.85" data-n="70" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/hero-a-m.webp"><img class="bg-img" src="scenes/hero-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+    <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+  </div></div>
   <div class="stk"><div class="ct">
     <p class="h-head">Dein nächster Pull<br><span class="ac">beginnt hier.</span></p>
     <p class="h-sub">Kostenlos beitreten, Interessen wählen, loslegen.</p>
@@ -253,10 +301,9 @@
 
 <footer class="ft">
   <nav aria-label="Rechtliches"><a href="../imprint.html">Impressum</a><a href="../privacy.html">Datenschutz</a><a href="../terms.html">AGB</a><a href="../terms.html#premium">Abo-Bedingungen</a><a href="../terms.html#widerruf">Widerruf</a><a href="../kuendigen.html">Verträge hier kündigen</a></nav>
-  <p>Testseite (Neon-Vorschau), nicht öffentlich. Beispiele (Tauschkarten) sind fiktiv. PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert, nicht verbunden mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Discord, Amazon oder den genannten Shops. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Kartenmotive sind eigene PullTopia-Kreaturen. 3D: three.js (MIT). Schriften: Cinzel (SIL OFL) und Inter, selbst gehostet. © 2026 PullTopia</p>
+  <p>Testseite (Neon-Vorschau), nicht öffentlich. Beispiele (Tauschkarten) sind fiktiv. PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert, nicht verbunden mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Discord, Amazon oder den genannten Shops. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Kartenmotive sind eigene PullTopia-Kreaturen. Hintergrundszenen: KI-generierte Illustrationen im PullTopia-Design, keine echten Produkte. Schriften: Cinzel (SIL OFL) und Inter, selbst gehostet. © 2026 PullTopia</p>
 </footer>
-<script src="ui.js?v=9"></script>
-<script type="module" src="neon.js?v=5"></script>
-<script nomodule>document.documentElement.classList.add("no-gl","ld-done","ready")</script>
+<script src="ui.js?v=10"></script>
+<script src="scenes.js?v=1"></script>
 </body>
 </html>
