@@ -333,6 +333,7 @@ async function start() {
     creator: { x: 0, y: 0, s: .8, ry: 3 * TAU - .45, rx: 0, rz: 0, vis: 0 },
     zahlen: { x: 0, y: 0, s: .8, ry: 3 * TAU + Math.PI, rx: 0, rz: 0, vis: 0 },
     premium: { x: 0, y: 0, s: .8, ry: 4 * TAU, rx: 0, rz: 0, vis: 0 },
+    feuer: { x: 0, y: 0, s: .8, ry: 4 * TAU, rx: 0, rz: 0, vis: 0 },
     join: { x: 0, y: .2, s: .86, ry: 4 * TAU, rx: 0, rz: 0, vis: 1, ring: 1 }
   };
   // Mobil: Karte genau in den freien Raum zwischen Kopfleiste und Text setzen; zu wenig Platz → Karte ausblenden

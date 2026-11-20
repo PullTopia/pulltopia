@@ -220,4 +220,68 @@
     }
     setA();
   }
+
+  /* Feuer-Showcase: Video (Intro einmal, dann nahtlose Schleife) startet beim Sichtbarwerden; Funken live per Canvas.
+     Übersprungen (Abschnitt schon oberhalb) = Endzustand (Flammen brennen). Reduced motion = Standbild. */
+  var fxw=$(".fx-wrap");
+  if(fxw){(function(){
+    var frame=fxw.querySelector(".fx-frame"),vi=fxw.querySelector(".fx-intro"),vl=fxw.querySelector(".fx-loop"),cvs=fxw.querySelector(".fx-em");
+    if(reduce||!("IntersectionObserver" in window)){fxw.classList.add("static");return}
+    var mobv=function(){return innerWidth<=820},loaded=false,started=false,burning=false,inView=false,t0=0;
+    function setSrc(v,name){var m=mobv()?"-m":"";v.innerHTML="";
+      [["mp4","video/mp4"],["webm","video/webm"]].forEach(function(f){var s=d.createElement("source");s.src="fire/fire-"+name+m+"."+f[0];s.type=f[1];v.appendChild(s)});
+      v.poster="fire/fire-"+(name==="intro"?"start":"end")+m+".jpg";v.preload="auto";v.load()}
+    function load(){if(loaded)return;loaded=true;setSrc(vi,"intro");setSrc(vl,"loop")}
+    function burn(){if(burning)return;burning=true;fxw.classList.add("burn");if(inView)pl(vl)}
+    function pl(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+    function playIntro(){if(started)return;started=true;load();t0=performance.now();
+      var p=vi.play();if(p&&p.catch)p.catch(function(){burn()}); // Autoplay blockiert (z. B. Stromsparmodus): Endzustand zeigen
+      vi.addEventListener("ended",burn,{once:true});vi.addEventListener("error",burn,{once:true});
+      setTimeout(function(){if(!burning&&vi.readyState<2&&vi.currentTime===0)burn()},6000)}
+    function endState(){if(started)return;started=true;load();burn()}
+    var pre=new IntersectionObserver(function(es){if(es[0].isIntersecting){load();pre.disconnect()}},{rootMargin:"900px 0px"});pre.observe(frame);
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      inView=e.isIntersecting;
+      if(inView){if(e.intersectionRatio>=.4&&!started)playIntro();if(burning)pl(vl);if(started&&!vi.ended&&!burning)pl(vi);startEm()}
+      else{if(!started&&e.boundingClientRect.bottom<0)endState();vl.pause();if(!burning)vi.pause()}
+    })},{threshold:[0,.4]});io.observe(frame);
+    // Wurde der Abschnitt per Sprung übersprungen (kein Schwellen-Ereignis), steht sofort der Endzustand da
+    var sk=false;function skipChk(){sk=false;if(!started&&frame.getBoundingClientRect().bottom<0)endState()}
+    addEventListener("scroll",function(){if(!sk&&!started){sk=true;requestAnimationFrame(skipChk)}},{passive:true});
+    /* Funken */
+    var cx=cvs.getContext("2d"),P=[],W=0,H=0,dpr=1,fr={x:0,y:0,w:0,h:0},run=false,lastT=0,acc=0,tm=0,ms={x:-1e4,y:-1e4,vx:0,vy:0,on:0};
+    var spr=[["255,250,225","255,214,120"],["255,214,120","255,150,50"],["255,150,50","200,50,10"]].map(function(c){var s=d.createElement("canvas");s.width=s.height=48;var g=s.getContext("2d"),r=g.createRadialGradient(24,24,0,24,24,24);
+      r.addColorStop(0,"rgba("+c[0]+",1)");r.addColorStop(.25,"rgba("+c[1]+",.85)");r.addColorStop(1,"rgba("+c[1]+",0)");g.fillStyle=r;g.fillRect(0,0,48,48);return s});
+    function size(){var r=cvs.getBoundingClientRect(),f=frame.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,mobv()?1.5:2);W=r.width;H=r.height;
+      cvs.width=Math.round(W*dpr);cvs.height=Math.round(H*dpr);cx.setTransform(dpr,0,0,dpr,0,0);fr={x:f.left-r.left,y:f.top-r.top,w:f.width,h:f.height}}
+    addEventListener("resize",function(){if(run)size()});
+    function mv(x,y){var r=cvs.getBoundingClientRect(),nx=x-r.left,ny=y-r.top;if(ms.on>.05){ms.vx=nx-ms.x;ms.vy=ny-ms.y}ms.x=nx;ms.y=ny;ms.on=1}
+    fxw.addEventListener("pointermove",function(e){mv(e.clientX,e.clientY)},{passive:true});
+    fxw.addEventListener("touchmove",function(e){var t=e.touches[0];if(t)mv(t.clientX,t.clientY)},{passive:true});
+    fxw.addEventListener("touchstart",function(e){var t=e.touches[0];if(t){ms.on=0;mv(t.clientX,t.clientY)}},{passive:true});
+    function spawn(){var N=P.length,s=mobv()?.8:1;
+      P.push({x:fr.x+fr.w*(.5+(Math.random()-.5)*.82),y:fr.y+fr.h*(.78+Math.random()*.1),vx:0,vy:-(30+Math.random()*80)*s,l:0,m:2+Math.random()*3.2,s:(.5+Math.random()*1.3)*(mobv()?1.05:1)*(fr.w/900+.5),ph:Math.random()*6.28})}
+    function startEm(){if(run||!inView)return;run=true;size();lastT=0;requestAnimationFrame(em)}
+    function em(now){
+      if(!run)return;if(!inView||d.hidden){run=false;return}
+      requestAnimationFrame(em);
+      var gap=mobv()?33:14;if(now-lastT<gap)return;var dt=Math.min(.05,(now-(lastT||now-16))/1000);lastT=now;tm+=dt;
+      // Stärke folgt dem Video: Funken setzen mit der Eruption ein
+      var k=burning?1:(started?ss(.5,2.4,vi.currentTime||0):0),max=(mobv()?42:120)*k;
+      ms.on=Math.max(0,ms.on-dt*1.1);ms.vx*=.9;ms.vy*=.9;
+      acc+=dt*max/3;while(acc>=1&&P.length<max){spawn();acc-=1}if(acc>3)acc=0;
+      cx.clearRect(0,0,W,H);cx.globalCompositeOperation="lighter";
+      for(var i=P.length-1;i>=0;i--){var p=P[i];p.l+=dt;if(p.l>=p.m||p.y<-20){P.splice(i,1);continue}
+        // Curl-artiges Driftfeld + Auftrieb
+        var fx_=Math.sin(p.y*.011+tm*.8+p.ph)*Math.cos(p.x*.007-tm*.45)*58,fy_=Math.cos(p.x*.013+tm*.55)*Math.sin(p.y*.008+tm*.3+p.ph)*22-26;
+        p.vx+=(fx_-p.vx)*Math.min(1,dt*1.6);p.vy+=((fy_-52)-p.vy)*Math.min(1,dt*.9);
+        if(ms.on>.02){var dx=p.x-ms.x,dy=p.y-ms.y,dd=Math.sqrt(dx*dx+dy*dy)+.01,R=mobv()?120:170;
+          if(dd<R){var f=(1-dd/R)*ms.on;p.vx+=(-dy/dd*480+ms.vx*14)*f*dt;p.vy+=(dx/dd*480+ms.vy*14)*f*dt-f*40*dt}}
+        p.x+=p.vx*dt;p.y+=p.vy*dt;
+        var a=p.l/p.m,al=Math.min(1,p.l*5)*(1-a)*(.65+.35*Math.sin(tm*18+p.ph*7)),sp=spr[a<.25?0:a<.6?1:2],sz=p.s*(3.2+6*(1-a))*1.2;
+        cx.globalAlpha=Math.max(0,al);cx.drawImage(sp,p.x-sz/2,p.y-sz/2,sz,sz)}
+      cx.globalAlpha=1;cx.globalCompositeOperation="source-over"}
+    // Debug/Test-Hook: Zustand abfragen
+    window.PT_FIRE=function(){return{started:started,burning:burning,particles:P.length,intro:vi.currentTime,loop:vl.currentTime}};
+  })()}
 })();
