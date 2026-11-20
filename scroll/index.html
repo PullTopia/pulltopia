@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#000000">
+<title>PullTopia · Scroll-Vorschau (Testseite)</title>
+<meta name="description" content="Interne Testseite. Nicht die offizielle PullTopia-Website.">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="preload" href="../neon/fonts/cinzel-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="scroll.css?v=4">
+<script>document.documentElement.classList.add("js");if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("rm");</script>
+</head>
+<body>
+<div class="tb" role="note"><span>Testseite · nicht öffentlich</span><i aria-hidden="true">·</i><a href="../">Zur Live-Seite</a></div>
+<header class="nv">
+  <a class="brand" href="#intro" aria-label="PullTopia, nach oben"><img src="../assets/img/logo-64.webp" width="28" height="28" alt=""><span>PullTopia</span></a>
+  <nav class="nv-links" aria-label="Abschnitte">
+    <a href="#drops">Drops</a><a href="#news">News</a><a href="#tausch">Tausch</a><a href="#cardverse">Cardverse</a><a href="#premium">Premium</a>
+  </nav>
+  <a class="nv-cta" href="https://discord.gg/4qKfQGuqPB" target="_blank" rel="noopener">Beitreten</a>
+</header>
+
+<div id="stage" aria-hidden="true">
+  <div class="bgs">
+    <div class="bg is-on" data-bg="hero" data-mode="loop"><div class="bg-in">
+      <picture><source media="(max-width:820px)" srcset="../neon/scenes/hero-a-m.webp?v=4"><img class="bg-img" src="../neon/scenes/hero-a.webp?v=4" width="1280" height="720" alt="" decoding="async"></picture>
+      <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+      <div class="bg-ov"></div>
+    </div></div>
+    <div class="bg" data-bg="drops" data-mode="loop"><div class="bg-in">
+      <picture><source media="(max-width:820px)" srcset="../neon/scenes/drops-a-m.webp"><img class="bg-img" src="../neon/scenes/drops-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+      <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+      <div class="bg-ov"></div>
+    </div></div>
+    <div class="bg" data-bg="news" data-mode="loop"><div class="bg-in">
+      <picture><source media="(max-width:820px)" srcset="../neon/scenes/news-a-m.webp"><img class="bg-img" src="../neon/scenes/news-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+      <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+      <div class="bg-ov"></div>
+    </div></div>
+    <div class="bg" data-bg="tausch" data-mode="loop"><div class="bg-in">
+      <picture><source media="(max-width:820px)" srcset="../neon/scenes/tausch-a-m.webp"><img class="bg-img" src="../neon/scenes/tausch-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+      <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+      <div class="bg-ov"></div>
+    </div></div>
+    <div class="bg" data-bg="cardverse" data-mode="loop"><div class="bg-in">
+      <picture><source media="(max-width:820px)" srcset="../neon/scenes/cardverse-a-m.webp"><img class="bg-img" src="../neon/scenes/cardverse-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+      <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+      <div class="bg-ov"></div>
+    </div></div>
+    <div class="bg" data-bg="premium" data-mode="loop"><div class="bg-in">
+      <picture><source media="(max-width:820px)" srcset="../neon/scenes/premium-a-m.webp"><img class="bg-img" src="../neon/scenes/premium-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+      <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+      <div class="bg-ov"></div>
+    </div></div>
+    <div class="bg" data-bg="community" data-mode="loop"><div class="bg-in">
+      <picture><source media="(max-width:820px)" srcset="../neon/scenes/community-a-m.webp"><img class="bg-img" src="../neon/scenes/community-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+      <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
+      <div class="bg-ov ov-calm"></div>
+    </div></div>
+  </div>
+  <div class="words">
+    <p class="word long" data-for="intro">PULLTOPIA</p>
+    <p class="word" data-for="drops">DROPS</p>
+    <p class="word" data-for="news">NEWS</p>
+    <p class="word" data-for="tausch">TAUSCH</p>
+    <p class="word long" data-for="cardverse">CARDVERSE</p>
+    <p class="word" data-for="premium">PREMIUM</p>
+  </div>
+  <canvas id="sparks"></canvas>
+  <div id="fly"></div>
+  <div id="bst-stage">
+    <div id="bst">
+      <div class="bst-glow"></div>
+      <div class="bst-half top"><img src="img/booster.webp" width="725" height="1060" alt=""></div>
+      <div class="bst-half bot"><img src="img/booster.webp" width="725" height="1060" alt=""></div>
+      <div class="bst-light"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<section class="sec" id="intro" data-bg="hero" data-word="intro">
+  <div class="panel">
+    <h1 class="sr">PullTopia: Dein TCG-Universum auf Discord</h1>
+    <p class="kicker">Dein TCG&#8209;Universum.</p>
+    <p class="lead"><span class="ac">Hellwach.</span></p>
+    <p class="tx">Drops, News, Tausch und Sammeln für Pokémon, One Piece, Yu-Gi-Oh!, Magic und mehr. In einem Discord.</p>
+    <p class="hint" aria-hidden="true">Scrollen <i></i></p>
+  </div>
+</section>
+
+<section class="sec" id="drops" data-bg="drops" data-word="drops">
+  <div class="panel">
+    <p class="ey">Drop- &amp; Restock-Radar · Beta</p>
+    <p class="kicker">Es piept.</p>
+    <p class="lead">Bevor du suchst.</p>
+    <p class="tx">153 Shops aus DE, AT, CH, NL, BE und FR, dazu 28 Signalquellen. Jeder Alert mit Preis und Direktlink.</p>
+    <p class="tx mut">Gepingt wird nur, wer die passende Interessenrolle gewählt hat. Nie @everyone.</p>
+  </div>
+</section>
+
+<section class="sec" id="news" data-bg="news" data-word="news">
+  <div class="panel">
+    <p class="ey">News-Radar</p>
+    <p class="kicker">Rund um die Uhr.</p>
+    <p class="lead">Vollautomatisch.</p>
+    <p class="tx">Sechs News-Kanäle. Jede Meldung klar gekennzeichnet, damit ein Gerücht nie wie ein Fakt aussieht.</p>
+    <p class="tx mut">Pings nur per Opt-in-Interessenrolle und mit Limits. Kein @everyone.</p>
+  </div>
+</section>
+
+<section class="sec" id="tausch" data-bg="tausch" data-word="tausch">
+  <div class="panel">
+    <p class="ey">Tauschbörse mit TradeMatch</p>
+    <p class="kicker">Die passende Karte</p>
+    <p class="lead">findet dich.</p>
+    <p class="tx">Geprüft nach Set, Nummer, Variante, Sprache und Zustand. Ein privater Tauschraum öffnet sich erst, wenn beide zustimmen.</p>
+    <p class="tx mut">Beispiel im PullTopia-Kartendesign: eigene Kreaturen, keine Darstellung der Pokémon. Kein Preis-, Fairness- oder Sicherheitsversprechen.</p>
+  </div>
+</section>
+
+<section class="sec" id="cardverse" data-bg="cardverse" data-word="cardverse">
+  <div class="panel">
+    <p class="ey">Cardverse First Edition</p>
+    <p class="kicker">50 Karten.</p>
+    <p class="lead">Eine gibt es nur einmal.</p>
+    <p class="tx">Booster öffnen, Album füllen, tauschen. 5 Booster pro Tag kostenlos, mit Mitgliedschaft 10. Virtuell, ohne Echtgeldwert.</p>
+  </div>
+</section>
+
+<section class="sec premium" id="premium" data-bg="premium" data-word="premium">
+  <div class="panel">
+    <p class="ey">PullTopia Premium</p>
+    <p class="kicker">Sofort.</p>
+    <p class="lead">Statt 15 Minuten später.</p>
+    <p class="tx">Ein Paket, drei Laufzeiten, dieselben Leistungen.</p>
+    <div class="founder" data-fc-free="50" data-fc-total="50">
+      <div class="fbadge">
+        <p class="fb-k"><span aria-hidden="true">✦</span> Gründerpreis</p>
+        <p class="fb-n">noch <strong class="fc-free">50</strong> von <span class="fc-total">50</span> Plätzen</p>
+        <div class="fbar" role="img" aria-label="Noch 50 von 50 Gründerplätzen frei"><i></i></div>
+        <small>Für die ersten 50 zahlenden Mitglieder. Stand: 16.11.2026</small>
+      </div>
+    </div>
+  </div>
+  <div class="panel wide plans-panel">
+    <ul class="plans">
+      <li><h3>Monatlich</h3><p class="pr"><span>4,99</span> €</p><p class="per">pro Monat</p><p class="rg">danach regulär 6,99 €</p></li>
+      <li><h3>Quartal</h3><p class="pr"><span>12,99</span> €</p><p class="per">pro 3 Monate</p><p class="rg">danach regulär 17,99 €</p></li>
+      <li class="best"><h3>Jährlich <em>Längste Laufzeit</em></h3><p class="pr"><span>39,99</span> €</p><p class="per">pro 12 Monate</p><p class="rg">danach regulär 54,99 €</p></li>
+    </ul>
+    <p class="fguar"><b>✓ Dein Gründerpreis bleibt dir, solange dein Abo ununterbrochen läuft.</b><span>Nach einem Ende des Abos gilt bei einer Neubuchung der dann reguläre Preis.</span></p>
+    <p class="fn">Die regulären Preise gelten erst, wenn alle 50 Gründerplätze vergeben sind. Sicher über Stripe, zum Laufzeitende kündbar. § 19 UStG. <a href="../terms.html#premium">Abo-Bedingungen</a> · <a href="../kuendigen.html">Kündigen</a></p>
+  </div>
+</section>
+
+<section class="sec finale" id="join" data-bg="community" data-word="">
+  <div class="panel cta">
+    <p class="kicker">Dein nächster Pull</p>
+    <p class="lead">beginnt hier.</p>
+    <p class="tx">Kostenlos beitreten, Interessen wählen, loslegen.</p>
+    <div class="btns"><a class="btn p" href="https://discord.gg/4qKfQGuqPB" target="_blank" rel="noopener">Kostenlos beitreten</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <nav aria-label="Rechtliches"><a href="../imprint.html">Impressum</a><a href="../privacy.html">Datenschutz</a><a href="../terms.html">AGB</a><a href="../terms.html#premium">Abo-Bedingungen</a><a href="../terms.html#widerruf">Widerruf</a><a href="../kuendigen.html">Verträge hier kündigen</a></nav>
+  <p>PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert. Wir sind nicht mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Discord, Amazon oder den genannten Shops verbunden. Pokémon, One Piece, Yu-Gi-Oh!, Magic: The Gathering und alle weiteren Marken gehören ihren jeweiligen Inhabern. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Echte Kartennamen, Sets und Nummern werden nur zur Beschreibung genannt und im eigenen PullTopia-Kartendesign ohne offizielle Kartenbilder, Figuren oder Logos dargestellt. Die Motive auf diesen Beispielkarten sind eigene PullTopia-Kreaturen und keine Darstellung des jeweiligen Pokémon. Alle übrigen Kartenmotive sind eigene Cardverse-Motive von PullTopia. Hintergrundszenen: KI-generierte Illustrationen im PullTopia-Design, keine echten Produkte. Schriften: Cinzel (SIL OFL) und Inter, selbst gehostet. © 2026 PullTopia</p>
+</footer>
+<script src="scroll.js?v=4"></script>
+</body>
+</html>
