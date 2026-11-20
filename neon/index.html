@@ -10,7 +10,7 @@
 <link rel="icon" href="../assets/img/favicon.png">
 <link rel="preload" href="fonts/cinzel-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="neon.css?v=10">
+<link rel="stylesheet" href="neon.css?v=11">
 <script>document.documentElement.className="js";setTimeout(function(){document.documentElement.classList.add("ld-done","ready")},9000)</script>
 </head>
 <body>
@@ -67,8 +67,8 @@
 
 <!-- Frühwarnung -->
 <section class="sc R" id="fruehwarnung" data-sec style="--len:170">
-  <div class="bg" data-bg="drops" data-mode="loop" data-em="storm" data-ex=".08,.4,.55,.9" data-n="60" data-flip aria-hidden="true"><div class="bg-in">
-    <picture><source media="(max-width:820px)" srcset="scenes/drops-a-m.webp"><img class="bg-img" src="scenes/drops-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
+  <div class="bg" data-bg="warn" data-mode="loop" data-em="gold" data-ex=".05,.4,.55,.9" data-n="60" aria-hidden="true"><div class="bg-in">
+    <picture><source media="(max-width:820px)" srcset="scenes/warn-a-m.webp"><img class="bg-img" src="scenes/warn-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
     <video class="bg-v" muted playsinline preload="none" loop disablepictureinpicture tabindex="-1"></video>
     <div class="bg-ov"></div><canvas class="bg-em"></canvas>
   </div></div>
@@ -130,10 +130,11 @@
 
 <!-- Cardverse -->
 <section class="sc C" id="cardverse" data-sec style="--len:190">
-  <div class="bg" data-bg="cardverse" data-mode="once" data-em="gold" data-ex=".3,.7,.6,.95" data-n="80" aria-hidden="true"><div class="bg-in">
+  <div class="bg" data-bg="cardverse" data-mode="once" data-fly="1" data-em="gold" data-ex=".3,.7,.6,.95" data-n="80" aria-hidden="true"><div class="bg-in">
     <picture><source media="(max-width:820px)" srcset="scenes/cardverse-a-m.webp"><img class="bg-img" src="scenes/cardverse-a.webp" width="1280" height="720" alt="" decoding="async" loading="lazy"></picture>
     <video class="bg-v" muted playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
-    <div class="bg-ov"></div><canvas class="bg-em"></canvas>
+    <div class="bg-ov"></div>
+    <div class="cvfly" aria-hidden="true"><img class="cvf" src="scenes/cvf-045.webp" width="380" height="532" alt="" decoding="async" loading="lazy"><img class="cvf" src="scenes/cvf-016.webp" width="380" height="532" alt="" decoding="async" loading="lazy"><img class="cvf" src="scenes/cvf-033.webp" width="380" height="532" alt="" decoding="async" loading="lazy"><img class="cvf" src="scenes/cvf-023.webp" width="380" height="532" alt="" decoding="async" loading="lazy"><img class="cvf" src="scenes/cvf-050.webp" width="380" height="532" alt="" decoding="async" loading="lazy"><img class="cvf" src="scenes/cvf-028.webp" width="380" height="532" alt="" decoding="async" loading="lazy"></div><canvas class="bg-em"></canvas>
   </div></div>
   <div class="stk"><div class="ct">
     <p class="ey">Cardverse First Edition</p>
@@ -304,6 +305,6 @@
   <p>Testseite (Neon-Vorschau), nicht öffentlich. Beispiele (Tauschkarten) sind fiktiv. PullTopia ist eine unabhängige Fan-Community und nicht offiziell lizenziert, nicht verbunden mit The Pokémon Company, Nintendo, Bandai, Konami, Wizards of the Coast, Discord, Amazon oder den genannten Shops. Pokémon ist eine Marke von Nintendo, Creatures, GAME FREAK und The Pokémon Company. Kartenmotive sind eigene PullTopia-Kreaturen. Hintergrundszenen: KI-generierte Illustrationen im PullTopia-Design, keine echten Produkte. Schriften: Cinzel (SIL OFL) und Inter, selbst gehostet. © 2026 PullTopia</p>
 </footer>
 <script src="ui.js?v=10"></script>
-<script src="scenes.js?v=1"></script>
+<script src="scenes.js?v=2"></script>
 </body>
 </html>
