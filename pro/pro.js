@@ -5,9 +5,10 @@
   var mobileQ = window.matchMedia("(max-width:820px)");
   function isMob(){ return mobileQ.matches; }
 
-  var N = 97;
+  var N = 100;
   var frames = new Array(N);
   var loaded = 0;
+  var setId = isMob() ? "m" : "d";
   var canvas = document.getElementById("scrub");
   var ctx = canvas && canvas.getContext("2d");
   var poster = document.getElementById("poster");
@@ -16,7 +17,25 @@
   var hint = document.querySelector(".hint");
   var want = 0, drawn = -1;
 
-  function frameSrc(i){ return "frames/" + String(i).padStart(3,"0") + ".webp"; }
+  // Real Lunafuchs overlay, in 1280x720 source pixels (mobile crop is 540 wide, x origin 370)
+  var CARD = { x:535, y:48, w:210, h:292, cropX:370 };
+  var realCard = new Image();
+  realCard.decoding = "async";
+  realCard.src = "../assets/img/card-016.webp";
+  var cardOff = document.createElement("canvas");
+  var cardOffCtx = cardOff.getContext("2d");
+
+  function frameSrc(i){ return "frames/" + setId + "/" + String(i).padStart(3,"0") + ".webp"; }
+  function resetSet(){
+    var next = isMob() ? "m" : "d";
+    if (next===setId) return;
+    setId = next;
+    frames = new Array(N);
+    loaded = 0;
+    drawn = -1;
+    if (canvas) canvas.classList.remove("is-ready");
+    preloadAround(want);
+  }
 
   function loadFrame(i){
     if (i<0||i>=N || frames[i] || frames[i]===false) return;
@@ -76,19 +95,55 @@
     var cw=canvas.width, ch=canvas.height;
     ctx.fillStyle="#000";
     ctx.fillRect(0,0,cw,ch);
-    var iw=im.naturalWidth||960, ih=im.naturalHeight||540;
+    var iw=im.naturalWidth|| (isMob()?540:1280), ih=im.naturalHeight||720;
     var scale;
     if (isMob()){
-      // zoom so the pack reads large; crop empty sides
-      scale = Math.max(cw/iw, (ch*0.78)/ih);
+      // pack lower so typography has room above; slight zoom
+      scale = Math.max(cw/iw, (ch*0.72)/ih);
     } else {
       scale = Math.max(cw/iw, ch/ih);
     }
     var dw=iw*scale, dh=ih*scale;
     var dx=(cw-dw)/2, dy=(ch-dh)/2;
-    if (isMob()) dy = (ch-dh)*0.42; // slightly high so type can sit below
+    if (isMob()) dy = (ch-dh)*0.62;
     ctx.drawImage(im, dx, dy, dw, dh);
+    drawRealCard(dx, dy, scale, idx);
     drawn = idx;
+  }
+
+  function drawRealCard(dx, dy, scale, idx){
+    if (!realCard.complete || !realCard.naturalWidth) return;
+    var p = idx / Math.max(1, N-1);
+    var a = 0;
+    if (p>=0.88) a = Math.min(1, (p-0.88)/0.08);
+    if (reduced) a = p>=0.92 ? 1 : 0;
+    if (a<=0.01) return;
+    var rx = isMob() ? (CARD.x - CARD.cropX) : CARD.x;
+    var x = dx + rx*scale, y = dy + CARD.y*scale, w = CARD.w*scale, h = CARD.h*scale;
+    var W = Math.max(1, Math.round(w)), H = Math.max(1, Math.round(h));
+    if (cardOff.width!==W || cardOff.height!==H){ cardOff.width=W; cardOff.height=H; }
+    var c = cardOffCtx;
+    c.clearRect(0,0,W,H);
+    c.save();
+    c.beginPath();
+    var rad = Math.max(6, W*0.045);
+    if (c.roundRect) c.roundRect(0,0,W,H,rad);
+    else c.rect(0,0,W,H);
+    c.clip();
+    c.drawImage(realCard, 0, 0, W, H);
+    var g = c.createLinearGradient(0,0,0,H);
+    // keep flavor text + ATK/DEF fully opaque; only soften the last few pixels into the gold tear
+    g.addColorStop(0, "rgba(0,0,0,1)");
+    g.addColorStop(0.93, "rgba(0,0,0,1)");
+    g.addColorStop(1, "rgba(0,0,0,0.55)");
+    c.globalCompositeOperation = "destination-in";
+    c.fillStyle = g;
+    c.fillRect(0,0,W,H);
+    c.restore();
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.drawImage(cardOff, x, y, w, h);
+    ctx.restore();
   }
 
   function heroProgress(){
@@ -228,7 +283,7 @@
   }
 
   resizeScrub();
-  window.addEventListener("resize", function(){ resizeScrub(); draw(want); }, {passive:true});
+  window.addEventListener("resize", function(){ resetSet(); resizeScrub(); draw(want); }, {passive:true});
   preloadAllProgressive();
   loadFrame(0);
   requestAnimationFrame(tick);

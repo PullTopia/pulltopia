@@ -1,5 +1,9 @@
 /* PullTopia /pro/ — Three.js Cardverse viewer */
-import * as THREE from "three";
+async function loadThree(){
+  try { return await import("three"); }
+  catch (e){ return await import("./vendor/three.module.min.js"); }
+}
+const THREE = await loadThree();
 
 const CARDS = [
   { id:"016", name:"Lunafuchs", no:"016/050", src:"../assets/img/card-016.webp" },
