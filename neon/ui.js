@@ -3,6 +3,8 @@
   "use strict";
   var d=document,root=d.documentElement;
   var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Handy/Touch: kürzere Abschnitte, kein Ausblenden, Mindestsichtbarkeit
+  var touchMQ=matchMedia("(max-width:820px), (pointer:coarse)");function isTouch(){return touchMQ.matches}
   var fmt=new Intl.NumberFormat("de-DE"),fmt1=new Intl.NumberFormat("de-DE",{maximumFractionDigits:1});
   function $(s){return d.querySelector(s)}
   function $$(s){return [].slice.call(d.querySelectorAll(s))}
@@ -64,11 +66,24 @@
       var sc=(first?1:.94+.06*ss(.4,1,e))*(last?1:(1+.05*ss(.62,1,p)));
       var ty=(first?0:(1-ss(.4,1,e))*40)-(last?0:ss(.62,1,p)*30);
       if(reduce){op=(first?1:ss(.6,.9,e))*(last?1:(1-ss(.8,.95,p)));sc=1;ty=0}
+      // Touch: Text blendet nur ein (ab 40 %), nie aus; er scrollt am Abschnittsende einfach mit weg. So bleibt beim schnellen Wischen nichts unsichtbar
+      if(isTouch()){op=first?1:.4+.6*ss(.15,.6,e);sc=1;ty=reduce?0:(1-ss(.15,.6,e))*16}
       ct.style.opacity=op.toFixed(3);ct.style.transform="translate3d(0,"+ty.toFixed(1)+"px,0) scale("+sc.toFixed(4)+")";
       ct.style.pointerEvents=op<.2?"none":"";
     });
   }
-  var tk=false;function req(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;frame()})}}
+  /* Einmal-Animationen: starten zeitbasiert beim ersten Sichtbarwerden und laufen komplett durch, auch beim Weiterwischen.
+     Wurde ein Abschnitt übersprungen (schon oberhalb des Bildschirms), steht sofort der Endzustand da. */
+  var pend=[];
+  function once(el,play,end){pend.push({el:el,play:play,end:end||play});check()}
+  function check(){if(!pend.length)return;var vh=innerHeight,minOp=isTouch()?.25:.7;
+    pend=pend.filter(function(q){var r=q.el.getBoundingClientRect();
+      if(r.bottom<0){q.end();return false}
+      if(r.top<vh*.92&&r.bottom>vh*.08){var ct=q.el.closest(".ct")||q.el;if(+getComputedStyle(ct).opacity>=minOp||ct.closest(".flow")){q.play();return false}}
+      return true})}
+  function passFlow(){secs.forEach(function(s){if(s.classList.contains("flow")&&!s.classList.contains("in")&&s.getBoundingClientRect().top<innerHeight*.9)s.classList.add("in")})}
+  var tk=false;function req(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;frame();passFlow();check()})}}
+  setInterval(function(){if(pend.length&&!d.hidden)check()},400);
   addEventListener("scroll",req,{passive:true});
   addEventListener("resize",function(){fit();req()});
   addEventListener("load",function(){fit();req()});
@@ -103,7 +118,7 @@
     }
     if(reduce||!("IntersectionObserver" in window))endState();
     else{fi.style.setProperty("--fw","0%");fnum.textContent="0";prices.forEach(function(p){p.textContent=fmt2.format(0)});
-      var pio=new IntersectionObserver(function(es){if(es[0].isIntersecting){play();pio.disconnect()}},{threshold:.5});pio.observe(fbar)}
+      once(fbar,play,function(){played=true;endState()})}
   }
 
   /* Live-Statistik wie Startseite: Live-Branch → ../stats.json → localStorage → Werte im HTML */
@@ -115,14 +130,14 @@
   var CU=["drops","premmed","freemed","shops","signals","restocks","backdrops","shops-t","signals-t","freedelay"],NUM=/\d[\d.]*(?:,\d+)?/;
   function cuTxt(s,e){return s.replace(NUM,function(m){var dec=m.indexOf(",")>=0?m.split(",")[1].length:0,v=parseFloat(m.replace(/\./g,"").replace(",","."))*e;
     return new Intl.NumberFormat("de-DE",{minimumFractionDigits:dec,maximumFractionDigits:dec}).format(dec?v:Math.round(v))})}
-  function whenShown(ct,cb){var go=false;var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting||go)return;
-      (function chk(){if(go)return;var r=ct.getBoundingClientRect();if(+getComputedStyle(ct).opacity>.7&&r.top<innerHeight*.85&&r.bottom>innerHeight*.15){go=true;io.disconnect();cb()}else requestAnimationFrame(chk)})()},{threshold:.15});io.observe(ct)}
+  function whenShown(ct,cb,end){once(ct,cb,end)}
   var anim=!reduce&&("IntersectionObserver" in window),groups=[];
   if(anim){CU.forEach(function(k){$$('[data-s="'+k+'"]').forEach(function(el){el._f=el.textContent;el._cu=1;el.textContent=cuTxt(el._f,0);
       var ct=el.closest(".ct"),g=groups.filter(function(x){return x.ct===ct})[0];if(!g){g={ct:ct,els:[]};groups.push(g)}g.els.push(el)})});
-    groups.forEach(function(g){whenShown(g.ct,function(){var st=performance.now();
+    groups.forEach(function(g){function fin(){g.els.forEach(function(el){el.textContent=el._f;el._cu=0})}
+      whenShown(g.ct,function(){var st=performance.now();
       (function step(now){var k=clamp((now-st)/1200,0,1),e=1-Math.pow(1-k,3);g.els.forEach(function(el){el.textContent=k<1?cuTxt(el._f,e):el._f});
-        if(k<1)requestAnimationFrame(step);else g.els.forEach(function(el){el._cu=0})})(st)})})}
+        if(k<1)requestAnimationFrame(step);else fin()})(st)},fin)})}
   /* TradeMatch: von jedem Chip zeichnet sich eine Linie zu beiden Karten, dann wird der Chip grün; am Ende leuchtet MATCH grün */
   var crits=$$(".crit"),tmw=$(".tmw"),svg=$(".tm-lines");
   if(crits.length&&tmw&&svg){
@@ -153,7 +168,7 @@
           lines[i].forEach(function(p,j){p._k=e;p.style.strokeDashoffset=p._L*(1-e);
             if(k>0&&k<1){var pt=p.getPointAtLength(p._L*e);dots[j].setAttribute("cx",pt.x);dots[j].setAttribute("cy",pt.y);dots[j].style.opacity="1"}});
           if(k>=1&&!c.classList.contains("ok")){c.classList.add("ok");lines[i].forEach(function(p){p.classList.add("ok")});pulse();if(i===crits.length-1)dots.forEach(function(x){x.style.opacity="0"})}});
-        if(!all)requestAnimationFrame(step);else setTimeout(function(){mid.classList.add("ok");done=true},200)})(st)})
+        if(!all)requestAnimationFrame(step);else setTimeout(function(){mid.classList.add("ok");done=true},200)})(st)},finish)
   }
   function set(k,v){$$('[data-s="'+k+'"]').forEach(function(el){if(el._cu)el._f=v;else el.textContent=v})}
   function ago(iso){var ts=Date.parse(iso);if(!isFinite(ts))return"";var m=Math.max(0,Math.round((Date.now()-ts)/6e4));if(m<1)return"gerade eben";if(m<60)return"vor "+m+" Min";var h=Math.round(m/60);if(h<24)return"vor "+h+" Std.";var dd=Math.round(h/24);return"vor "+dd+" Tag"+(dd===1?"":"en")}

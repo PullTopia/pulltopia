@@ -12,7 +12,8 @@ const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const sstep = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
-let mobile = innerWidth < 820;
+const touchMQ = matchMedia("(max-width:820px), (pointer:coarse)");
+let mobile = innerWidth < 820, touch = touchMQ.matches;
 const HQ = /[?&]hq\b/.test(location.search);
 
 function fail(why) { console.info("[neon] Fallback ohne WebGL:", why); root.classList.add("no-gl"); PT.done(); }
@@ -312,7 +313,7 @@ async function start() {
   function buildComposer() {
     composer = new EffectComposer(renderer); composer.setPixelRatio(Math.min(dpr, mobile ? 1 : 1.25)); composer.setSize(W(), H());
     composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new UnrealBloomPass(new THREE.Vector2(W(), H()), mobile ? .42 : .5, .45, .82));
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(W(), H()), mobile ? .3 : .5, mobile ? .35 : .45, .85));
     composer.addPass(new OutputPass());
   }
   try { buildComposer(); } catch (e) { composer = null; }
@@ -360,11 +361,14 @@ async function start() {
     const y = scrollY; let i = 0; while (i < anchors.length - 1 && y >= anchors[i + 1]) i++;
     const a = keyAt(i), b = keyAt(Math.min(i + 1, anchors.length - 1));
     const last = i >= anchors.length - 1, u = last ? 0 : clamp((y - anchors[i]) / Math.max(1, anchors[i + 1] - anchors[i]));
-    const t = sstep(.25, .75, u);
+    // Handy/Touch: Karte wechselt erst, wenn der nächste Abschnitt fast steht, und taucht unterwegs kurz ab (nie über wanderndem Text)
+    const t = touch ? sstep(.5, .92, u) : sstep(.25, .75, u);
     for (const k of PK) tgt[k] = lerp(a[k] || 0, b[k] || 0, t);
+    if (touch && !last) tgt.vis *= 1 - sstep(.12, .45, u) * (1 - sstep(.8, .97, u));
     const span = last ? 1 : anchors[i + 1] - anchors[i], win = Math.min(span, innerHeight * 1.1), uw = last ? 0 : clamp(1 - (anchors[i + 1] - y) / win);
     // Tunnel nur kurz vor dem Übergang, nicht während langer Lese-Abschnitte
-    warp = reduce || last ? 0 : Math.sin(Math.PI * clamp((uw - .15) / .7)) * (!(a.vis || 0) && !(b.vis || 0) ? 0 : .5 + .5 * Math.abs((a.vis || 0) - (b.vis || 0)));
+    // Handy/Touch: kein Tunnel (ruhiger, schneller)
+    warp = reduce || last || touch ? 0 : Math.sin(Math.PI * clamp((uw - .15) / .7)) * (!(a.vis || 0) && !(b.vis || 0) ? 0 : .5 + .5 * Math.abs((a.vis || 0) - (b.vis || 0)));
   }
   const cur = {};
 
@@ -374,7 +378,7 @@ async function start() {
   addEventListener("deviceorientation", e => { if (e.gamma == null) return; ptr.tx = clamp(e.gamma / 45, -1, 1) * .5; ptr.ty = clamp((e.beta - 45) / 45, -1, 1) * .5; }, { passive: true });
 
   function resize() {
-    mobile = innerWidth < 820;
+    mobile = innerWidth < 820; touch = touchMQ.matches;
     camera.aspect = W() / H(); camera.updateProjectionMatrix();
     renderer.setSize(W(), H(), false); if (composer) composer.setSize(W(), H());
     fitGiant(); measure(); targetFromScroll();
@@ -456,12 +460,17 @@ async function start() {
   if (reduce) { ready = true; renderOnce(); addEventListener("scroll", renderOnce, { passive: true }); addEventListener("resize", renderOnce); PT.onReady(renderOnce); return; }
   addEventListener("scroll", targetFromScroll, { passive: true });
 
+  let lastF = 0;
   function loop() {
     requestAnimationFrame(loop);
     if (d.hidden) return;
+    // Bildrate begrenzen: max. ~60 fps (auch auf 120-Hz-Displays); auf dem Handy 30 fps, solange Karte und Ring ausgeblendet sind
+    const nowF = performance.now(), idle = touch && introDone && (cur.vis || 0) < .01 && (cur.ring || 0) < .01 && Math.abs((tgt.vis || 0) - (cur.vis || 0)) < .01;
+    if (nowF - lastF < (idle ? 31 : 14)) return; lastF = nowF;
     const dt = Math.min(.05, clock.getDelta()), time = clock.elapsedTime;
     apply(time, dt); draw();
-    if (ready && introDone && !degraded && !HQ) { fpsT += dt; fpsN++; if (fpsT > 2.5) { const fps = fpsN / fpsT; fpsT = 0; fpsN = 0; if (fps < 40) { stage++; if (stage === 1 && dpr > 1) { dpr = 1; renderer.setPixelRatio(dpr); pU.uPx.value = dpr; if (composer) composer.setPixelRatio(.75); resize(); } else { degraded = true; composer = null; resize(); } console.info("[neon] Leistungsmodus " + stage + " (" + fps.toFixed(0) + " fps)"); } } }
+    if (idle) { fpsT = 0; fpsN = 0; }
+    else if (ready && introDone && !degraded && !HQ) { fpsT += dt; fpsN++; if (fpsT > 2.5) { const fps = fpsN / fpsT; fpsT = 0; fpsN = 0; if (fps < 40) { stage++; if (stage === 1 && dpr > 1) { dpr = 1; renderer.setPixelRatio(dpr); pU.uPx.value = dpr; if (composer) composer.setPixelRatio(.75); resize(); } else { degraded = true; composer = null; resize(); } console.info("[neon] Leistungsmodus " + stage + " (" + fps.toFixed(0) + " fps)"); } } }
   }
   loop();
 }
